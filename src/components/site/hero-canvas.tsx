@@ -97,7 +97,15 @@ export default function HeroCanvas({ showRing = true }: { showRing?: boolean }) 
     <Canvas
       dpr={[1, 1.75]}
       camera={{ position: [0, 0, 10], fov: 45 }}
-      gl={{ antialias: true, alpha: true, clearColor: "#0f172a" }}
+      gl={
+        // clearColor isn't in @react-three/fiber's GLProps type, but three.js's
+        // WebGLRenderer accepts it at runtime — cast bypasses the excess-property check.
+        {
+          antialias: true,
+          alpha: true,
+          clearColor: "#0f172a",
+        } as unknown as Exclude<React.ComponentProps<typeof Canvas>["gl"], undefined>
+      }
       style={{ pointerEvents: "none" }}
     >
       <ParticleField />
