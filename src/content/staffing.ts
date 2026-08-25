@@ -250,7 +250,8 @@ export const staffingRoles: StaffingRole[] = [
   {
     slug: "cybersecurity-grc",
     title: "Cybersecurity & GRC",
-    tagline: "Security and compliance professionals who translate controls into operational action.",
+    tagline:
+      "Security and compliance professionals who translate controls into operational action.",
     blocks: [
       {
         heading: "Market reality",

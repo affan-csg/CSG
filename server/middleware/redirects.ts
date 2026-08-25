@@ -20,9 +20,10 @@ const redirectMap: Record<string, string> = {
 };
 
 export default defineEventHandler((event) => {
-  const url = getHeader(event, "x-forwarded-proto") === "https"
-    ? `https://${getHeader(event, "x-forwarded-host")}${event.node.req.url}`
-    : `http://localhost${event.node.req.url}`;
+  const url =
+    getHeader(event, "x-forwarded-proto") === "https"
+      ? `https://${getHeader(event, "x-forwarded-host")}${event.node.req.url}`
+      : `http://localhost${event.node.req.url}`;
 
   const pathname = new URL(url).pathname;
   const redirectTarget = redirectMap[pathname];

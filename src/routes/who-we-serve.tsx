@@ -1,7 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Reveal } from "@/components/site/reveal";
-import { ArrowLink, CtaBand, Panel, PageHero, Section, SectionHeading } from "@/components/site/primitives";
+import {
+  ArrowLink,
+  CtaBand,
+  Panel,
+  PageHero,
+  Section,
+  SectionHeading,
+} from "@/components/site/primitives";
 import { buildSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/who-we-serve")({
@@ -49,7 +56,11 @@ function WhoWeServePage() {
       />
 
       {audiences.map((audience, i) => (
-        <Section key={audience.id} id={audience.id} className={i > 0 ? "border-t border-border" : ""}>
+        <Section
+          key={audience.id}
+          id={audience.id}
+          className={i > 0 ? "border-t border-border" : ""}
+        >
           <SectionHeading eyebrow={audience.eyebrow} title={audience.heading} />
           <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
             <Reveal>

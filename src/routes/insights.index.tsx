@@ -50,7 +50,11 @@ function InsightsPage() {
         <div className="grid gap-6 md:grid-cols-2">
           {posts.map((post, i) => (
             <Reveal key={post.slug} delay={(i % 3) * 0.06}>
-              <Link to="/insights/$slug" params={{ slug: post.slug }} className="group block h-full">
+              <Link
+                to="/insights/$slug"
+                params={{ slug: post.slug }}
+                className="group block h-full"
+              >
                 <Panel className="flex h-full flex-col overflow-hidden p-0">
                   <div className="relative aspect-[16/9] w-full overflow-hidden">
                     <img

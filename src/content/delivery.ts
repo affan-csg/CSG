@@ -121,7 +121,8 @@ export type RegionPage = {
 export const regionPages: RegionPage[] = [
   {
     slug: "us",
-    title: "US contract and direct-hire talent for roles where proximity, compliance and continuity matter.",
+    title:
+      "US contract and direct-hire talent for roles where proximity, compliance and continuity matter.",
     models: [
       {
         title: "Direct Hire — 10% of first-year salary",
@@ -193,7 +194,8 @@ export const regionPages: RegionPage[] = [
   },
   {
     slug: "pakistan",
-    title: "Dedicated offshore engineering capacity for structured execution and extended coverage.",
+    title:
+      "Dedicated offshore engineering capacity for structured execution and extended coverage.",
     intro: [
       "Most US buyers still default to India or the Philippines when they think offshore. The data has moved and the market hasn't caught up.",
       "The International Labour Organisation ranks Pakistan as the world's second-largest supplier of digital labour services — ahead of both India and the Philippines. In December 2025, Pakistan recorded $437 million in IT and digital service exports in a single month, a milestone no forecast had projected arriving that soon.",

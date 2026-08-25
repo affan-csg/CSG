@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, type LinkProps } from "@tanstack/react-router";
 import { Mail, Phone, Linkedin, Youtube, Facebook, Instagram } from "lucide-react";
 
 import { company, footerColumns } from "@/content/site";
@@ -19,7 +19,11 @@ export function SiteFooter() {
               />
               <span className="font-display text-base font-semibold">Career Source Group</span>
             </Link>
-            <p className="mt-5 max-w-sm footer-text text-muted-foreground">Career Source Group is a technology staffing and talent delivery company headquartered in Alpharetta, Georgia. We help US companies hire AI, Data, Cloud, Software, Product and GRC professionals across the United States, LATAM and Pakistan.</p>
+            <p className="mt-5 max-w-sm footer-text text-muted-foreground">
+              Career Source Group is a technology staffing and talent delivery company headquartered
+              in Alpharetta, Georgia. We help US companies hire AI, Data, Cloud, Software, Product
+              and GRC professionals across the United States, LATAM and Pakistan.
+            </p>
             <div className="mt-7 space-y-3">
               <p className="footer-text text-muted-foreground">
                 Headquartered in Alpharetta, Georgia | Serving clients across the United States
@@ -49,7 +53,7 @@ export function SiteFooter() {
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
-                        to={link.to as any}
+                        to={link.to as Exclude<LinkProps["to"], undefined>}
                         className="footer-text text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.label}
@@ -68,9 +72,7 @@ export function SiteFooter() {
               <p className="caption-text text-muted-foreground">
                 © {new Date().getFullYear()} {company.legalName}. All rights reserved.
               </p>
-              <p className="caption-text text-gold font-semibold">
-                Powered by AJ
-              </p>
+              <p className="caption-text text-gold font-semibold">Powered by AJ</p>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 caption-text text-muted-foreground">
               <Link to="/legal-notice" className="hover:text-foreground">
@@ -82,7 +84,10 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {(company.social.linkedin || company.social.youtube || company.social.facebook || company.social.instagram) && (
+          {(company.social.linkedin ||
+            company.social.youtube ||
+            company.social.facebook ||
+            company.social.instagram) && (
             <div className="flex flex-wrap items-center gap-4">
               {company.social.linkedin && (
                 <a

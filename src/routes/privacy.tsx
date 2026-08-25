@@ -22,7 +22,8 @@ function PrivacyPage() {
         <div className="max-w-3xl">
           <h2 className="font-display text-2xl font-semibold mb-6">Our Privacy Commitment</h2>
           <p className="text-[1.04rem] leading-[1.75] text-muted-foreground">
-            Career Source Group, LLC is committed to protecting your privacy. Our Privacy Policy covers:
+            Career Source Group, LLC is committed to protecting your privacy. Our Privacy Policy
+            covers:
           </p>
           <ul className="mt-4 ml-6 space-y-2 text-[1.04rem] leading-[1.75] text-muted-foreground list-disc">
             <li>What data we collect and why</li>
@@ -32,11 +33,9 @@ function PrivacyPage() {
             <li>How to contact us about privacy concerns</li>
           </ul>
           <p className="mt-8 text-[1.04rem] leading-[1.75] text-muted-foreground">
-            For the complete Privacy Policy document and detailed information about our data practices, please{" "}
-            <a
-              href="/contact"
-              className="text-gold transition-colors hover:text-gold/80"
-            >
+            For the complete Privacy Policy document and detailed information about our data
+            practices, please{" "}
+            <a href="/contact" className="text-gold transition-colors hover:text-gold/80">
               contact us
             </a>{" "}
             or email{" "}

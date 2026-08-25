@@ -15,6 +15,7 @@
 ## ✅ ALREADY COMPLETE
 
 ### Code & Infrastructure
+
 - ✓ Production Supabase project created
 - ✓ All 5 SQL migrations run (tables exist, schema ready)
 - ✓ Form end-to-end tested (Supabase → email → CRM verified working)
@@ -23,6 +24,7 @@
 - ✓ Production build successful
 
 ### Integrations & Configuration
+
 - ✓ Social media profiles (LinkedIn, YouTube, Facebook, Instagram)
 - ✓ CRM: HubSpot endpoint + API key (tested, working)
 - ✓ Email: Resend API key (configured, verified)
@@ -31,6 +33,7 @@
 - ✓ **.env.production created** with all credentials + GA4 ID
 
 ### Deferred (Not Needed for Launch)
+
 - ✓ ATS integration — deferred, candidate data saves to Supabase safely
 
 ---

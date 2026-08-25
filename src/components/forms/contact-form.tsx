@@ -53,7 +53,13 @@ export function ContactForm({ className }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("space-y-5 rounded-2xl border border-white/10 bg-card p-8 shadow-2xl shadow-black/60", className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn(
+        "space-y-5 rounded-2xl border border-white/10 bg-card p-8 shadow-2xl shadow-black/60",
+        className,
+      )}
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField
           label="First name"

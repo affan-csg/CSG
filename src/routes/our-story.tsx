@@ -4,7 +4,6 @@ import { Reveal } from "@/components/site/reveal";
 import {
   CtaBand,
   FaqSection,
-  LogoWall,
   NumberedItem,
   PageHero,
   Panel,

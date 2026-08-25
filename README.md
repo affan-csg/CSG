@@ -194,13 +194,13 @@ pnpm test:all              # lint + type-check + test + test:e2e
 
 ## 🔗 Integrations
 
-| Service | Purpose | Required? |
-|---------|---------|-----------|
-| Supabase | Database + Storage for form submissions | Required |
-| Cloudflare Turnstile | Bot protection on forms | Required |
-| Resend | Email notification on submission | Optional |
-| HubSpot | CRM lead sync | Optional |
-| GA4 | Analytics | Optional, disabled by default |
+| Service              | Purpose                                 | Required?                     |
+| -------------------- | --------------------------------------- | ----------------------------- |
+| Supabase             | Database + Storage for form submissions | Required                      |
+| Cloudflare Turnstile | Bot protection on forms                 | Required                      |
+| Resend               | Email notification on submission        | Optional                      |
+| HubSpot              | CRM lead sync                           | Optional                      |
+| GA4                  | Analytics                               | Optional, disabled by default |
 
 ---
 

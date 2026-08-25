@@ -26,10 +26,7 @@ function TermsPage() {
           </p>
           <p className="mt-6 text-[1.04rem] leading-[1.75] text-muted-foreground">
             For questions about our terms and conditions, please{" "}
-            <a
-              href="/contact"
-              className="text-gold transition-colors hover:text-gold/80"
-            >
+            <a href="/contact" className="text-gold transition-colors hover:text-gold/80">
               contact us
             </a>{" "}
             or email{" "}

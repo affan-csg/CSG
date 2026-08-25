@@ -16,14 +16,17 @@ export const company = {
     ["Saturday", "Closed"],
     ["Sunday", "Closed"],
   ] as const,
-  social: {
+  social: (() => {
     // import.meta.env (not process.env) — Vite bakes these in identically for
     // both the server and client bundles, avoiding an SSR/hydration mismatch.
-    linkedin: (import.meta.env as any)["NEXT_PUBLIC_LINKEDIN_URL"] || null,
-    youtube: (import.meta.env as any)["NEXT_PUBLIC_YOUTUBE_URL"] || null,
-    facebook: (import.meta.env as any)["NEXT_PUBLIC_FACEBOOK_URL"] || null,
-    instagram: (import.meta.env as any)["NEXT_PUBLIC_INSTAGRAM_URL"] || null,
-  },
+    const env = import.meta.env as unknown as Record<string, string | undefined>;
+    return {
+      linkedin: env["NEXT_PUBLIC_LINKEDIN_URL"] || null,
+      youtube: env["NEXT_PUBLIC_YOUTUBE_URL"] || null,
+      facebook: env["NEXT_PUBLIC_FACEBOOK_URL"] || null,
+      instagram: env["NEXT_PUBLIC_INSTAGRAM_URL"] || null,
+    };
+  })(),
 };
 
 export const navLinks = [

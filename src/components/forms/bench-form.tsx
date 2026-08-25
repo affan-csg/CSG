@@ -83,7 +83,13 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("space-y-5 rounded-2xl border border-white/10 bg-card p-8 shadow-2xl shadow-black/60", className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn(
+        "space-y-5 rounded-2xl border border-white/10 bg-card p-8 shadow-2xl shadow-black/60",
+        className,
+      )}
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField
           label="First name"
@@ -252,7 +258,9 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
 
       <div className="space-y-3 rounded-md border border-white/10 bg-black/20 p-4 text-sm">
         <p className="text-muted-foreground">
-          By submitting your application, you consent to Career Source Group retaining and reviewing your profile to match you with relevant opportunities. We will contact you only when a suitable role opens. Your information is handled according to our{" "}
+          By submitting your application, you consent to Career Source Group retaining and reviewing
+          your profile to match you with relevant opportunities. We will contact you only when a
+          suitable role opens. Your information is handled according to our{" "}
           <a href="/privacy" className="underline hover:text-gold">
             Privacy Policy
           </a>

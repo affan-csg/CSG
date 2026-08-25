@@ -16,7 +16,7 @@ describe("Analytics Module", () => {
     global.window = {
       gtag: mockGtag,
       dataLayer: [],
-    } as any;
+    } as unknown as Window & typeof globalThis;
   });
 
   describe("trackEvent", () => {
@@ -33,7 +33,7 @@ describe("Analytics Module", () => {
     });
 
     it("should not throw if gtag is not available", () => {
-      (window as any).gtag = undefined;
+      window.gtag = undefined;
       expect(() => trackEvent("test_event")).not.toThrow();
     });
   });
@@ -55,7 +55,7 @@ describe("Analytics Module", () => {
           specialty: "AI/ML Engineer",
           location: "us",
           work_arrangement: "contract",
-        })
+        }),
       );
     });
 
@@ -69,7 +69,7 @@ describe("Analytics Module", () => {
           event_category: "engagement",
           event_label: "Request Talent",
           location: "homepage_hero",
-        })
+        }),
       );
     });
   });
@@ -91,7 +91,7 @@ describe("Analytics Module", () => {
           specialty: "DevOps Engineer",
           years_experience: 5,
           availability: "2-4 weeks",
-        })
+        }),
       );
     });
   });
@@ -107,7 +107,7 @@ describe("Analytics Module", () => {
           event_category: "navigation",
           page_title: "Home",
           page_path: "/",
-        })
+        }),
       );
     });
 
@@ -120,7 +120,7 @@ describe("Analytics Module", () => {
         expect.objectContaining({
           event_category: "engagement",
           event_label: "faq_interaction",
-        })
+        }),
       );
     });
 
@@ -133,7 +133,7 @@ describe("Analytics Module", () => {
         expect.objectContaining({
           event_category: "navigation",
           region: "latam",
-        })
+        }),
       );
     });
   });

@@ -4,18 +4,17 @@
 type EventParams = Record<string, string | number | boolean | string[] | number[]>;
 
 declare global {
-  var dataLayer: any[];
+  var dataLayer: unknown[];
   interface Window {
-    gtag?: (command: string, action: string, params?: EventParams) => void;
-    dataLayer?: any[];
+    gtag?: ((...args: unknown[]) => void) | undefined;
+    dataLayer?: unknown[];
   }
 }
 
-const GA4_ID =
-  (import.meta.env as any)["VITE_GA4_ID"] || (import.meta.env as any)["NEXT_PUBLIC_GA4_ID"];
+const env = import.meta.env as unknown as Record<string, string | undefined>;
+const GA4_ID = env["VITE_GA4_ID"] || env["NEXT_PUBLIC_GA4_ID"];
 const ENABLE_ANALYTICS =
-  (import.meta.env as any)["VITE_ENABLE_ANALYTICS"] !== "false" &&
-  (import.meta.env as any)["NEXT_PUBLIC_ENABLE_ANALYTICS"] !== "false";
+  env["VITE_ENABLE_ANALYTICS"] !== "false" && env["NEXT_PUBLIC_ENABLE_ANALYTICS"] !== "false";
 
 /**
  * Initialize GA4 tracking
@@ -36,10 +35,10 @@ export function initializeAnalytics(): void {
   if (!window.dataLayer) {
     window.dataLayer = [];
   }
-  function gtag(...args: any[]): void {
-    (window.dataLayer as any[]).push(args);
+  function gtag(...args: unknown[]): void {
+    window.dataLayer!.push(args);
   }
-  window.gtag = gtag as any;
+  window.gtag = gtag;
   gtag("js", new Date());
   gtag("config", GA4_ID, {
     page_path: window.location.pathname,
@@ -50,10 +49,7 @@ export function initializeAnalytics(): void {
 /**
  * Track custom events
  */
-export function trackEvent(
-  eventName: string,
-  params?: EventParams
-): void {
+export function trackEvent(eventName: string, params?: EventParams): void {
   if (!ENABLE_ANALYTICS || !window.gtag) {
     return;
   }
@@ -159,7 +155,7 @@ export function trackLeadQualified(specialty: string, estimatedValue?: number): 
 export function trackPlacementCompleted(
   specialty: string,
   region: string,
-  engagementType: string
+  engagementType: string,
 ): void {
   trackEvent("placement_completed", {
     event_category: "conversion",

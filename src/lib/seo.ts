@@ -63,8 +63,7 @@ export function buildOrganizationJsonLd() {
     name: "Career Source Group, LLC",
     url: SITE_URL,
     logo: SITE_URL + DEFAULT_OG_IMAGE,
-    description:
-      "Technology staffing and talent delivery across the US, LATAM and Pakistan.",
+    description: "Technology staffing and talent delivery across the US, LATAM and Pakistan.",
     email: "hello@careersourcegroup.com",
     telephone: "+1-443-875-9677",
     areaServed: ["United States", "Latin America", "Pakistan"],
@@ -75,7 +74,6 @@ export function buildOrganizationJsonLd() {
     ],
   };
 }
-
 
 export function buildFaqJsonLd(questions: Array<{ question: string; answer: string }>) {
   return {

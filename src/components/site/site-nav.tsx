@@ -169,7 +169,8 @@ export function SiteNav() {
                     to={item.to}
                     className={cn(
                       "gold-underline nav-text flex items-center gap-1 whitespace-nowrap px-1.5 py-2 text-muted-foreground transition-colors hover:text-gold xl:px-2",
-                      (openDropdown === item.label || isCurrentDropdownActive) && "text-foreground [&::after]:transform [&::after]:scaleX-100 [&::after]:origin-left",
+                      (openDropdown === item.label || isCurrentDropdownActive) &&
+                        "text-foreground [&::after]:transform [&::after]:scaleX-100 [&::after]:origin-left",
                     )}
                   >
                     {item.label}
