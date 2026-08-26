@@ -70,9 +70,12 @@ export function SiteFooter() {
 
         <div className="mt-14 border-t border-border pt-7">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-7">
-            <p className="caption-text text-muted-foreground">
-              © {new Date().getFullYear()} {company.legalName}. All rights reserved.
-            </p>
+            <div className="flex flex-col gap-2">
+              <p className="caption-text text-muted-foreground">
+                © {new Date().getFullYear()} {company.legalName}. All rights reserved.
+              </p>
+              <p className="caption-text text-gold font-semibold">Powered by AJ</p>
+            </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 caption-text text-muted-foreground">
               <Link to="/legal-notice" className="hover:text-foreground">
                 Legal Notice
