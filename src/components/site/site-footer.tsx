@@ -13,6 +13,8 @@ export function SiteFooter() {
               <img
                 src="/images/brand/CSG.png"
                 alt="CSG"
+                width={649}
+                height={385}
                 className="h-10 w-auto shrink-0 object-contain [filter:invert(100%)_sepia(33%)_saturate(130%)_hue-rotate(41deg)_brightness(105%)]"
                 loading="lazy"
                 decoding="async"

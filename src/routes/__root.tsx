@@ -117,13 +117,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
         { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
         {
-          rel: "stylesheet",
+          // PERF: preload (not render-blocking `rel=stylesheet`) - the actual
+          // stylesheet is applied non-blocking via the inline script below.
+          // To revert: swap this back to `rel: "stylesheet"` and drop the
+          // matching script from the `scripts` array.
+          rel: "preload",
+          as: "style",
           href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap",
         },
         { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
         { rel: "apple-touch-icon", href: "/images/brand/CSG.png" },
       ],
       scripts: [
+        {
+          // PERF: applies the preloaded Google Fonts stylesheet without
+          // blocking initial render (pairs with the `rel: "preload"` link
+          // above). CSP requires the nonce for this inline script to run.
+          ...(nonce && { nonce }),
+          children:
+            "(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap';document.head.appendChild(l);})();",
+        },
         {
           type: "application/ld+json",
           ...(nonce && { nonce }),
