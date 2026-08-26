@@ -34,7 +34,7 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await expect(page.locator('input[name="firstName"]')).toHaveAttribute("required", "");
     await expect(page.locator('input[name="lastName"]')).toHaveAttribute("required", "");
     await expect(page.locator('input[name="email"]')).toHaveAttribute("required", "");
-    await expect(page.locator('input[name="phone"]')).toHaveAttribute("required", "");
+    await expect(page.locator('input[name="companyName"]')).toHaveAttribute("required", "");
     await expect(page.locator('select[name="skillNeeded"]')).toHaveAttribute("required", "");
     await expect(page.locator('select[name="engagementType"]')).toHaveAttribute("required", "");
     await expect(page.locator('select[name="basis"]')).toHaveAttribute("required", "");
@@ -82,14 +82,14 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await expect(successBox).toHaveClass(/border-green-500/);
   });
 
-  test("should submit form without optional company name", async ({ page }) => {
-    // Fill required fields only (skip company name)
+  test("should submit form without optional phone", async ({ page }) => {
+    // Fill required fields only (skip phone)
     await page.fill('input[name="firstName"]', "Michael");
     await page.fill('input[name="lastName"]', "Chen");
     await page.fill('input[name="email"]', "michael.chen@startup.io");
-    await page.fill('input[name="phone"]', "(650) 555-5678");
+    await page.fill('input[name="companyName"]', "Startup Co");
 
-    // Skip companyName - it's optional
+    // Skip phone - it's optional
 
     // Fill dropdowns
     await page.selectOption('select[name="skillNeeded"]', { index: 1 });
@@ -128,6 +128,7 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await page.fill('input[name="lastName"]', "Davis");
     await page.fill('input[name="email"]', "emma.davis@company.com");
     await page.fill('input[name="phone"]', "(212) 555-9999");
+    await page.fill('input[name="companyName"]', "Davis Consulting");
     await page.selectOption('select[name="skillNeeded"]', { index: 1 });
     await page.selectOption('select[name="engagementType"]', { index: 1 });
     await page.selectOption('select[name="basis"]', { index: 1 });
@@ -230,6 +231,7 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await page.fill('input[name="lastName"]', "Client");
     await page.fill('input[name="email"]', "mobile@company.com");
     await page.fill('input[name="phone"]', "(555) 777-8888");
+    await page.fill('input[name="companyName"]', "Mobile Client Inc");
     await page.selectOption('select[name="skillNeeded"]', { index: 1 });
     await page.selectOption('select[name="engagementType"]', { index: 1 });
     await page.selectOption('select[name="basis"]', { index: 1 });
@@ -259,6 +261,7 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await page.fill('input[name="lastName"]', "Test");
     await page.fill('input[name="email"]', "error@invalid.test");
     await page.fill('input[name="phone"]', "(555) 666-7777");
+    await page.fill('input[name="companyName"]', "Error Test Co");
     await page.selectOption('select[name="skillNeeded"]', { index: 1 });
     await page.selectOption('select[name="engagementType"]', { index: 1 });
     await page.selectOption('select[name="basis"]', { index: 1 });
@@ -286,6 +289,7 @@ test.describe("Requirement Form E2E Tests (Get Started)", () => {
     await page.fill('input[name="lastName"]', "Message");
     await page.fill('input[name="email"]', "long@example.com");
     await page.fill('input[name="phone"]', "(555) 444-3333");
+    await page.fill('input[name="companyName"]', "Long Message Co");
     await page.selectOption('select[name="skillNeeded"]', { index: 1 });
     await page.selectOption('select[name="engagementType"]', { index: 1 });
     await page.selectOption('select[name="basis"]', { index: 1 });

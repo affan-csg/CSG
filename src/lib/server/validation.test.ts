@@ -152,7 +152,7 @@ describe("requirementSchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("accepts requirement form without company name", () => {
+  it("rejects requirement form without company name", () => {
     const data = {
       firstName: "Alice",
       lastName: "Johnson",
@@ -165,9 +165,24 @@ describe("requirementSchema", () => {
     };
 
     const result = requirementSchema.safeParse(data);
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts requirement form without phone", () => {
+    const data = {
+      firstName: "Alice",
+      lastName: "Johnson",
+      email: "alice@company.com",
+      companyName: "Acme Inc.",
+      skillNeeded: "devops",
+      engagementType: "pod",
+      basis: "full-time",
+    };
+
+    const result = requirementSchema.safeParse(data);
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.companyName).toBeUndefined();
+      expect(result.data.phone).toBeUndefined();
     }
   });
 
@@ -189,6 +204,7 @@ describe("requirementSchema", () => {
         lastName: "User",
         email: "test@example.com",
         phone: "(555) 123-4567",
+        companyName: "Acme Inc.",
         skillNeeded: skill,
         engagementType: "specialist",
         basis: "contract",
@@ -206,6 +222,7 @@ describe("requirementSchema", () => {
         lastName: "User",
         email: "test@example.com",
         phone: "(555) 123-4567",
+        companyName: "Acme Inc.",
         skillNeeded: "ai-ml",
         engagementType: type,
         basis: "contract",
@@ -223,6 +240,7 @@ describe("requirementSchema", () => {
         lastName: "User",
         email: "test@example.com",
         phone: "(555) 123-4567",
+        companyName: "Acme Inc.",
         skillNeeded: "ai-ml",
         engagementType: "specialist",
         basis,

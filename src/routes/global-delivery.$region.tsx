@@ -12,7 +12,7 @@ import {
   SectionHeading,
 } from "@/components/site/primitives";
 import { regionPages, prosCons, type RegionPage } from "@/content/delivery";
-import { buildBreadcrumbJsonLd, buildRegionalBusinessJsonLd, buildSeoMeta } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
 
 function getRegionPage(region: string): RegionPage | undefined {
   return regionPages.find((p) => p.slug === region);
@@ -33,12 +33,6 @@ export const Route = createFileRoute("/global-delivery/$region")({
         path: `/global-delivery/${params.region}`,
       }),
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify(
-            buildRegionalBusinessJsonLd(params.region as "us" | "latam" | "pakistan"),
-          ),
-        },
         {
           type: "application/ld+json",
           children: JSON.stringify(

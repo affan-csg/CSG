@@ -96,7 +96,6 @@ export function ContactForm({ className }: ContactFormProps) {
           label="Phone"
           name="phone"
           type="tel"
-          required
           value={formData.phone}
           onChange={handleChange}
           placeholder="(443) 875-9677"

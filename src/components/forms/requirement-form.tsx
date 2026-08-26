@@ -109,7 +109,6 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
           label="Phone"
           name="phone"
           type="tel"
-          required
           value={formData.phone}
           onChange={handleChange}
           placeholder="(443) 875-9677"
@@ -120,6 +119,7 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
       <TextField
         label="Company name"
         name="companyName"
+        required
         value={formData.companyName}
         onChange={handleChange}
         placeholder="Acme Inc."
