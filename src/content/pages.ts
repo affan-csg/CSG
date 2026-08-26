@@ -181,7 +181,7 @@ export const legalPages = {
   },
   refund: {
     title: "Direct-Hire Guarantee",
-    body: "Career Source Group stands behind every direct-hire placement. For details on our replacement guarantee window, eligibility criteria, replacement terms, exclusions, and payment conditions, please contact our team at hello@careersourcegroup.com.",
+    body: "Career Source Group stands behind every direct-hire placement. If a placement doesn't work out within 90 days of the start date, we replace the hire at no additional fee — no re-negotiation, no new search fee. Contract placements are more flexible still: they can be ramped down or swapped for a different candidate without penalty. This guarantee applies to direct-hire placements specifically. For questions about a specific engagement's guarantee terms, contact us at hello@careersourcegroup.com.",
   },
   legalNotice: {
     title: "Legal Notice",
@@ -190,13 +190,6 @@ export const legalPages = {
       ["Registered Company Name", "Career Source Group, LLC"],
       ["Phone Number", "+14438759677"],
       ["Headquarters", "Alpharetta, Georgia"],
-    ] as const,
-  },
-  merchant: {
-    title: "Merchant Policies",
-    rows: [
-      ["Delivery methods", "Collection — Free"],
-      ["Payment options", "Payment methods accepted: Cash"],
     ] as const,
   },
 };
