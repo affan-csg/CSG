@@ -116,7 +116,11 @@ export default function HeroCanvas({ showRing = true }: { showRing?: boolean }) 
         // clearColor isn't in @react-three/fiber's GLProps type, but three.js's
         // WebGLRenderer accepts it at runtime — cast bypasses the excess-property check.
         {
-          antialias: true,
+          // PERF: antialiasing is typically the single most expensive WebGL
+          // setting (especially under software rendering) - disabled since
+          // these are small, soft, glowing points where the smoothing isn't
+          // meaningfully visible.
+          antialias: false,
           alpha: true,
           clearColor: "#0f172a",
         } as unknown as Exclude<React.ComponentProps<typeof Canvas>["gl"], undefined>
