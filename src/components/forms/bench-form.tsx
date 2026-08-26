@@ -261,8 +261,8 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
           By submitting your application, you consent to Career Source Group retaining and reviewing
           your profile to match you with relevant opportunities. We will contact you only when a
           suitable role opens. Your information is handled according to our{" "}
-          <a href="/privacy" className="underline hover:text-gold">
-            Privacy Policy
+          <a href="/candidate-privacy" className="underline hover:text-gold">
+            Candidate Privacy Notice
           </a>
           .
         </p>

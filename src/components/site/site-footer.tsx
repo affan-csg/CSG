@@ -83,6 +83,9 @@ export function SiteFooter() {
               <Link to="/privacy" className="hover:text-foreground">
                 Privacy Policy
               </Link>
+              <Link to="/candidate-privacy" className="hover:text-foreground">
+                Candidate Privacy
+              </Link>
             </div>
           </div>
 

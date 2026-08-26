@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CandidatePrivacyRouteImport } from './routes/candidate-privacy'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -48,6 +49,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidatePrivacyRoute = CandidatePrivacyRouteImport.update({
+  id: '/candidate-privacy',
+  path: '/candidate-privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
@@ -195,6 +201,7 @@ const StaffingSpecializedRolesRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -227,6 +234,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -294,6 +303,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
     | '/faq'
@@ -326,6 +336,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
     | '/faq'
@@ -358,6 +369,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
     | '/faq'
@@ -391,6 +403,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CandidatePrivacyRoute: typeof CandidatePrivacyRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
@@ -435,6 +448,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidate-privacy': {
+      id: '/candidate-privacy'
+      path: '/candidate-privacy'
+      fullPath: '/candidate-privacy'
+      preLoaderRoute: typeof CandidatePrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -639,6 +659,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CandidatePrivacyRoute: CandidatePrivacyRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
