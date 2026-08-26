@@ -1,6 +1,6 @@
 import { createFileRoute, Link, ClientOnly } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { Suspense, lazy, useEffect, useRef } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 
 import { Reveal } from "@/components/site/reveal";
 import {
@@ -35,6 +35,24 @@ export const Route = createFileRoute("/")({
 function Hero() {
   const wordsRef = useRef<HTMLHeadingElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
+  const [shouldMountCanvas, setShouldMountCanvas] = useState(false);
+
+  useEffect(() => {
+    // PERF: defer mounting the 3D canvas until idle/short timeout so it
+    // doesn't compete with the LCP paint - pure timing defer, always mounts
+    // eventually regardless of connection (see lazy-hero-canvas.tsx for the
+    // same pattern and why this differs from the removed network check).
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(() => setShouldMountCanvas(true), { timeout: 1500 });
+      return () => w.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(() => setShouldMountCanvas(true), 200);
+    return () => window.clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -90,11 +108,13 @@ function Hero() {
   return (
     <section className="grain relative flex min-h-[92vh] items-center overflow-hidden border-b border-border pt-12">
       <div aria-hidden className="absolute inset-0 opacity-70">
-        <ClientOnly fallback={null}>
-          <Suspense fallback={null}>
-            <HeroCanvas />
-          </Suspense>
-        </ClientOnly>
+        {shouldMountCanvas && (
+          <ClientOnly fallback={null}>
+            <Suspense fallback={null}>
+              <HeroCanvas />
+            </Suspense>
+          </ClientOnly>
+        )}
       </div>
       <div
         aria-hidden
@@ -111,8 +131,8 @@ function Hero() {
             <img
               src="/images/brand/CSG.png"
               alt="Career Source Group"
-              width={649}
-              height={385}
+              width={500}
+              height={297}
               className="w-full drop-shadow-[0_0_20px_rgba(101,158,247,0.3)] transition-all duration-500 ease-out [filter:invert(100%)_sepia(33%)_saturate(130%)_hue-rotate(41deg)_brightness(105%)] hover:scale-110 hover:drop-shadow-[0_0_40px_rgba(101,158,247,0.6)] hover:[filter:invert(75%)_sepia(48%)_saturate(308%)_hue-rotate(62deg)_brightness(134%)]"
               fetchPriority="high"
               loading="eager"
@@ -167,8 +187,8 @@ function HomePage() {
                 <img
                   src="/images/who-we-are.webp"
                   alt="Career Source Group team collaborating"
-                  width={1448}
-                  height={1086}
+                  width={1116}
+                  height={837}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -271,8 +291,8 @@ function HomePage() {
                 <img
                   src="/images/staffing.webp"
                   alt="Career Source Group staffing overview"
-                  width={1610}
-                  height={977}
+                  width={1506}
+                  height={914}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -289,8 +309,8 @@ function HomePage() {
                 <img
                   src="/images/how-pod-models-work.webp"
                   alt="How CSG Pod models work"
-                  width={1609}
-                  height={977}
+                  width={1378}
+                  height={837}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -344,8 +364,8 @@ function HomePage() {
                 <img
                   src="/images/how-we-differ.webp"
                   alt="How Career Source Group differs from competitors"
-                  width={1610}
-                  height={977}
+                  width={1378}
+                  height={836}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
