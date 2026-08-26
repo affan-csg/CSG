@@ -1,9 +1,23 @@
 import { Canvas } from "@react-three/fiber";
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 import type { Points } from "three";
 
 import { PARTICLE_HEX } from "@/lib/theme-colors";
+
+// PERF: drives rendering at ~30fps instead of the default continuous 60fps
+// auto-loop (paired with `frameloop="demand"` on the Canvas below). The
+// rotation is slow (0.055 rad/s), so halving the draw-call rate is
+// imperceptible while roughly halving WebGL rasterization cost - the
+// dominant main-thread cost of this component under CPU throttling.
+function ThrottledInvalidate() {
+  const invalidate = useThree((state) => state.invalidate);
+  useEffect(() => {
+    const id = window.setInterval(invalidate, 1000 / 30);
+    return () => window.clearInterval(id);
+  }, [invalidate]);
+  return null;
+}
 
 function ParticleField() {
   const ref = useRef<Points>(null);
@@ -95,6 +109,7 @@ function Ring() {
 export default function HeroCanvas({ showRing = true }: { showRing?: boolean }) {
   return (
     <Canvas
+      frameloop="demand"
       dpr={[1, 1.75]}
       camera={{ position: [0, 0, 10], fov: 45 }}
       gl={
@@ -108,6 +123,7 @@ export default function HeroCanvas({ showRing = true }: { showRing?: boolean }) 
       }
       style={{ pointerEvents: "none" }}
     >
+      <ThrottledInvalidate />
       <ParticleField />
       {showRing && <Ring />}
     </Canvas>

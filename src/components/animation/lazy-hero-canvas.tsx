@@ -15,6 +15,7 @@ interface NetworkInformation {
  */
 export function LazyHeroCanvas({ showRing = true }: { showRing?: boolean }) {
   const [isSlowNetwork, setIsSlowNetwork] = useState(false);
+  const [shouldMount, setShouldMount] = useState(false);
 
   useEffect(() => {
     // Check for reduced motion preference — completely skip on this device
@@ -30,7 +31,25 @@ export function LazyHeroCanvas({ showRing = true }: { showRing?: boolean }) {
     };
     if (nav.connection?.saveData) {
       setIsSlowNetwork(true);
+      return;
     }
+
+    // PERF: defer mounting the ~860KB 3D chunk until the browser is idle (or
+    // a short timeout elapses) so it doesn't compete with the LCP paint for
+    // main-thread time. This is a pure TIMING defer with a guaranteed max
+    // wait (the idle callback's `timeout`) — unlike the removed
+    // `effectiveType` check, it never depends on network conditions, so it
+    // always mounts regardless of connection speed.
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(() => setShouldMount(true), { timeout: 1500 });
+      return () => w.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(() => setShouldMount(true), 200);
+    return () => window.clearTimeout(id);
   }, []);
 
   if (isSlowNetwork) {
@@ -44,6 +63,10 @@ export function LazyHeroCanvas({ showRing = true }: { showRing?: boolean }) {
         }}
       />
     );
+  }
+
+  if (!shouldMount) {
+    return null;
   }
 
   // Normal devices: render golden particles immediately, minimal wrapper
