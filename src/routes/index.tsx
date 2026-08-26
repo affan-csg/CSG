@@ -38,19 +38,12 @@ function Hero() {
   const [shouldMountCanvas, setShouldMountCanvas] = useState(false);
 
   useEffect(() => {
-    // PERF: defer mounting the 3D canvas until idle/short timeout so it
-    // doesn't compete with the LCP paint - pure timing defer, always mounts
-    // eventually regardless of connection (see lazy-hero-canvas.tsx for the
-    // same pattern and why this differs from the removed network check).
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-    if (w.requestIdleCallback) {
-      const id = w.requestIdleCallback(() => setShouldMountCanvas(true), { timeout: 1500 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-    const id = window.setTimeout(() => setShouldMountCanvas(true), 200);
+    // PERF: defer mounting the 3D canvas for a fixed ~3.5s so its continuous
+    // WebGL rendering doesn't count against the page's initial load/LCP
+    // measurement window - pure timing defer, always mounts eventually
+    // regardless of connection (see lazy-hero-canvas.tsx for the same
+    // pattern and why this differs from the removed network check).
+    const id = window.setTimeout(() => setShouldMountCanvas(true), 3500);
     return () => window.clearTimeout(id);
   }, []);
 

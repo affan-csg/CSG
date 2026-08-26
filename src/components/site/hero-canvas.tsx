@@ -110,7 +110,9 @@ export default function HeroCanvas({ showRing = true }: { showRing?: boolean }) 
   return (
     <Canvas
       frameloop="demand"
-      dpr={[1, 1.75]}
+      // PERF: capped at 1x (was up to 1.75x) - retina/high-DPI screens render
+      // this slightly less crisp, but pixel-fill cost drops ~3x.
+      dpr={1}
       camera={{ position: [0, 0, 10], fov: 45 }}
       gl={
         // clearColor isn't in @react-three/fiber's GLProps type, but three.js's

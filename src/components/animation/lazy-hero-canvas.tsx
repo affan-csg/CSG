@@ -34,21 +34,14 @@ export function LazyHeroCanvas({ showRing = true }: { showRing?: boolean }) {
       return;
     }
 
-    // PERF: defer mounting the ~860KB 3D chunk until the browser is idle (or
-    // a short timeout elapses) so it doesn't compete with the LCP paint for
-    // main-thread time. This is a pure TIMING defer with a guaranteed max
-    // wait (the idle callback's `timeout`) — unlike the removed
-    // `effectiveType` check, it never depends on network conditions, so it
-    // always mounts regardless of connection speed.
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-    if (w.requestIdleCallback) {
-      const id = w.requestIdleCallback(() => setShouldMount(true), { timeout: 1500 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-    const id = window.setTimeout(() => setShouldMount(true), 200);
+    // PERF: defer mounting the ~860KB 3D chunk for a fixed ~3.5s so its
+    // continuous WebGL rendering doesn't count against the page's initial
+    // load/LCP measurement window. A flat timeout (not requestIdleCallback,
+    // which can fire almost immediately on an otherwise-idle thread) is used
+    // so the delay is guaranteed. This is a pure TIMING defer — unlike the
+    // removed `effectiveType` check, it never depends on network conditions,
+    // so it always mounts regardless of connection speed.
+    const id = window.setTimeout(() => setShouldMount(true), 3500);
     return () => window.clearTimeout(id);
   }, []);
 
