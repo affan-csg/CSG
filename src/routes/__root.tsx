@@ -9,7 +9,11 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+// PERF: inlined (not `?url` + <link rel="stylesheet">) - at ~18KB this is
+// small enough that inlining removes a render-blocking network round-trip
+// entirely, with no flash-of-unstyled-content risk (unlike deferring it
+// would carry, since this CSS controls actual layout, not just typography).
+import appCss from "../styles.css?inline";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { getNonce, setServerNonce } from "@/lib/get-nonce";
 import { logCoreWebVitals } from "@/lib/performance-monitor";
@@ -111,7 +115,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "twitter:image", content: "https://careersourcegroup.com/images/brand/CSG.png" },
       ],
       links: [
-        { rel: "stylesheet", href: appCss },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
         { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
@@ -152,9 +155,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const nonce = getNonce();
   return (
     <html lang="en">
       <head>
+        {/* PERF: inlined app CSS - rendered directly here (not via the
+            `styles` head-config array, which doesn't pass the `nonce` prop
+            through and gets silently CSP-blocked) so it needs its own
+            nonce like the inline scripts below already have. */}
+        <style {...(nonce && { nonce })} dangerouslySetInnerHTML={{ __html: appCss }} />
         <HeadContent />
       </head>
       <body>

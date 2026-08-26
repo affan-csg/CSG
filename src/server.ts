@@ -91,6 +91,17 @@ export default {
         return match.replace(">", ` nonce="${nonce}">`);
       });
 
+      // Style tags render with whatever nonce React's SSR-time module state
+      // happened to hold, which can be stale across requests (that module
+      // state isn't request-scoped) - always overwrite/add the correct
+      // per-request nonce here, same as scripts above.
+      body = body.replace(/<style([^>]*)>/g, (match) => {
+        if (match.includes("nonce=")) {
+          return match.replace(/nonce="[^"]*"/, `nonce="${nonce}"`);
+        }
+        return match.replace(">", ` nonce="${nonce}">`);
+      });
+
       return new Response(body, {
         status: normalizedResponse.status,
         statusText: normalizedResponse.statusText,
