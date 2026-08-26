@@ -11,7 +11,7 @@ import {
   SectionHeading,
 } from "@/components/site/primitives";
 import type { StaffingRole } from "@/content/staffing";
-import { getStaffingRole, otherStaffingRoles, staffingRoles } from "@/content/staffing";
+import { getStaffingRole, otherStaffingRoles } from "@/content/staffing";
 import { buildBreadcrumbJsonLd, buildSeoMeta, buildStaffingJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/staffing/$slug")({
@@ -151,5 +151,3 @@ function StaffingRoleDetail() {
     </>
   );
 }
-
-export const allStaffingSlugs = staffingRoles.map((s) => s.slug);

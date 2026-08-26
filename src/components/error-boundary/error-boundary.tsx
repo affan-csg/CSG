@@ -165,28 +165,3 @@ function ErrorBoundaryFallback({ error, level, onReset }: ErrorBoundaryFallbackP
     </div>
   );
 }
-
-/**
- * Hook to use error boundary from functional components
- * Throws to nearest ErrorBoundary on error
- */
-export function useErrorHandler(boundary?: string) {
-  return (error: Error | string) => {
-    const err = typeof error === "string" ? new Error(error) : error;
-    reportLovableError(err, { boundary });
-    throw err;
-  };
-}
-
-/**
- * Async error wrapper for promise-based operations
- */
-export async function withErrorBoundary<T>(fn: () => Promise<T>, boundary: string): Promise<T> {
-  try {
-    return await fn();
-  } catch (error) {
-    const err = error instanceof Error ? error : new Error(String(error));
-    reportLovableError(err, { boundary });
-    throw err;
-  }
-}
