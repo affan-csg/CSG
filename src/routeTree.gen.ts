@@ -18,12 +18,10 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GetStartedRouteImport } from './routes/get-started'
 import { Route as JoinOurBenchRouteImport } from './routes/join-our-bench'
 import { Route as LegalNoticeRouteImport } from './routes/legal-notice'
-import { Route as MerchantPoliciesRouteImport } from './routes/merchant-policies'
 import { Route as OfferCalibrationRouteImport } from './routes/offer-calibration'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as PodsRouteImport } from './routes/pods'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as RefundRouteImport } from './routes/refund'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhoWeServeRouteImport } from './routes/who-we-serve'
 import { Route as WhyCsgRouteImport } from './routes/why-csg'
@@ -86,11 +84,6 @@ const LegalNoticeRoute = LegalNoticeRouteImport.update({
   path: '/legal-notice',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MerchantPoliciesRoute = MerchantPoliciesRouteImport.update({
-  id: '/merchant-policies',
-  path: '/merchant-policies',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OfferCalibrationRoute = OfferCalibrationRouteImport.update({
   id: '/offer-calibration',
   path: '/offer-calibration',
@@ -109,11 +102,6 @@ const PodsRoute = PodsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RefundRoute = RefundRouteImport.update({
-  id: '/refund',
-  path: '/refund',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -208,12 +196,10 @@ export interface FileRoutesByFullPath {
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
   '/legal-notice': typeof LegalNoticeRoute
-  '/merchant-policies': typeof MerchantPoliciesRoute
   '/offer-calibration': typeof OfferCalibrationRoute
   '/our-story': typeof OurStoryRoute
   '/pods': typeof PodsRoute
   '/privacy': typeof PrivacyRoute
-  '/refund': typeof RefundRoute
   '/terms': typeof TermsRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/why-csg': typeof WhyCsgRoute
@@ -241,12 +227,10 @@ export interface FileRoutesByTo {
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
   '/legal-notice': typeof LegalNoticeRoute
-  '/merchant-policies': typeof MerchantPoliciesRoute
   '/offer-calibration': typeof OfferCalibrationRoute
   '/our-story': typeof OurStoryRoute
   '/pods': typeof PodsRoute
   '/privacy': typeof PrivacyRoute
-  '/refund': typeof RefundRoute
   '/terms': typeof TermsRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/why-csg': typeof WhyCsgRoute
@@ -275,12 +259,10 @@ export interface FileRoutesById {
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
   '/legal-notice': typeof LegalNoticeRoute
-  '/merchant-policies': typeof MerchantPoliciesRoute
   '/offer-calibration': typeof OfferCalibrationRoute
   '/our-story': typeof OurStoryRoute
   '/pods': typeof PodsRoute
   '/privacy': typeof PrivacyRoute
-  '/refund': typeof RefundRoute
   '/terms': typeof TermsRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/why-csg': typeof WhyCsgRoute
@@ -310,12 +292,10 @@ export interface FileRouteTypes {
     | '/get-started'
     | '/join-our-bench'
     | '/legal-notice'
-    | '/merchant-policies'
     | '/offer-calibration'
     | '/our-story'
     | '/pods'
     | '/privacy'
-    | '/refund'
     | '/terms'
     | '/who-we-serve'
     | '/why-csg'
@@ -343,12 +323,10 @@ export interface FileRouteTypes {
     | '/get-started'
     | '/join-our-bench'
     | '/legal-notice'
-    | '/merchant-policies'
     | '/offer-calibration'
     | '/our-story'
     | '/pods'
     | '/privacy'
-    | '/refund'
     | '/terms'
     | '/who-we-serve'
     | '/why-csg'
@@ -376,12 +354,10 @@ export interface FileRouteTypes {
     | '/get-started'
     | '/join-our-bench'
     | '/legal-notice'
-    | '/merchant-policies'
     | '/offer-calibration'
     | '/our-story'
     | '/pods'
     | '/privacy'
-    | '/refund'
     | '/terms'
     | '/who-we-serve'
     | '/why-csg'
@@ -410,12 +386,10 @@ export interface RootRouteChildren {
   GetStartedRoute: typeof GetStartedRoute
   JoinOurBenchRoute: typeof JoinOurBenchRoute
   LegalNoticeRoute: typeof LegalNoticeRoute
-  MerchantPoliciesRoute: typeof MerchantPoliciesRoute
   OfferCalibrationRoute: typeof OfferCalibrationRoute
   OurStoryRoute: typeof OurStoryRoute
   PodsRoute: typeof PodsRoute
   PrivacyRoute: typeof PrivacyRoute
-  RefundRoute: typeof RefundRoute
   TermsRoute: typeof TermsRoute
   WhoWeServeRoute: typeof WhoWeServeRoute
   WhyCsgRoute: typeof WhyCsgRoute
@@ -499,13 +473,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalNoticeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/merchant-policies': {
-      id: '/merchant-policies'
-      path: '/merchant-policies'
-      fullPath: '/merchant-policies'
-      preLoaderRoute: typeof MerchantPoliciesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/offer-calibration': {
       id: '/offer-calibration'
       path: '/offer-calibration'
@@ -532,13 +499,6 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund': {
-      id: '/refund'
-      path: '/refund'
-      fullPath: '/refund'
-      preLoaderRoute: typeof RefundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -666,12 +626,10 @@ const rootRouteChildren: RootRouteChildren = {
   GetStartedRoute: GetStartedRoute,
   JoinOurBenchRoute: JoinOurBenchRoute,
   LegalNoticeRoute: LegalNoticeRoute,
-  MerchantPoliciesRoute: MerchantPoliciesRoute,
   OfferCalibrationRoute: OfferCalibrationRoute,
   OurStoryRoute: OurStoryRoute,
   PodsRoute: PodsRoute,
   PrivacyRoute: PrivacyRoute,
-  RefundRoute: RefundRoute,
   TermsRoute: TermsRoute,
   WhoWeServeRoute: WhoWeServeRoute,
   WhyCsgRoute: WhyCsgRoute,

@@ -179,10 +179,6 @@ export const legalPages = {
     title: "Terms & Conditions",
     body: "These Terms & Conditions govern your use of careersourcegroup.com and our services. By accessing or using this site, you agree to be bound by these terms. Career Source Group reserves the right to modify these terms at any time. For the full Terms & Conditions document, please contact us at hello@careersourcegroup.com.",
   },
-  refund: {
-    title: "Direct-Hire Guarantee",
-    body: "Career Source Group stands behind every direct-hire placement. If a placement doesn't work out within 90 days of the start date, we replace the hire at no additional fee — no re-negotiation, no new search fee. Contract placements are more flexible still: they can be ramped down or swapped for a different candidate without penalty. This guarantee applies to direct-hire placements specifically. For questions about a specific engagement's guarantee terms, contact us at hello@careersourcegroup.com.",
-  },
   legalNotice: {
     title: "Legal Notice",
     rows: [
