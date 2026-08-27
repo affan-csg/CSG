@@ -6,6 +6,13 @@ import {
   basisOptions,
   availabilityOptions,
   inquiryTypeOptions,
+  engagementTermsOptions,
+  workArrangementOptions,
+  targetStartOptions,
+  regionPreferenceOptions,
+  candidateRegionOptions,
+  workAuthorizationOptions,
+  compensationTypeFor,
 } from "./forms";
 
 describe("Form Options", () => {
@@ -117,6 +124,70 @@ describe("Form Options", () => {
     it("should have descriptive labels", () => {
       const option = inquiryTypeOptions.find((o) => o.value === "service_inquiry");
       expect(option?.label).toBe("I need to hire talent");
+    });
+  });
+
+  describe("engagementTermsOptions", () => {
+    it("should include all five brief-specified engagement terms", () => {
+      const values = engagementTermsOptions.map((o) => o.value);
+      expect(values).toEqual(["contract", "contract-to-hire", "full-time", "pod", "unsure"]);
+    });
+  });
+
+  describe("workArrangementOptions", () => {
+    it("should include onsite, hybrid, remote", () => {
+      const values = workArrangementOptions.map((o) => o.value);
+      expect(values).toEqual(["onsite", "hybrid", "remote"]);
+    });
+  });
+
+  describe("targetStartOptions", () => {
+    it("should include all four brief-specified start options", () => {
+      const values = targetStartOptions.map((o) => o.value);
+      expect(values).toEqual(["immediate", "2-4-weeks", "1-3-months", "planning"]);
+    });
+  });
+
+  describe("regionPreferenceOptions", () => {
+    it("should include us, latam, pakistan, recommend", () => {
+      const values = regionPreferenceOptions.map((o) => o.value);
+      expect(values).toEqual(["us", "latam", "pakistan", "recommend"]);
+    });
+  });
+
+  describe("candidateRegionOptions", () => {
+    it("should include us, latam, pakistan", () => {
+      const values = candidateRegionOptions.map((o) => o.value);
+      expect(values).toEqual(["us", "latam", "pakistan"]);
+    });
+  });
+
+  describe("workAuthorizationOptions", () => {
+    it("should export three work authorization categories", () => {
+      expect(workAuthorizationOptions.length).toBe(3);
+    });
+  });
+
+  describe("compensationTypeFor", () => {
+    it("asks for annual salary for US full-time", () => {
+      expect(compensationTypeFor("us", "full-time")).toBe("annual-salary");
+    });
+
+    it("asks for hourly rate for US contract", () => {
+      expect(compensationTypeFor("us", "contract")).toBe("hourly");
+    });
+
+    it("asks for hourly rate for US 'open to either'", () => {
+      expect(compensationTypeFor("us", "open")).toBe("hourly");
+    });
+
+    it("asks for monthly rate for LATAM regardless of basis", () => {
+      expect(compensationTypeFor("latam", "full-time")).toBe("monthly");
+      expect(compensationTypeFor("latam", "contract")).toBe("monthly");
+    });
+
+    it("asks for monthly rate for Pakistan regardless of basis", () => {
+      expect(compensationTypeFor("pakistan", "contract")).toBe("monthly");
     });
   });
 });

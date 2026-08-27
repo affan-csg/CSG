@@ -54,7 +54,7 @@ const navItemsWithDropdowns = [
     children: [
       { label: "Case Studies", to: "/case-studies" },
       { label: "Insights", to: "/insights" },
-      { label: "Global Talent Cost & Delivery Comparison", to: "/offer-calibration" },
+      { label: "Cost Comparison", to: "/offer-calibration" },
       { label: "FAQ", to: "/faq" },
     ],
   },
@@ -74,6 +74,8 @@ export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const triggerRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const isHome = useLocation({ select: (l) => l.pathname === "/" });
   const pathname = useLocation({ select: (l) => l.pathname });
 
@@ -94,6 +96,18 @@ export function SiteNav() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   const handleMouseEnter = (label: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -106,6 +120,24 @@ export function SiteNav() {
     timeoutRef.current = setTimeout(() => {
       setOpenDropdown(null);
     }, 150);
+  };
+
+  // Keyboard support: Escape closes the currently open dropdown and returns
+  // focus to its trigger link, so keyboard users aren't stranded inside a
+  // closed menu. onBlur below handles closing when focus leaves the widget
+  // entirely (e.g. Tab past the last child link).
+  const handleDropdownKeyDown = (label: string) => (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      e.stopPropagation();
+      setOpenDropdown(null);
+      triggerRefs.current[label]?.focus();
+    }
+  };
+
+  const handleDropdownBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setOpenDropdown(null);
+    }
   };
 
   return (
@@ -165,9 +197,15 @@ export function SiteNav() {
                   className="relative"
                   onMouseEnter={() => handleMouseEnter(item.label)}
                   onMouseLeave={handleMouseLeave}
+                  onKeyDown={handleDropdownKeyDown(item.label)}
+                  onBlur={handleDropdownBlur}
                 >
                   <Link
+                    ref={(el) => {
+                      triggerRefs.current[item.label] = el;
+                    }}
                     to={item.to}
+                    onFocus={() => handleMouseEnter(item.label)}
                     className={cn(
                       "gold-underline nav-text flex items-center gap-1 whitespace-nowrap px-1.5 py-2 text-muted-foreground transition-colors hover:text-gold xl:px-2",
                       (openDropdown === item.label || isCurrentDropdownActive) &&
@@ -264,6 +302,7 @@ export function SiteNav() {
             Request Talent
           </Link>
           <button
+            ref={menuToggleRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -309,18 +348,20 @@ export function SiteNav() {
               })}
               <div className="mt-5 flex flex-col gap-3">
                 <Link
-                  to="/get-started"
-                  onClick={() => setOpen(false)}
-                  className="rounded-md bg-cream px-5 py-3 text-center button-text font-display text-navy"
-                >
-                  Request Talent
-                </Link>
-                <Link
                   to="/join-our-bench"
                   onClick={() => setOpen(false)}
                   className="rounded-md border border-border px-5 py-3 text-center button-text font-display"
                 >
                   Find Opportunities
+                </Link>
+                {/* Request Talent stays last — the brief requires it be the
+                    final focusable item in the expanded mobile menu. */}
+                <Link
+                  to="/get-started"
+                  onClick={() => setOpen(false)}
+                  className="rounded-md bg-cream px-5 py-3 text-center button-text font-display text-navy"
+                >
+                  Request Talent
                 </Link>
               </div>
             </div>
@@ -355,6 +396,7 @@ function MobileDropdown({
           onClick={() => setExpanded(!expanded)}
           className="grid h-8 w-8 place-items-center text-muted-foreground"
           aria-label={`Expand ${item.label} submenu`}
+          aria-expanded={expanded}
         >
           <ChevronDown
             className={cn("h-4 w-4 transition-transform duration-200", expanded && "rotate-180")}

@@ -4,6 +4,7 @@ import { BenchForm } from "@/components/forms/bench-form";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero, Panel, Pill, Section, SectionHeading } from "@/components/site/primitives";
 import { bench } from "@/content/pages";
+import { specialtyOptions } from "@/lib/forms";
 import { buildSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/join-our-bench")({
@@ -15,22 +16,11 @@ export const Route = createFileRoute("/join-our-bench")({
     buildSeoMeta({
       title: "Join Our Talent Network | Contract & Full-Time AI, Data & Cloud Roles",
       description:
-        "Apply to join Career Source Group bench — AI/ML, MLOps, Data, DevOps, DevSecOps, Cloud, Software Development, and Product roles.",
+        "Apply to join Career Source Group bench — AI/ML, MLOps, Data, DevOps, DevSecOps, Cloud, Software Development, Product, and Cybersecurity & GRC roles.",
       path: "/join-our-bench",
     }),
   component: JoinOurBenchPage,
 });
-
-const specialties = [
-  "AI/ML Engineer",
-  "MLOps Engineer",
-  "Data Engineer / Data Scientist",
-  "DevOps Engineer",
-  "DevSecOps / Platform Engineer",
-  "Cloud Engineer / Architect",
-  "Software Engineer",
-  "Product / Project Manager",
-] as const;
 
 function JoinOurBenchPage() {
   const { skill } = Route.useSearch();
@@ -57,9 +47,9 @@ function JoinOurBenchPage() {
       <Section className="border-t border-border">
         <SectionHeading eyebrow="Specialties" title="What we place" />
         <div className="mt-10 flex flex-wrap gap-3">
-          {specialties.map((specialty) => (
-            <Reveal key={specialty}>
-              <Pill>{specialty}</Pill>
+          {specialtyOptions.map((specialty) => (
+            <Reveal key={specialty.value}>
+              <Pill>{specialty.label}</Pill>
             </Reveal>
           ))}
         </div>

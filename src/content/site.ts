@@ -122,7 +122,7 @@ export const staffingSectionCards = [
   {
     to: "/staffing/specialized-roles",
     title: "Specialized Roles",
-    body: "The eight technical practices everyone else is struggling to fill: AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development, and product.",
+    body: "The nine technical practices everyone else is struggling to fill: AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development, product, and cybersecurity & GRC.",
     cta: "See Specialized Roles",
   },
 ] as const;
@@ -183,7 +183,7 @@ export const faqs: Faq[] = [
   {
     audience: "talent",
     q: "What specialties do you recruit for?",
-    a: "Eight technical practices: AI/ML engineering, MLOps, data engineering and data science, DevOps, DevSecOps and platform engineering, cloud engineering and architecture, software development, and product and project management. We also place non-tech operations roles: customer success, revenue operations, finance and accounting ops, and back-office.",
+    a: "Nine technical practices: AI/ML engineering, MLOps, data engineering and data science, DevOps, DevSecOps and platform engineering, cloud engineering and architecture, software development, product and project management, and cybersecurity & GRC. We also place non-tech operations roles: customer success, revenue operations, finance and accounting ops, and back-office.",
   },
   {
     audience: "talent",
@@ -249,7 +249,7 @@ export const faqs: Faq[] = [
   {
     audience: "clients",
     q: "Do you hire for roles outside software development?",
-    a: "Yes. Beyond our eight technical practices (AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software dev, product), we place non-technical operations roles: customer success, revenue operations, finance and accounting operations, and back-office support. Full list available on our staffing specialties page.",
+    a: "Yes. Beyond our nine technical practices (AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software dev, product, cybersecurity & GRC), we place non-technical operations roles: customer success, revenue operations, finance and accounting operations, and back-office support. Full list available on our staffing specialties page.",
   },
   // Practice-specific buyer FAQs (referenced by slug from staffingRoles[].faqQuestions in staffing.ts)
   {

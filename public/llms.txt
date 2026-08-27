@@ -1,6 +1,6 @@
 # Career Source Group
 
-> Career Source Group (CSG) is a US-based global staffing and talent delivery firm placing direct-hire, contract, and contract-to-hire talent across three regions — the US, LATAM (nearshore), and Pakistan (offshore) — under one contract, one invoice, and one point of contact. Direct-hire fee is 10% of first-year salary, versus the 15-30% industry standard.
+> Career Source Group (CSG) is a US-based global staffing and talent delivery firm placing direct-hire, contract, and contract-to-hire talent across three regions — the US, LATAM (nearshore), and Pakistan (offshore) — under one contract, one invoice, and one point of contact. Direct-hire fee is 10% of first-year salary, versus the 20-30% industry standard.
 
 Key facts:
 - Legal name: Career Source Group, LLC
@@ -16,18 +16,19 @@ Key facts:
 - [Staffing](https://careersourcegroup.com/staffing): Hub for staffing roles, pods, and specialized technical hiring
 - [Staffing Roles](https://careersourcegroup.com/staffing/roles): Individual specialists placed into a defined seat, priced across all three regions
 - [Pods](https://careersourcegroup.com/staffing/pods): The pod model explained — how purpose-built teams are sized and delivered
-- [Specialized Roles](https://careersourcegroup.com/staffing/specialized-roles): The eight technical practices CSG recruits for — AI/ML, MLOps, data engineering, DevOps, DevSecOps/platform engineering, cloud, software development, product/project management
+- [Specialized Roles](https://careersourcegroup.com/staffing/specialized-roles): The nine technical practices CSG recruits for — AI/ML, MLOps, data engineering, DevOps, DevSecOps/platform engineering, cloud, software development, product/project management, and cybersecurity & GRC
 - [Global Delivery](https://careersourcegroup.com/global-delivery): Honest comparison of US vs. LATAM nearshore vs. Pakistan offshore staffing
 - [FAQ](https://careersourcegroup.com/faq): Answers on pricing, engagement types, region selection, vetting, and delivery speed for both clients and candidates
-- [Offer Calibration](https://careersourcegroup.com/offer-calibration): What a given compensation offer actually buys, broken down by region
-- [Blog](https://careersourcegroup.com/blog): Staffing strategy and workforce insight articles
+- [Global Talent Cost & Delivery Comparison](https://careersourcegroup.com/offer-calibration): What a given compensation offer actually buys, broken down by role and region
+- [Insights](https://careersourcegroup.com/insights): Staffing strategy and workforce insight articles
 - [Get Started](https://careersourcegroup.com/get-started): Submit a staffing requirement
 - [Join Our Bench](https://careersourcegroup.com/join-our-bench): Candidate application for contract and full-time AI, data, and cloud roles
 - [Contact](https://careersourcegroup.com/contact): General contact form
 
 ## Optional
 
-- [Terms & Conditions](https://careersourcegroup.com/terms)
+- [Terms of Use](https://careersourcegroup.com/terms)
 - [Privacy Policy](https://careersourcegroup.com/privacy)
-- [Refund Policy](https://careersourcegroup.com/refund)
+- [Candidate Privacy Notice](https://careersourcegroup.com/candidate-privacy)
+- [Accessibility Statement](https://careersourcegroup.com/accessibility)
 - [sitemap.xml](https://careersourcegroup.com/sitemap.xml): Full list of indexable pages

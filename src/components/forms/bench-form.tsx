@@ -5,8 +5,13 @@ import {
   type BenchFormData,
   availabilityOptions,
   basisOptions,
+  candidateRegionOptions,
+  compensationLabels,
+  compensationTypeFor,
   seniorityOptions,
   specialtyOptions,
+  workArrangementOptions,
+  workAuthorizationOptions,
 } from "@/lib/forms";
 import { submitBenchApplication } from "@/lib/form-actions";
 import { useFormSubmit } from "@/lib/use-form-submit";
@@ -35,7 +40,10 @@ function makeInitialData(defaultSkill?: string): BenchFormData {
     specialty: defaultSkill || "",
     seniority: "",
     basis: "",
-    expectedMonthlyRate: "",
+    region: "",
+    workAuthorization: "",
+    workArrangement: "",
+    compensationAmount: "",
     availability: "",
     portfolioUrl: "",
     linkedinUrl: "",
@@ -176,18 +184,55 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
           value={formData.basis}
           onChange={handleChange}
         />
+        <SelectField
+          label="Region"
+          name="region"
+          required
+          placeholder="Where are you based?"
+          options={candidateRegionOptions}
+          value={formData.region}
+          onChange={handleChange}
+        />
+      </div>
+
+      {formData.region === "us" ? (
+        <SelectField
+          label="Work authorization"
+          name="workAuthorization"
+          required
+          placeholder="Select your work authorization status"
+          options={workAuthorizationOptions}
+          value={formData.workAuthorization}
+          onChange={handleChange}
+        />
+      ) : null}
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <SelectField
+          label="Work arrangement"
+          name="workArrangement"
+          required
+          placeholder="Remote, hybrid, or onsite?"
+          options={workArrangementOptions}
+          value={formData.workArrangement}
+          onChange={handleChange}
+        />
         <TextField
-          label="Expected monthly rate (USD)"
-          name="expectedMonthlyRate"
+          label={
+            formData.region && formData.basis
+              ? compensationLabels[compensationTypeFor(formData.region, formData.basis)]
+              : "Expected compensation (USD)"
+          }
+          name="compensationAmount"
           type="number"
           min="0"
           step="50"
           inputMode="numeric"
-          value={formData.expectedMonthlyRate}
+          value={formData.compensationAmount}
           onChange={handleChange}
           placeholder="6,500"
           prefix="$"
-          hint="Per month, in USD — not hourly or annual."
+          hint="Select your basis and region above to see the right question."
         />
       </div>
 

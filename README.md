@@ -10,7 +10,7 @@
 ## 🚀 Launch Status
 
 **Target launch date:** September 1, 2026
-**Status:** 🟡 **Pre-launch — most of the implementation brief is done, a few items remain**
+**Status:** 🟢 **Every P0/P1 engineering item is built, migrated, and verified end-to-end. What's left is business/content decisions, not code.**
 
 **See:** [LAUNCH_READY_STATUS.md](LAUNCH_READY_STATUS.md) for the current punch list.
 

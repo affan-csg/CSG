@@ -21,7 +21,7 @@ export const Route = createFileRoute("/staffing/specialized-roles")({
     ...buildSeoMeta({
       title: "Specialized Technical Roles We Fill",
       description:
-        "AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development and product roles — placed as specialists or pods.",
+        "AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development, product and cybersecurity & GRC roles — placed as specialists or pods.",
       path: "/staffing/specialized-roles",
     }),
     scripts: [
@@ -73,7 +73,7 @@ function SpecializedRolesIndex() {
       </Section>
 
       <Section className="border-t border-border">
-        <SectionHeading eyebrow="Practices" title="Eight technical practices" />
+        <SectionHeading eyebrow="Practices" title="Nine technical practices" />
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {specialties.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 2) * 0.06}>
@@ -103,7 +103,7 @@ function SpecializedRolesIndex() {
         <div className="mt-8">
           <StatGrid
             stats={[
-              { value: "8", label: "Technical practices" },
+              { value: "9", label: "Technical practices" },
               { value: "3", label: "Delivery regions" },
               { value: "4", label: "Engagement models" },
               { value: "1", label: "Point of contact" },

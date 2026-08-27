@@ -15,10 +15,26 @@ export interface RequirementFormData {
   email: string;
   phone: string;
   companyName: string;
-  skillNeeded: string;
-  engagementType: string;
-  basis: string;
+  skillsNeeded: string[];
+  skillOther: string;
+  numberOfHires: string;
+  engagement: string;
+  workArrangement: string;
+  locationOrTimezone: string;
+  targetStart: string;
+  topSkills: string;
+  seniority: string;
+  budgetRate: string;
+  needsBudgetGuidance: boolean;
+  regionPreference: string;
+  jobDescription?: File;
   message: string;
+  // Hidden, captured automatically — see requirement-form.tsx.
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  referrer: string;
+  sourcePage: string;
 }
 
 export interface BenchFormData {
@@ -30,7 +46,10 @@ export interface BenchFormData {
   specialty: string;
   seniority: string;
   basis: string;
-  expectedMonthlyRate: string;
+  region: string;
+  workAuthorization: string;
+  workArrangement: string;
+  compensationAmount: string;
   availability: string;
   portfolioUrl: string;
   linkedinUrl: string;
@@ -80,3 +99,72 @@ export const inquiryTypeOptions = [
   { value: "job_application", label: "I'm looking for work" },
   { value: "general", label: "Something else" },
 ] as const;
+
+// --- /get-started progressive form (implementation_plan.docx section 11.1) --
+
+/** Brief's "Engagement" field — distinct from the legacy engagementOptions
+ * (specialist/pod) above, which the new form no longer collects. */
+export const engagementTermsOptions = [
+  { value: "contract", label: "Contract" },
+  { value: "contract-to-hire", label: "Contract-to-hire" },
+  { value: "full-time", label: "Full-time" },
+  { value: "pod", label: "Pod" },
+  { value: "unsure", label: "Not sure yet" },
+] as const;
+
+/** Shared by the employer form (work arrangement for the role) and the
+ * candidate form (candidate's own preference). */
+export const workArrangementOptions = [
+  { value: "onsite", label: "Onsite" },
+  { value: "hybrid", label: "Hybrid" },
+  { value: "remote", label: "Remote" },
+] as const;
+
+export const targetStartOptions = [
+  { value: "immediate", label: "Immediate" },
+  { value: "2-4-weeks", label: "2–4 weeks" },
+  { value: "1-3-months", label: "1–3 months" },
+  { value: "planning", label: "Just planning ahead" },
+] as const;
+
+export const regionPreferenceOptions = [
+  { value: "us", label: "United States" },
+  { value: "latam", label: "LATAM" },
+  { value: "pakistan", label: "Pakistan" },
+  { value: "recommend", label: "Recommend a region for me" },
+] as const;
+
+// --- Join Our Bench form additions (implementation_plan.docx section 12) ---
+
+/** Candidate's own region — drives which compensation question is asked. */
+export const candidateRegionOptions = [
+  { value: "us", label: "United States" },
+  { value: "latam", label: "LATAM" },
+  { value: "pakistan", label: "Pakistan" },
+] as const;
+
+export const workAuthorizationOptions = [
+  { value: "us-citizen-or-green-card", label: "US Citizen or Green Card holder" },
+  { value: "authorized-no-sponsorship", label: "Authorized to work without sponsorship" },
+  { value: "requires-sponsorship", label: "Requires visa sponsorship" },
+] as const;
+
+export type CompensationType = "hourly" | "annual-salary" | "monthly";
+
+/** Brief section 12: "hourly rate, annual salary or monthly compensation
+ * conditionally by region/engagement — not one universal monthly USD field."
+ * US full-time asks salary; US contract/open asks hourly; LATAM/Pakistan
+ * (contract-only regions) ask monthly, matching how those rates are quoted
+ * everywhere else on the site. */
+export function compensationTypeFor(region: string, basis: string): CompensationType {
+  if (region === "us") {
+    return basis === "full-time" ? "annual-salary" : "hourly";
+  }
+  return "monthly";
+}
+
+export const compensationLabels: Record<CompensationType, string> = {
+  hourly: "Expected hourly rate (USD)",
+  "annual-salary": "Expected annual salary (USD)",
+  monthly: "Expected monthly rate (USD)",
+};

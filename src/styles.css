@@ -67,6 +67,13 @@
 }
 
 :root {
+  /* This site is dark-only (see .dark below, which repeats the same values).
+     Without this, browsers render native widgets — <select> dropdown
+     popups, checkboxes, scrollbars — with their light-mode defaults
+     regardless of our own styling, which put light (--foreground: cream)
+     option text on the browser's default white popup background. */
+  color-scheme: dark;
+
   --radius: 0.5rem;
 
   --navy-deep: oklch(0.17 0.035 264);
@@ -149,6 +156,16 @@
   select,
   optgroup {
     font-family: var(--font-sans);
+  }
+
+  /* color-scheme: dark above fixes this in most browsers, but explicit
+     colors here guarantee the popup list is never invisible regardless of
+     browser/OS quirks in how much of color-scheme they honor. */
+  select,
+  option,
+  optgroup {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
   }
 
   ::selection {

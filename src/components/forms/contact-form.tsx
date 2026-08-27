@@ -127,6 +127,14 @@ export function ContactForm({ className }: ContactFormProps) {
 
       <FormError message={errorMessage} />
 
+      <p className="text-xs text-muted-foreground">
+        By submitting this form, you agree to our{" "}
+        <a href="/privacy" className="underline hover:text-gold">
+          Privacy Policy
+        </a>
+        .
+      </p>
+
       <SubmitButton status={status} idleLabel="Send message" submittingLabel="Sending message..." />
     </form>
   );

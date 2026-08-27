@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestIP } from "@tanstack/react-start/server";
 
+import { compensationTypeFor } from "@/lib/forms";
 import { syncLeadToCrm } from "@/lib/server/crm";
 import { sendNotificationEmail } from "@/lib/server/notify";
 import { checkEmailRateLimit, checkIpRateLimit } from "@/lib/server/rate-limit";
@@ -8,6 +9,7 @@ import {
   insertCandidateApplication,
   insertClientRequirement,
   insertContactSubmission,
+  uploadJobDescription,
   uploadResume,
 } from "@/lib/server/submissions";
 import { benchSchema, contactSchema, requirementSchema } from "@/lib/server/validation";
@@ -86,20 +88,70 @@ export const submitContactForm = createServerFn({ method: "POST" })
 
 // -------------------------------------------------------------- client intake
 
+const MAX_JOB_DESCRIPTION_BYTES = 5 * 1024 * 1024;
+const ALLOWED_JOB_DESCRIPTION_TYPES = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+
 export const submitRequirementForm = createServerFn({ method: "POST" })
-  .validator((data: unknown) => data as Record<string, unknown> & { honeypot?: string })
-  .handler(async ({ data }): Promise<SubmitResult> => {
-    const honeypot = String(data.honeypot ?? "");
+  .validator((data: unknown) => {
+    if (!(data instanceof FormData)) {
+      throw new Error("Invalid submission");
+    }
+    return data;
+  })
+  .handler(async ({ data: formData }): Promise<SubmitResult> => {
+    const honeypot = String(formData.get("honeypot") ?? "");
     if (honeypot.length > 0) {
       return { success: true, id: "discarded" };
     }
 
-    const parsed = requirementSchema.safeParse(data);
+    const raw = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      companyName: formData.get("companyName"),
+      skillsNeeded: formData.get("skillsNeeded"),
+      skillOther: formData.get("skillOther"),
+      numberOfHires: formData.get("numberOfHires"),
+      engagement: formData.get("engagement"),
+      workArrangement: formData.get("workArrangement"),
+      locationOrTimezone: formData.get("locationOrTimezone"),
+      targetStart: formData.get("targetStart"),
+      topSkills: formData.get("topSkills"),
+      seniority: formData.get("seniority"),
+      budgetRate: formData.get("budgetRate"),
+      needsBudgetGuidance: formData.get("needsBudgetGuidance"),
+      regionPreference: formData.get("regionPreference"),
+      message: formData.get("message"),
+      utmSource: formData.get("utmSource"),
+      utmMedium: formData.get("utmMedium"),
+      utmCampaign: formData.get("utmCampaign"),
+      referrer: formData.get("referrer"),
+      sourcePage: formData.get("sourcePage"),
+    };
+
+    const parsed = requirementSchema.safeParse(raw);
     if (!parsed.success) {
       return {
         success: false,
         message: "Please correct the highlighted fields and try again.",
       };
+    }
+
+    const jdEntry = formData.get("jobDescription");
+    const jdFile = jdEntry instanceof File && jdEntry.size > 0 ? jdEntry : undefined;
+
+    if (jdFile) {
+      if (jdFile.size > MAX_JOB_DESCRIPTION_BYTES) {
+        return { success: false, message: "Job description must be 5 MB or smaller." };
+      }
+      if (!ALLOWED_JOB_DESCRIPTION_TYPES.has(jdFile.type)) {
+        return { success: false, message: "Job description must be a PDF or Word document." };
+      }
     }
 
     try {
@@ -123,15 +175,44 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
         }
       }
 
+      let jdPath: string | null = null;
+      if (jdFile) {
+        jdPath = await uploadJobDescription(jdFile, parsed.data.email);
+        if (!jdPath) {
+          return {
+            success: false,
+            message: "We could not upload the job description right now. Please try again shortly.",
+          };
+        }
+      }
+
       const row = await insertClientRequirement({
         first_name: parsed.data.firstName,
         last_name: parsed.data.lastName,
         email: parsed.data.email,
         phone: parsed.data.phone ?? "",
-        company_name: parsed.data.companyName ?? null,
-        skill_needed: parsed.data.skillNeeded,
-        engagement_type: parsed.data.engagementType,
-        basis: parsed.data.basis,
+        company_name: parsed.data.companyName,
+        skill_needed: null,
+        engagement_type: null,
+        basis: null,
+        skills_needed: parsed.data.skillsNeeded ?? null,
+        skill_other: parsed.data.skillOther ?? null,
+        number_of_hires: parsed.data.numberOfHires,
+        engagement: parsed.data.engagement,
+        work_arrangement: parsed.data.workArrangement,
+        location_or_timezone: parsed.data.locationOrTimezone ?? null,
+        target_start: parsed.data.targetStart,
+        top_skills: parsed.data.topSkills,
+        seniority: parsed.data.seniority,
+        budget_rate: parsed.data.budgetRate ?? null,
+        needs_budget_guidance: parsed.data.needsBudgetGuidance === "yes",
+        region_preference: parsed.data.regionPreference ?? null,
+        job_description_url: jdPath,
+        utm_source: parsed.data.utmSource ?? null,
+        utm_medium: parsed.data.utmMedium ?? null,
+        utm_campaign: parsed.data.utmCampaign ?? null,
+        referrer: parsed.data.referrer ?? null,
+        source_page: parsed.data.sourcePage ?? null,
         message: parsed.data.message ?? null,
         ip_address: ip ?? null,
       });
@@ -151,17 +232,34 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
         phone: parsed.data.phone,
       });
 
+      const skillsSummary =
+        [parsed.data.skillsNeeded?.join(", "), parsed.data.skillOther]
+          .filter(Boolean)
+          .join(" / ") || "(none given)";
+
       await sendNotificationEmail(
-        `New requirement: ${parsed.data.skillNeeded} (${parsed.data.companyName ?? "no company given"})`,
+        `New requirement: ${skillsSummary} (${parsed.data.companyName})`,
         [
-          `Skill needed: ${parsed.data.skillNeeded}`,
-          `Engagement: ${parsed.data.engagementType} / ${parsed.data.basis}`,
-          `Company: ${parsed.data.companyName ?? "(none given)"}`,
+          `Skills needed: ${skillsSummary}`,
+          `Number of hires: ${parsed.data.numberOfHires}`,
+          `Engagement: ${parsed.data.engagement}`,
+          `Work arrangement: ${parsed.data.workArrangement}`,
+          `Location/timezone: ${parsed.data.locationOrTimezone ?? "(none given)"}`,
+          `Target start: ${parsed.data.targetStart}`,
+          `Top must-have skills: ${parsed.data.topSkills}`,
+          `Seniority: ${parsed.data.seniority}`,
+          `Budget/rate: ${parsed.data.budgetRate ?? "(none given)"}${parsed.data.needsBudgetGuidance === "yes" ? " (wants budget guidance)" : ""}`,
+          `Region preference: ${parsed.data.regionPreference ?? "(none given)"}`,
+          `Job description uploaded: ${jdPath ? "yes" : "no"}`,
+          `Company: ${parsed.data.companyName}`,
           `Name: ${parsed.data.firstName} ${parsed.data.lastName}`,
           `Email: ${parsed.data.email}`,
           `Phone: ${parsed.data.phone ?? "(none given)"}`,
+          `Source: ${[parsed.data.utmSource, parsed.data.utmMedium, parsed.data.utmCampaign].filter(Boolean).join(" / ") || "(direct)"}`,
+          `Referrer: ${parsed.data.referrer ?? "(none)"}`,
+          `Source page: ${parsed.data.sourcePage ?? "(none)"}`,
           "",
-          parsed.data.message ?? "(no message)",
+          parsed.data.message ?? "(no additional context)",
         ].join("\n"),
       );
 
@@ -203,7 +301,10 @@ export const submitBenchApplication = createServerFn({ method: "POST" })
       specialty: formData.get("specialty"),
       seniority: formData.get("seniority"),
       basis: formData.get("basis"),
-      expectedMonthlyRate: formData.get("expectedMonthlyRate"),
+      region: formData.get("region"),
+      workAuthorization: formData.get("workAuthorization"),
+      workArrangement: formData.get("workArrangement"),
+      compensationAmount: formData.get("compensationAmount"),
       availability: formData.get("availability"),
       portfolioUrl: formData.get("portfolioUrl"),
       linkedinUrl: formData.get("linkedinUrl"),
@@ -263,6 +364,10 @@ export const submitBenchApplication = createServerFn({ method: "POST" })
         }
       }
 
+      const compensationType = parsed.data.compensationAmount
+        ? compensationTypeFor(parsed.data.region, parsed.data.basis)
+        : null;
+
       const row = await insertCandidateApplication({
         first_name: parsed.data.firstName,
         last_name: parsed.data.lastName,
@@ -272,7 +377,11 @@ export const submitBenchApplication = createServerFn({ method: "POST" })
         specialty: parsed.data.specialty,
         seniority: parsed.data.seniority,
         basis: parsed.data.basis,
-        expected_monthly_rate: parsed.data.expectedMonthlyRate ?? null,
+        region: parsed.data.region,
+        work_authorization: parsed.data.workAuthorization ?? null,
+        work_arrangement: parsed.data.workArrangement,
+        compensation_amount: parsed.data.compensationAmount ?? null,
+        compensation_type: compensationType,
         resume_url: resumePath,
         availability: parsed.data.availability ?? null,
         portfolio_url: parsed.data.portfolioUrl ?? null,
@@ -293,7 +402,11 @@ export const submitBenchApplication = createServerFn({ method: "POST" })
         [
           `Specialty: ${parsed.data.specialty} / ${parsed.data.seniority}`,
           `Basis: ${parsed.data.basis}`,
+          `Region: ${parsed.data.region}`,
+          `Work authorization: ${parsed.data.workAuthorization ?? "(not applicable)"}`,
+          `Work arrangement: ${parsed.data.workArrangement}`,
           `Location: ${parsed.data.location}`,
+          `Compensation: ${parsed.data.compensationAmount ?? "(none given)"}${compensationType ? ` (${compensationType})` : ""}`,
           `Name: ${parsed.data.firstName} ${parsed.data.lastName}`,
           `Email: ${parsed.data.email}`,
           `Phone: ${parsed.data.phone}`,

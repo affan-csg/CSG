@@ -11,6 +11,10 @@ import type {
 /** Private Supabase Storage bucket. Already provisioned on the live project. */
 export const RESUME_BUCKET = "resumes";
 
+/** Private Storage bucket for the /get-started form's optional job-description
+ * upload — provisioned by 008_get_started_progressive_form.sql. */
+export const JOB_DESCRIPTION_BUCKET = "job-descriptions";
+
 // ------------------------------------------------------------- client intake
 
 export async function insertClientRequirement(
@@ -64,6 +68,29 @@ export async function uploadResume(file: File, applicantEmail: string): Promise<
 
   if (error) {
     console.error("uploadResume failed", error);
+    return null;
+  }
+
+  return path;
+}
+
+/**
+ * Uploads a job description to the private Storage bucket and returns its
+ * object path (not a public URL) — mirrors uploadResume above.
+ */
+export async function uploadJobDescription(
+  file: File,
+  submitterEmail: string,
+): Promise<string | null> {
+  const extension = file.name.split(".").pop()?.toLowerCase() ?? "pdf";
+  const path = `${crypto.randomUUID()}-${submitterEmail.replace(/[^a-z0-9]/gi, "_")}.${extension}`;
+
+  const { error } = await getSupabaseAdmin()
+    .storage.from(JOB_DESCRIPTION_BUCKET)
+    .upload(path, file, { contentType: file.type, upsert: false });
+
+  if (error) {
+    console.error("uploadJobDescription failed", error);
     return null;
   }
 
