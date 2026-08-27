@@ -61,6 +61,13 @@
   </url>
 
   <url>
+    <loc>https://careersourcegroup.com/staffing/mlops</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://careersourcegroup.com/staffing/data</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -160,10 +167,17 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://careersourcegroup.com/candidate-privacy</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Informational Pages -->
   <url>
     <loc>https://careersourcegroup.com/offer-calibration</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -235,5 +249,11 @@
     <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://careersourcegroup.com/accessibility</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
 
 </urlset>

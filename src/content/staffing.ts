@@ -18,7 +18,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "AI/ML engineers start at $134,000 and run to $193,250 in the US, and that's the starting range — engineers with demonstrated LLM, MLOps, or applied AI skills earn 15-25% above benchmark at the same level.",
+        body: "AI/ML engineers in the US typically start in the $134,000-$193,250 range based on current market postings — and that's the entry point. Engineers with demonstrated LLM, MLOps, or applied AI skills tend to command a meaningful premium above that at the same level.",
       },
       {
         heading: "What we vet for",
@@ -40,8 +40,13 @@ export const staffingRoles: StaffingRole[] = [
       },
     ],
     pullQuote:
-      "There are roughly three and a half open AI roles for every qualified engineer in the market. You're not competing on job description. You're competing on speed and reach. We have both.",
-    faqQuestions: [],
+      "Multiple industry reports point to several open AI roles for every qualified engineer in the market. You're not competing on job description. You're competing on speed and reach. We have both.",
+    faqQuestions: [
+      "What do you screen for in an AI/ML engineering candidate?",
+      "Can AI/ML engineers be hired outside the US?",
+      "Why is AI/ML hiring taking so long on our own?",
+      "What does an AI/ML direct hire cost through CSG?",
+    ],
   },
   {
     slug: "mlops",
@@ -50,7 +55,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Budget $170K-$230K mid-level and $235K-$325K senior. Clean, well-scoped searches close in four to seven weeks. Mis-scoped ones drag past ninety days.",
+        body: "Budget in the $170K-$230K range for mid-level and $235K-$325K for senior, based on current market data. In our experience, clean, well-scoped searches close in four to seven weeks, while mis-scoped ones tend to drag past ninety days.",
       },
       {
         heading: "The insight that wins this deal",
@@ -71,7 +76,12 @@ export const staffingRoles: StaffingRole[] = [
     ],
     pullQuote:
       "If you have data scientists on payroll and nothing in production, you don't need another data scientist. You need the role you haven't hired yet.",
-    faqQuestions: [],
+    faqQuestions: [
+      "What's actually different about MLOps versus a data scientist who knows Kubernetes?",
+      "What do you vet MLOps engineers on?",
+      "Can MLOps roles be filled outside the US?",
+      "How do I know if I actually need an MLOps engineer?",
+    ],
   },
   {
     slug: "data",
@@ -80,7 +90,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Data engineers start at $127,000-$180,750. Data scientists at $121,750-$182,500. Data engineering has become a prerequisite for any serious AI deployment — which means every company chasing an AI initiative is now competing for the same data engineers.",
+        body: "Based on current market postings, data engineers typically start in the $127,000-$180,750 range and data scientists in the $121,750-$182,500 range. Data engineering has increasingly become a prerequisite for serious AI deployment, which means companies chasing an AI initiative are often competing for the same data engineers.",
       },
       {
         heading: "What we vet for",
@@ -97,7 +107,12 @@ export const staffingRoles: StaffingRole[] = [
     ],
     pullQuote:
       "The bottleneck on your AI roadmap almost certainly isn't the model. It's the pipeline feeding it.",
-    faqQuestions: [],
+    faqQuestions: [
+      "What do you vet for in data engineers versus data scientists?",
+      "Is data engineering talent available outside the US?",
+      "Why is data engineering suddenly so competitive to hire for?",
+      "What's the fee for a direct-hire data engineering placement?",
+    ],
   },
   {
     slug: "devops",
@@ -106,7 +121,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "DevOps engineers start at $118,000-$173,750 in the US. The field hasn't declined — it specialized, splitting into cloud engineering, platform engineering, DevSecOps, and SRE, all rooted in the same foundation. DevOps engineers with MLOps experience are commanding premium rates as companies race to productionize AI.",
+        body: "DevOps engineers typically start in the $118,000-$173,750 range in the US, based on current market postings. The field hasn't declined — it specialized, splitting into cloud engineering, platform engineering, DevSecOps, and SRE, all rooted in the same foundation. DevOps engineers with MLOps experience are increasingly commanding premium rates as companies race to productionize AI.",
       },
       {
         heading: "What we vet for",
@@ -118,12 +133,17 @@ export const staffingRoles: StaffingRole[] = [
       { region: "LATAM", body: "Contract." },
       {
         region: "Pakistan",
-        body: "Contract. This is one of our deepest benches. A dedicated AWS or Azure DevOps engineer through offshore delivery runs roughly $1,100-$1,600/month versus $13,000-$22,000/month fully loaded in the US.",
+        body: "Contract. This is one of our deepest benches. A dedicated AWS or Azure DevOps engineer through offshore delivery typically runs $1,100-$1,600/month versus roughly $13,000-$22,000/month fully loaded in the US.",
       },
     ],
     pullQuote:
       "If you need three or four DevOps engineers this quarter, running those searches in parallel without a dedicated partner is the whole reason your roadmap slips.",
-    faqQuestions: [],
+    faqQuestions: [
+      "What do you vet DevOps engineers on?",
+      "Where should I hire DevOps talent — US, LATAM, or Pakistan?",
+      "Has DevOps as a discipline been replaced by cloud engineering and platform engineering?",
+      "We need several DevOps hires at once — can you run those searches in parallel?",
+    ],
   },
   {
     slug: "devsecops",
@@ -132,7 +152,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "DevSecOps specialists and platform engineers pull 10-20% premiums over standard DevOps roles — a gap that has held steady for two years with no sign of closing. Platform engineer median salaries in North America run $178,000. 80% of large software organizations now rely on dedicated platform teams.",
+        body: "DevSecOps specialists and platform engineers tend to command a 10-20% premium over standard DevOps roles, and platform engineer median salaries in North America run around $178,000 based on current market data. Dedicated platform teams have become common at large software organizations.",
       },
       {
         heading: "The sourcing insight we bring",
@@ -154,7 +174,12 @@ export const staffingRoles: StaffingRole[] = [
         body: "Contract, with security posture designed in from day one.",
       },
     ],
-    faqQuestions: [],
+    faqQuestions: [
+      "What's the difference between a DevOps hire and a DevSecOps or platform engineering hire?",
+      "Why is it so hard to find platform engineers by searching the job title?",
+      "What do you vet DevSecOps candidates on specifically?",
+      "Can DevSecOps and platform engineering roles be delivered outside the US?",
+    ],
   },
   {
     slug: "cloud",
@@ -163,7 +188,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Cloud engineers start at $110,000-$155,000; cloud architects run $140,000-$225,000. AWS certifications alone deliver a 25-30% pay increase. The highest-value talent now sits at the intersection of cloud architecture, data engineering, and AI deployment — and that combination is scarce.",
+        body: "Based on current market postings, cloud engineers typically start in the $110,000-$155,000 range and cloud architects in the $140,000-$225,000 range. AWS certifications are commonly associated with a meaningful pay premium. The highest-value talent now sits at the intersection of cloud architecture, data engineering, and AI deployment — and that combination is scarce.",
       },
       {
         heading: "What we vet for",
@@ -180,7 +205,12 @@ export const staffingRoles: StaffingRole[] = [
     ],
     pullQuote:
       "Before you hire a cloud engineer, let us put one on your cloud bill for 30 days. The savings usually cover the engagement.",
-    faqQuestions: [],
+    faqQuestions: [
+      "What do you vet cloud engineers and architects on?",
+      "Is there a way to test cloud engineering value before committing to a hire?",
+      "Where does cloud talent come from outside the US?",
+      "What's driving cloud engineering salaries right now?",
+    ],
   },
   {
     slug: "software-dev",
@@ -189,7 +219,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Software engineers start at $109,250-$175,500. But the market has polarized hard: entry-level generalist roles are down 25% from their 2023 peak, while engineers who've added LLM integration, MLOps, cloud infrastructure, or security engineering report 3-5x higher callback rates than generalist applicants.",
+        body: "Software engineers typically start in the $109,250-$175,500 range in the US, based on current market postings. The market has polarized: entry-level generalist roles have declined noticeably from their 2023 peak, while engineers who've added LLM integration, MLOps, cloud infrastructure, or security engineering tend to see meaningfully higher callback rates than generalist applicants.",
       },
       {
         heading: "What that means for you",
@@ -211,7 +241,12 @@ export const staffingRoles: StaffingRole[] = [
         body: "Contract. Execution-heavy development, maintenance, mobile, and throughput work.",
       },
     ],
-    faqQuestions: [],
+    faqQuestions: [
+      "Is it hard to hire software engineers right now, or easier than people think?",
+      "What do you vet software engineering candidates on?",
+      "Where should generalist versus specialized software engineering roles be delivered?",
+      "What's the fee structure for a direct-hire software engineer?",
+    ],
   },
   {
     slug: "product",
@@ -220,7 +255,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "IT product managers post the fastest salary growth of any IT role at 10.1%, with a median of $175,296. IT project managers start at $103,500-$147,000. Demand is concentrated on PMs with real AI, data, and cloud fluency — the ones who can run a technical roadmap, not just a Jira board.",
+        body: "IT product managers have posted among the fastest salary growth of any IT role in recent market data, with a median around $175,296. IT project managers typically start in the $103,500-$147,000 range. Demand is concentrated on PMs with real AI, data, and cloud fluency — the ones who can run a technical roadmap, not just a Jira board.",
       },
       {
         heading: "A new category, forming fast",
@@ -245,7 +280,12 @@ export const staffingRoles: StaffingRole[] = [
         body: "Contract. Best suited to delivery management, scrum, and BA support functions rather than executive-facing product ownership.",
       },
     ],
-    faqQuestions: [],
+    faqQuestions: [
+      "What do you vet technical product and project managers on?",
+      'Is "AI Product Manager" a real, hireable title yet?',
+      "Where should a product or project management hire sit — US, LATAM, or Pakistan?",
+      "What's actually driving product management salaries up right now?",
+    ],
   },
   {
     slug: "cybersecurity-grc",
@@ -255,7 +295,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Cybersecurity and GRC roles are among the fastest-growing in tech. GRC specialists start at $95,000-$145,000; security architects run $130,000-$210,000. Enterprise compliance and regulatory requirements are driving demand faster than the market can supply talent.",
+        body: "Cybersecurity and GRC roles are among the faster-growing categories in tech. Based on current market postings, GRC specialists typically start in the $95,000-$145,000 range and security architects in the $130,000-$210,000 range. Enterprise compliance and regulatory requirements are driving demand that the market has struggled to keep pace with.",
       },
       {
         heading: "What we vet for",
@@ -276,7 +316,12 @@ export const staffingRoles: StaffingRole[] = [
         body: "Contract. Best for security operations, compliance administration, and policy documentation support.",
       },
     ],
-    faqQuestions: [],
+    faqQuestions: [
+      "What do you vet cybersecurity and GRC candidates on?",
+      "Can compliance-sensitive security roles be filled outside the US?",
+      "Why is cybersecurity and GRC hiring getting harder?",
+      "What's the going rate for GRC and security architecture talent?",
+    ],
   },
 ];
 
@@ -329,7 +374,7 @@ export const specializedRolesPage = {
   whyNow: {
     heading: "Why this matters right now",
     paragraphs: [
-      "The market has split into two completely different games, and most hiring managers are still playing the old one. AI and ML roles face a 63% talent shortage with 500,000+ open roles globally — roughly 3.4 open AI roles for every qualified candidate. ManpowerGroup's 2026 survey of 39,000+ employers across 41 countries found AI skills are now the hardest to hire for globally, for the first time ever. AI, ML, and data science postings hit 49,200 in 2025, up 163% from 2024. Security roles reached 66,800 postings, up 124% year over year. Meanwhile, entry-level generalist software engineering positions declined 25% from their 2023 peak, and median time-to-hire stretched to 67 days in Q1 2026.",
+      "The market has split into two completely different games, and most hiring managers are still playing the old one. Recent industry reporting points to a significant global shortage of AI and ML talent relative to open roles — several open AI roles for every qualified candidate by most estimates. ManpowerGroup's 2026 employer survey found AI skills are now among the hardest to hire for globally. AI, ML, data science, and security job postings have all grown sharply year over year on most measures we've seen. Meanwhile, entry-level generalist software engineering positions have declined noticeably from their 2023 peak, and median time-to-hire has stretched well past historical norms. Figures below are directional, drawn from published industry sources current as of 2026 rather than our own audited data — treat them as a market signal, not a guarantee for any specific search.",
       "Translation: for the roles below, the old playbook — post a req, wait, interview, offer — is not going to work. The talent is employed, passive, and getting three calls a week. That is exactly the problem we're built to solve.",
     ],
     stats: [

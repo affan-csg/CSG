@@ -52,7 +52,7 @@ Five spec files cover the site's critical flows:
 - **`regional-delivery.spec.ts`** — Global Delivery regional pages (`/global-delivery/$region`)
 - **`staffing-navigation.spec.ts`** — Staffing hub and specialty page navigation (`/staffing/*`)
 
-> As of 2026-08-13, `bench-form`, `regional-delivery`, and `staffing-navigation` have never been run against the current codebase — they were added in the same commit as the Supabase forms/route restructure but not yet executed. Run `pnpm test:e2e` and check the report before relying on them.
+> The site's content and forms change frequently — run `pnpm test:e2e` and check the report before relying on these specs; don't assume they're currently green without checking.
 
 ### contact-form.spec.ts (Test #1: Critical)
 

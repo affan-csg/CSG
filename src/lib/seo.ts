@@ -3,6 +3,8 @@
  * Use these in route head() functions for consistent SEO.
  */
 
+import { company } from "@/content/site";
+
 const SITE_URL = "https://careersourcegroup.com";
 const SITE_NAME = "Career Source Group";
 const DEFAULT_OG_IMAGE = "/images/brand/CSG.png";
@@ -67,11 +69,7 @@ export function buildOrganizationJsonLd() {
     email: "hello@careersourcegroup.com",
     telephone: "+1-443-875-9677",
     areaServed: ["United States", "Latin America", "Pakistan"],
-    sameAs: [
-      "https://www.linkedin.com/company/career-source-group-llc/",
-      "https://www.facebook.com/61559974043500",
-      "https://www.instagram.com/careersourcegroup",
-    ],
+    sameAs: Object.values(company.social).filter((url): url is string => Boolean(url)),
   };
 }
 

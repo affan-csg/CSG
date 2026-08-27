@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         {
           name: "keywords",
           content:
-            "staffing, talent acquisition, US staffing, LATAM nearshore, Pakistan offshore, direct hire, contract staffing, contract-to-hire, staff augmentation, IT staffing, healthcare staffing",
+            "staffing, talent acquisition, US staffing, LATAM nearshore, Pakistan offshore, direct hire, contract staffing, contract-to-hire, staff augmentation, IT staffing",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "Career Source Group" },

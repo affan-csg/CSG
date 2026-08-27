@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import {
   buildSeoMeta,
   buildOrganizationJsonLd,
@@ -148,11 +148,44 @@ describe("buildOrganizationJsonLd", () => {
     expect(result.areaServed).toContain("Pakistan");
   });
 
-  it("should include social media links", () => {
-    const result = buildOrganizationJsonLd();
+  // company.social (src/content/site.ts) reads import.meta.env once at
+  // module-evaluation time, so verifying different env states requires a
+  // fresh module instance per case, not just vi.stubEnv on the cached import.
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it("sameAs omits any social profile whose env var is unset", async () => {
+    vi.stubEnv("NEXT_PUBLIC_LINKEDIN_URL", "");
+    vi.stubEnv("NEXT_PUBLIC_YOUTUBE_URL", "");
+    vi.stubEnv("NEXT_PUBLIC_FACEBOOK_URL", "");
+    vi.stubEnv("NEXT_PUBLIC_INSTAGRAM_URL", "");
+    vi.resetModules();
+    const fresh = await import("./seo");
+
+    const result = fresh.buildOrganizationJsonLd();
 
     expect(Array.isArray(result.sameAs)).toBe(true);
-    expect(result.sameAs.length).toBeGreaterThan(0);
+    expect(result.sameAs.length).toBe(0);
+  });
+
+  it("sameAs includes only the social profiles configured via env vars", async () => {
+    vi.stubEnv(
+      "NEXT_PUBLIC_LINKEDIN_URL",
+      "https://www.linkedin.com/company/career-source-group-llc/",
+    );
+    vi.stubEnv("NEXT_PUBLIC_YOUTUBE_URL", "");
+    vi.stubEnv("NEXT_PUBLIC_FACEBOOK_URL", "https://www.facebook.com/careersourcegroup");
+    vi.stubEnv("NEXT_PUBLIC_INSTAGRAM_URL", "");
+    vi.resetModules();
+    const fresh = await import("./seo");
+
+    const result = fresh.buildOrganizationJsonLd();
+
+    expect(result.sameAs).toEqual([
+      "https://www.linkedin.com/company/career-source-group-llc/",
+      "https://www.facebook.com/careersourcegroup",
+    ]);
   });
 
   it("should not include street address or geo coordinates", () => {

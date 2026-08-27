@@ -1,103 +1,92 @@
-# LAUNCH READY - FINAL STATUS
+# LAUNCH READINESS STATUS
 
-**Date:** 2026-08-25  
-**Status:** 🟢 **100% READY FOR DEPLOYMENT**
+**Last updated:** 2026-08-27
+**Target launch date:** September 1, 2026
+**Status:** 🟡 **Most of the implementation brief is done. A short list of items — one of them a live bug — should be resolved before cutover.**
 
----
-
-## OUT OF 13 EXTERNAL TASKS
-
-✅ **9 DONE** (ready to use immediately)
-⏳ **4 OPTIONAL** (post-launch improvements)
+This file tracks status against the developer implementation brief
+(`implementation_plan.docx`). It's a living document — update it as items are
+closed, don't leave it as a historical snapshot.
 
 ---
 
-## ✅ ALREADY COMPLETE
+## 🔴 Known live bug — fix before launch
 
-### Code & Infrastructure
-
-- ✓ Production Supabase project created
-- ✓ All 5 SQL migrations run (tables exist, schema ready)
-- ✓ Form end-to-end tested (Supabase → email → CRM verified working)
-- ✓ Code audit complete (all 23 sections)
-- ✓ 145/145 tests passing
-- ✓ Production build successful
-
-### Integrations & Configuration
-
-- ✓ Social media profiles (LinkedIn, YouTube, Facebook, Instagram)
-- ✓ CRM: HubSpot endpoint + API key (tested, working)
-- ✓ Email: Resend API key (configured, verified)
-- ✓ Bot protection: Turnstile keys (configured)
-- ✓ Calendly booking link (configured)
-- ✓ **.env.production created** with all credentials + GA4 ID
-
-### Deferred (Not Needed for Launch)
-
-- ✓ ATS integration — deferred, candidate data saves to Supabase safely
+- **`cybersecurity-grc` specialty value is not in the database's `CHECK` constraint.**
+  `src/lib/forms.ts` offers "Cybersecurity / GRC" as a selectable specialty on the
+  candidate form, the requirement form, and the offer-calibration page's CTA — but
+  `supabase/migrations/005_specialty_slugs.sql` only allows the legacy value `'grc'`
+  for `client_requirements.skill_needed` and `candidate_applications.specialty`.
+  Any real submission with that value will pass frontend/zod validation and then
+  **fail at the database insert**. Needs a new migration (`007_*.sql`, additive —
+  widen the `CHECK` constraint, same pattern as `005`) written and run against the
+  live Supabase project before this code reaches production.
 
 ---
 
-## ⏳ WILL DO LATER (Post-Launch)
+## ✅ Done this pass
 
-These are nice-to-have monitoring/analytics tools — NOT blocking launch:
-
-- [ ] **Production domain + SSL** — DevOps team handles this separately
-- [ ] **Google Analytics 4** — DSN obtained ✅ | Enable tracking during hypercare (Sep 2-8)
-- [ ] **Google Search Console** — Can verify within 48 hours of launch
-- [ ] **Dashboard/BI** — Can set up during hypercare week
-- [ ] **Uptime Monitoring (UptimeRobot)** — Optional, can set up during hypercare
-- [ ] **Slack Alerts** — Optional, can connect during hypercare
-
----
-
-## 🚀 WHAT'S READY RIGHT NOW
-
-```
-✅ Code complete
-✅ Tests passing (145/145)
-✅ Production build works
-✅ Supabase project ready
-✅ Forms tested end-to-end
-✅ HubSpot CRM connected & working
-✅ Email notifications working
-✅ Bot protection enabled
-✅ .env.production created (all credentials + GA4 ID)
-✅ No bugs blocking launch
-✅ Compliance checks passed (no addresses, privacy links added)
-```
+- Non-negotiable P0 content: no residential address anywhere, correct client list
+  (Verifone, GoodRco, Snapdocs, Lilt) everywhere, corrected direct-hire savings math
+  ($75K–$150K across five $150K hires, not $250K+), Cybersecurity & GRC wired into
+  nav/footer/sitemap/forms.
+- Real Privacy Policy, Candidate Privacy Notice, Terms of Use, and a new
+  Accessibility Statement — none are placeholders anymore. (Still worth an actual
+  legal review of the Terms before treating it as final.)
+- Organization JSON-LD `sameAs` now built from the nullable social-profile env-var
+  config instead of a hardcoded array.
+- Preview-domain (`csg-v2.vercel.app`) noindex via an `X-Robots-Tag` response
+  header, keyed off request hostname — no Vercel env plumbing needed.
+- All 9 expertise pages have 3–5 tailored FAQs (previously empty).
+- Uncited/superlative market stats across `staffing.ts` and `delivery.ts` softened
+  to qualified language ("typically," "based on current market postings," etc.) —
+  not independently source-verified, just no longer stated as bare fact.
+- `/offer-calibration` rebuilt: renamed to "Global Talent Cost & Delivery
+  Comparison," static table replaced with an interactive role selector + instant
+  region comparison, linked from the Resources nav dropdown. Links out to
+  `/get-started?skill=<role>` instead of duplicating the requirement form.
+- 147/147 unit tests passing, clean typecheck, 0 lint errors (7 pre-existing
+  react-refresh warnings remain in vendored shadcn/ui files — see below).
 
 ---
 
-## NEXT STEPS (DevOps/Infrastructure)
+## ⏳ Still open
 
-1. **Set up production domain in Vercel**
-   - Add `careersourcegroup.com` as a custom domain on the Vercel project
-   - Vercel provisions and renews SSL automatically once DNS is pointed at it
+**Needs a feature build (not done):**
 
-2. **Deploy to production**
-   - Set the env vars from `.env.production` in the Vercel project settings
-   - Push to the connected branch (or `vercel --prod`) to deploy
+- [ ] `/get-started` — still a flat single-step form, not the brief's 3-step
+      progressive schema (hires count, work arrangement, timezone, start date,
+      top-3 skills, seniority, budget, region preference, JD upload). No
+      UTM/referrer capture. No conversion event fires on server success. Building
+      this needs a new Supabase migration too (most of those fields have no column
+      to land in today).
+- [ ] Candidate form (`/join-our-bench`) — missing a US work-authorization field,
+      and compensation is one universal field instead of conditional by
+      region/engagement.
+- [ ] GA4 event contract (brief §18.2) — deliberately deferred to post-production.
 
-3. **Quick test**
-   - Load https://careersourcegroup.com
-   - Submit test form via /get-started
-   - Verify: Supabase saved data ✓ + email sent ✓ + HubSpot received ✓
+**Needs a content/business decision (not done):**
 
-4. **Launch!** 🚀
+- [ ] The uncited-stats softening above is a stopgap, not a fix — figures still
+      have no visible source/date per role. Needs either a real citation or
+      further softening from whoever owns the content.
+
+**Known non-issues, intentionally not touched:**
+
+- 7 `react-refresh/only-export-components` ESLint warnings in
+  `src/components/ui/*.tsx` and `error-boundary.tsx` — standard shadcn/ui
+  generated-component pattern, dev-only, no production impact. Fixing means
+  splitting well-established shared UI primitives into extra files for no
+  functional gain; left alone deliberately.
+- Vite build warning about chunks >500kB after minification — pre-existing,
+  would need an app-wide code-splitting pass to address, out of scope here.
 
 ---
 
-## LAUNCH DEADLINE
+## Next steps
 
-**September 1, 2026**
-
----
-
-## FINAL STATUS
-
-🟢 **CODE IS 100% READY**
-Only thing left: pointing the domain at Vercel and setting production env vars.
-Everything else is done and tested.
-
-**Ship it.** ✅
+1. Write and run the `007_*.sql` migration for the `cybersecurity-grc` bug above.
+2. Decide whether the `/get-started` and candidate-form feature builds happen
+   before or after the Sept 1 date, given they need new DB columns.
+3. Get the Terms of Use in front of counsel.
+4. Source or further-qualify the remaining market statistics.

@@ -9,10 +9,10 @@
 
 ## 🚀 Launch Status
 
-**Date:** September 1, 2026
-**Status:** ✅ **PRODUCTION READY**
+**Target launch date:** September 1, 2026
+**Status:** 🟡 **Pre-launch — most of the implementation brief is done, a few items remain**
 
-**See:** [LAUNCH_READY_STATUS.md](LAUNCH_READY_STATUS.md) for complete deployment guide.
+**See:** [LAUNCH_READY_STATUS.md](LAUNCH_READY_STATUS.md) for the current punch list.
 
 ---
 

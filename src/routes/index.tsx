@@ -21,10 +21,10 @@ const HeroCanvas = lazy(() => import("@/components/site/hero-canvas"));
 export const Route = createFileRoute("/")({
   head: () =>
     buildSeoMeta({
-      title: "Career Source Group — US, LATAM & Pakistan Staffing, One Contract",
+      title: "Technology Staffing Company | US, LATAM & Pakistan | CSG",
       titleSuffix: false,
       description:
-        "US | LATAM | Pakistan. Direct hire at 10%, contract and contract-to-hire — one contract, one invoice, one point of contact.",
+        "Hire vetted AI, Data, Cloud, Software, Product and GRC professionals through US contract and direct hire or dedicated LATAM and Pakistan talent.",
       path: "/",
       keywords:
         "US staffing, LATAM nearshore, Pakistan offshore, direct hire 10%, contract staffing, contract-to-hire, staff augmentation, IT staffing, AI ML engineering, DevOps, data engineering",

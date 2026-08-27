@@ -25,7 +25,7 @@ function CaseStudiesPage() {
       />
 
       <Section>
-        <SectionHeading eyebrow="Who we've delivered for" title={about.delivered.heading} />
+        <SectionHeading eyebrow="Client proof" title={about.delivered.heading} />
         <div className="mt-10">
           <LogoWall logos={about.delivered.logos} />
         </div>

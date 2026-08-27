@@ -270,8 +270,8 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
 
       <SubmitButton
         status={status}
-        idleLabel="Submit application"
-        submittingLabel="Submitting application..."
+        idleLabel="Create Your Talent Profile"
+        submittingLabel="Creating your talent profile..."
       />
     </form>
   );

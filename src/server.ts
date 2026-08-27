@@ -12,6 +12,8 @@ declare global {
   var __CSP_NONCE__: string | undefined;
 }
 
+const PRODUCTION_HOSTNAMES = new Set(["careersourcegroup.com", "www.careersourcegroup.com"]);
+
 import * as serverEntryModule from "@tanstack/react-start/server-entry";
 
 async function getServerEntry(): Promise<ServerEntry> {
@@ -64,6 +66,13 @@ export default {
 
       for (const [key, value] of Object.entries(securityHeaders)) {
         headersToApply.set(key, value);
+      }
+
+      // Preview/non-production deployments (e.g. csg-v2.vercel.app) must never
+      // compete with the production domain in search results. This header is
+      // authoritative regardless of any per-page <meta name="robots"> tag.
+      if (!PRODUCTION_HOSTNAMES.has(new URL(request.url).hostname)) {
+        headersToApply.set("X-Robots-Tag", "noindex, nofollow");
       }
 
       // Inject nonce meta tag and add nonce attributes to executable script tags for CSP compliance

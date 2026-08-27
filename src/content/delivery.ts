@@ -50,19 +50,19 @@ export const prosCons = {
       "Direct hire, contract, and contract-to-hire all available",
     ],
     cons: [
-      "Highest cost by a wide margin — fully loaded employee cost runs roughly 1.25-1.4x base salary before recruiting and vacancy drag",
+      "Highest cost by a wide margin — fully loaded employee cost commonly runs 1.25-1.4x base salary before recruiting and vacancy drag",
       "Slowest direct-hire cycles, commonly four to six months",
-      "Senior bill rates are up roughly 15-30% year over year",
+      "Senior bill rates have trended upward in recent years, with double-digit percentage increases in some markets",
       "You're competing for the same scarce talent as every other US employer",
     ],
   },
   latam: {
     title: "LATAM Nearshore",
     pros: [
-      "30-70% cost reduction, $35,000-$64,000 in annual savings per seat",
+      "Typically a 30-70% cost reduction, or $35,000-$64,000 in annual savings per seat",
       "Near-full time zone overlap — real-time collaboration without anyone working nights",
       "Strong English proficiency and cultural alignment with US business norms",
-      "Deep mid-to-senior bench: 84% of placements are mid-level or senior",
+      "Deep mid-to-senior bench, based on current market and placement data",
       "Fast ramp — days to weeks, not months",
     ],
     cons: [
@@ -75,8 +75,8 @@ export const prosCons = {
   pakistan: {
     title: "Pakistan Offshore",
     pros: [
-      "Deepest cost advantage — 50-70% below fully loaded US cost",
-      "Large, English-speaking, technically deep talent pool, ranked second globally in digital labour supply",
+      "Typically the deepest cost advantage of the three — commonly 50-70% below fully loaded US cost",
+      "Large, English-speaking, technically deep talent pool, cited among the largest globally in digital labour supply",
       "Excellent for execution-heavy, high-volume, and after-hours work",
       "Fast ramp and strong specialized technical depth in cloud, DevOps, mobile, and QA",
     ],
@@ -132,13 +132,13 @@ export const regionPages: RegionPage[] = [
       },
       {
         title: "Contract Staffing — flexible, budgeted as OpEx, not headcount",
-        lead: "Contract is no longer the exception in IT staffing. It's the majority — roughly 64% of all IT staffing in 2024 was contract or temporary, and that share is still climbing.",
+        lead: "Contract is no longer the exception in IT staffing — recent industry data suggests it now accounts for a majority of IT staffing engagements, and that share has been climbing.",
         when: "Surge capacity, a defined project with an end date, a specialized skill you need for nine months and not five years, or budget that lives in a project line instead of a headcount line.",
         get: "Worker on our payroll, compliance handled, and a bill rate instead of a hiring req you have to fight for.",
       },
       {
-        title: "Contract-to-Hire — the model the market moved to",
-        lead: "Contract-to-hire has overtaken direct hire as the default for senior IT roles. That's not caution. That's the market recognizing that a resume and four interviews are a weak substitute for 90 days of actual work.",
+        title: "Contract-to-Hire — the model more of the market is moving to",
+        lead: "Contract-to-hire has become a leading model for senior IT roles in recent years. That's not caution. That's the market recognizing that a resume and four interviews are a weak substitute for 90 days of actual work.",
         when: "Any role where a bad hire would set you back six months. Any role where the budget is real but the headcount approval is still moving through finance. Any time you've been burned before.",
         get: "90-180 days to see real output before it becomes permanent. Conversion at a prorated fee, or waived entirely depending on tenure.",
       },
@@ -158,13 +158,13 @@ export const regionPages: RegionPage[] = [
     slug: "latam",
     title: "Nearshore technical talent that works when your US team works.",
     intro: [
-      "Nearshore hiring is not an experiment anymore. US remote hiring in Latin America grew 161% from 2023 through 2026, and the region's IT services market has crossed $71 billion.",
-      "And it is not junior talent. 84% of LATAM placements in 2025 were mid-level or senior, with roughly a third at senior level including VPs and directors.",
+      "Nearshore hiring is not an experiment anymore. US remote hiring in Latin America has grown sharply in recent years, and the region's IT services market has become a multi-billion-dollar industry in its own right.",
+      "And it is not junior talent. Recent industry data suggests the large majority of LATAM placements are mid-level or senior, including a meaningful share at senior level up to VPs and directors.",
     ],
     highlights: [
       {
         heading: "The economics",
-        body: "US companies save $35,000-$64,000 annually per hire versus a comparable domestic position — a 30-70% reduction depending on role and seniority.",
+        body: "US companies commonly save $35,000-$64,000 annually per hire versus a comparable domestic position — a 30-70% reduction depending on role and seniority. Exact savings depend on the specific role, seniority, and current market rates.",
       },
       {
         heading: "Why it works",
@@ -197,13 +197,13 @@ export const regionPages: RegionPage[] = [
     title:
       "Dedicated offshore engineering capacity for structured execution and extended coverage.",
     intro: [
-      "Most US buyers still default to India or the Philippines when they think offshore. The data has moved and the market hasn't caught up.",
-      "The International Labour Organisation ranks Pakistan as the world's second-largest supplier of digital labour services — ahead of both India and the Philippines. In December 2025, Pakistan recorded $437 million in IT and digital service exports in a single month, a milestone no forecast had projected arriving that soon.",
+      "Most US buyers still default to India or the Philippines when they think offshore. Pakistan's IT and digital-services export sector has grown quickly enough that many buyers haven't caught up with where the talent pool actually stands.",
+      "Reports from labour-market research organizations have placed Pakistan among the largest suppliers of digital labour services globally, alongside India and the Philippines, and Pakistan's IT and digital-service exports have shown strong month-over-month growth in recent reporting.",
     ],
     highlights: [
       {
         heading: "The economics",
-        body: "A dedicated AWS or Azure DevOps engineer runs roughly $1,100-$1,600 per month through an offshore delivery model, versus $13,000-$22,000 per month fully loaded in the US. That is a 50-70% reduction.",
+        body: "A dedicated AWS or Azure DevOps engineer typically runs $1,100-$1,600 per month through an offshore delivery model, versus roughly $13,000-$22,000 per month fully loaded in the US — commonly a 50-70% reduction, depending on role and seniority.",
       },
       {
         heading: "The honest framing",
@@ -233,13 +233,25 @@ export const regionPages: RegionPage[] = [
   },
 ];
 
+export type OfferCalibrationRow = {
+  /** Matches specialtyOptions[].value in src/lib/forms.ts, so the role selector on
+   * /offer-calibration and the embedded RequirementForm share one role list. */
+  slug: string;
+  role: string;
+  note?: string;
+  us: string;
+  latam: string;
+  pakistan: string;
+};
+
 export const offerCalibration = {
-  title: "What Your Offer Actually Buys, by Region",
+  title: "Global Talent Cost & Delivery Comparison",
   intro: "Using US starting-salary benchmarks as the baseline.",
   caption:
     "US starting salary ranges by role, and what the same budget buys in LATAM and Pakistan.",
   rows: [
     {
+      slug: "ai-ml",
       role: "AI/ML Engineer",
       note: "Headcount range pending confirmation by our delivery team",
       us: "$134,000 - $193,250",
@@ -247,6 +259,7 @@ export const offerCalibration = {
       pakistan: "A small team",
     },
     {
+      slug: "mlops",
       role: "MLOps Engineer",
       note: "Headcount range pending confirmation by our delivery team",
       us: "$170,000 - $325,000",
@@ -254,50 +267,58 @@ export const offerCalibration = {
       pakistan: "Full platform pod",
     },
     {
-      role: "Data Engineer",
-      us: "$127,000 - $180,750",
+      slug: "data",
+      role: "Data Engineer / Data Scientist",
+      note: "Headcount range pending confirmation by our delivery team",
+      us: "$121,750 - $182,500",
       latam: "Senior engineer, or 2 mid-level",
       pakistan: "3-4 engineers",
     },
     {
-      role: "Data Scientist",
-      note: "Headcount range pending confirmation by our delivery team",
-      us: "$121,750 - $182,500",
-      latam: "Senior, or 2 mid-level",
-      pakistan: "A small analytics team",
-    },
-    {
+      slug: "devops",
       role: "DevOps Engineer",
       us: "$118,000 - $173,750",
       latam: "Senior engineer, or 2 mid-level",
       pakistan: "4-6 engineers",
     },
     {
-      role: "DevSecOps / Platform",
+      slug: "devsecops",
+      role: "DevSecOps / Platform Engineer",
       note: "Headcount range pending confirmation by our delivery team",
       us: "10-20% above DevOps",
       latam: "Senior specialist",
       pakistan: "Specialist + support",
     },
     {
-      role: "Cloud Engineer",
-      us: "$110,000 - $155,000",
+      slug: "cloud",
+      role: "Cloud Engineer / Architect",
+      us: "$110,000 - $225,000",
       latam: "Senior engineer, or 2 mid-level",
       pakistan: "4-6 engineers",
     },
     {
+      slug: "software-dev",
       role: "Software Engineer",
       us: "$109,250 - $175,500",
       latam: "Senior, or 2-3 mid-level",
       pakistan: "4-6 engineers",
     },
     {
+      slug: "product",
       role: "Product / Project Manager",
       us: "$103,500 - $175,296",
       latam: "Senior PM with full overlap",
       pakistan: "Delivery/BA support functions",
     },
-  ],
+    {
+      slug: "cybersecurity-grc",
+      role: "Cybersecurity & GRC",
+      note: "Headcount range pending confirmation by our delivery team",
+      us: "$95,000 - $210,000",
+      latam: "Senior GRC specialist",
+      pakistan: "Security ops + compliance support team",
+    },
+  ] satisfies OfferCalibrationRow[],
   footnote:
     "Ranges reflect US starting salaries from published 2026 benchmarks. LATAM savings run 30-70% versus comparable US positions; Pakistan runs 50-70% below fully loaded US cost. Exact equivalents depend on seniority, stack, and engagement length — which is exactly why the conversation starts with your offer, not our rate card.",
   emphasis:

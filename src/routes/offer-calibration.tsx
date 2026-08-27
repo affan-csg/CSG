@@ -1,147 +1,111 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Reveal } from "@/components/site/reveal";
 import { buildSeoMeta } from "@/lib/seo";
 import {
   CtaBand,
+  FaqSection,
   PageHero,
+  Panel,
   PullQuote,
   Section,
   SectionHeading,
 } from "@/components/site/primitives";
+import { offerCalibration } from "@/content/delivery";
 
 export const Route = createFileRoute("/offer-calibration")({
   head: () =>
     buildSeoMeta({
-      title: "What Your Offer Actually Buys, by Region",
+      title: "Global Talent Cost & Delivery Comparison",
       description:
-        "US starting-salary benchmarks for nine technical roles, and what the same budget buys in LATAM and Pakistan.",
+        "See what your hiring budget can realistically buy by role and region — US starting-salary benchmarks and what the same budget buys in LATAM and Pakistan.",
       path: "/offer-calibration",
     }),
   component: OfferCalibrationPage,
 });
 
-const calibrationData = [
-  {
-    role: "AI/ML Engineer",
-    us: "$140K – $180K",
-    latam: "$45K – $75K",
-    pakistan: "$25K – $45K",
-  },
-  {
-    role: "Data Engineer",
-    us: "$120K – $160K",
-    latam: "$40K – $65K",
-    pakistan: "$22K – $40K",
-  },
-  {
-    role: "DevOps Engineer",
-    us: "$120K – $155K",
-    latam: "$40K – $60K",
-    pakistan: "$20K – $38K",
-  },
-  {
-    role: "Cloud Architect",
-    us: "$140K – $180K",
-    latam: "$50K – $75K",
-    pakistan: "$28K – $48K",
-  },
-  {
-    role: "Full-Stack Developer",
-    us: "$100K – $140K",
-    latam: "$35K – $55K",
-    pakistan: "$18K – $35K",
-  },
-  {
-    role: "Product Manager",
-    us: "$120K – $160K",
-    latam: "$40K – $65K",
-    pakistan: "$22K – $40K",
-  },
-  {
-    role: "DevSecOps Engineer",
-    us: "$130K – $170K",
-    latam: "$45K – $70K",
-    pakistan: "$25K – $45K",
-  },
-  {
-    role: "MLOps Engineer",
-    us: "$125K – $165K",
-    latam: "$42K – $68K",
-    pakistan: "$24K – $42K",
-  },
-  {
-    role: "Project Manager",
-    us: "$90K – $130K",
-    latam: "$30K – $50K",
-    pakistan: "$16K – $32K",
-  },
-];
-
 function OfferCalibrationPage() {
+  const [selectedSlug, setSelectedSlug] = useState(offerCalibration.rows[0]!.slug);
+  const selectedRow =
+    offerCalibration.rows.find((row) => row.slug === selectedSlug) ?? offerCalibration.rows[0]!;
+
   return (
     <>
       <PageHero
-        eyebrow="Offer calibration"
-        title="What Your Offer Actually Buys, by Region"
-        body="Using US starting-salary benchmarks as the baseline."
+        eyebrow="Global talent cost & delivery comparison"
+        title="See what your hiring budget can realistically buy by role and region."
+        body={offerCalibration.intro}
       />
 
       <Section>
         <SectionHeading
-          eyebrow="The comparison"
-          title="Salary ranges by region"
-          body="These are starting-salary benchmarks for nine technical roles. The same budget buys very different things depending on where the seat sits."
+          eyebrow="Pick a role"
+          title="What does this role cost, by region?"
+          body={offerCalibration.caption}
         />
-        <Reveal className="mt-12 overflow-x-auto">
-          <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
-            <thead>
-              <tr className="border-b border-border">
-                <th scope="col" className="py-4 pr-6 eyebrow font-normal">
-                  &nbsp;
-                </th>
-                <th scope="col" className="py-4 pr-6 font-display text-base">
-                  United States
-                </th>
-                <th scope="col" className="py-4 pr-6 font-display text-base">
-                  LATAM
-                </th>
-                <th scope="col" className="py-4 font-display text-base">
-                  Pakistan
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {calibrationData.map((row) => (
-                <tr key={row.role} className="border-b border-border/70 align-top">
-                  <th
-                    scope="row"
-                    className="w-48 py-6 pr-6 font-mono text-[0.66rem] font-normal uppercase tracking-[0.16em] text-gold"
-                  >
-                    {row.role}
-                  </th>
-                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">{row.us}</td>
-                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">{row.latam}</td>
-                  <td className="py-6 leading-relaxed text-muted-foreground">{row.pakistan}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+        <Reveal className="mt-10 max-w-xl">
+          <label htmlFor="calibration-role" className="form-label block text-muted-foreground">
+            Role
+          </label>
+          <select
+            id="calibration-role"
+            value={selectedSlug}
+            onChange={(e) => setSelectedSlug(e.target.value)}
+            className="mt-2 w-full rounded-md border border-border bg-card px-4 py-3 text-[0.98rem] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
+            {offerCalibration.rows.map((row) => (
+              <option key={row.slug} value={row.slug}>
+                {row.role}
+              </option>
+            ))}
+          </select>
         </Reveal>
-        <Reveal className="mt-8 max-w-2xl">
+
+        <Reveal className="mt-8" key={selectedRow.slug}>
+          <Panel className="grid gap-6 sm:grid-cols-3">
+            <div>
+              <p className="eyebrow">United States</p>
+              <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">{selectedRow.us}</p>
+            </div>
+            <div>
+              <p className="eyebrow">LATAM</p>
+              <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">
+                {selectedRow.latam}
+              </p>
+            </div>
+            <div>
+              <p className="eyebrow">Pakistan</p>
+              <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">
+                {selectedRow.pakistan}
+              </p>
+            </div>
+            {selectedRow.note ? (
+              <p className="sm:col-span-3 text-[0.85rem] text-muted-foreground">
+                {selectedRow.note}
+              </p>
+            ) : null}
+          </Panel>
+        </Reveal>
+
+        <Reveal className="mt-8 max-w-3xl">
+          <p className="text-[0.9rem] leading-relaxed text-muted-foreground">
+            {offerCalibration.footnote}
+          </p>
+        </Reveal>
+        <Reveal className="mt-6 max-w-2xl">
           <p className="text-[0.98rem] leading-[1.75] text-muted-foreground">
-            This is not an argument for offshoring everything. It's an argument for knowing what
-            your money buys before you spend it.
+            {offerCalibration.emphasis}
           </p>
         </Reveal>
       </Section>
 
       <Section className="border-t border-border">
-        <SectionHeading eyebrow="How we think" title="A note on how we think about this" />
+        <SectionHeading eyebrow="How we think" title={offerCalibration.note.heading} />
         <Reveal className="mt-8 max-w-3xl">
           <p className="text-[1.04rem] leading-[1.75] text-muted-foreground">
-            Calibrating cost across regions is about designing capacity intelligently, not replacing
-            US roles indiscriminately. The seats that need to be in the room, stay in the room.
+            {offerCalibration.note.body}
           </p>
         </Reveal>
       </Section>
@@ -155,6 +119,24 @@ function OfferCalibrationPage() {
         </PullQuote>
       </Section>
 
+      <Section className="border-t border-border">
+        <SectionHeading
+          eyebrow="Next step"
+          title="Want an actual search plan for this role?"
+          body="Send us the role and we'll come back with market feedback, a recommended delivery region, and a search plan — before you commit to anything."
+        />
+        <Reveal className="mt-10">
+          <Link
+            to="/get-started"
+            search={{ skill: selectedRow.slug }}
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-cream px-6 py-3.5 button-text text-navy transition-all duration-300 hover:bg-gold hover:shadow-md hover:shadow-gold/20 active:scale-95"
+          >
+            Request {selectedRow.role} Talent
+          </Link>
+        </Reveal>
+      </Section>
+
+      <FaqSection questions={offerCalibration.faqQuestions} />
       <CtaBand />
     </>
   );

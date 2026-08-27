@@ -11,7 +11,7 @@ export const home = {
   },
   fee: {
     heading: "We Charge 10%. The Industry Charges 20-30%.",
-    body: "Standard direct-hire fees in US staffing run 15-30% of first-year salary. On a $150,000 hire, that's $30,000-$45,000 to a staffing firm for one placement. We charge 10% — on that same hire, $15,000. On five hires a year, that's a quarter of a million dollars back in your budget.",
+    body: "Standard direct-hire fees in US staffing run 20-30% of first-year salary. On a $150,000 hire, that's $30,000-$45,000 to a staffing firm for one placement. We charge 10% — on that same hire, $15,000. On five hires a year, that's $75,000-$150,000 back in your budget.",
     cta: { label: "Learn how we do it", to: "/our-story", hash: "why-csg" },
   },
   pods: {
@@ -76,7 +76,7 @@ export const about = {
     ],
   },
   delivered: {
-    heading: "Who We've Delivered For",
+    heading: "Companies our team has supported",
     body: "We're not a low-cost offshore reseller that learned staffing last year.",
     logos: [
       { name: "Verifone", image: "/images/brand/verifone.png" },
@@ -175,10 +175,6 @@ export const contact = {
 };
 
 export const legalPages = {
-  terms: {
-    title: "Terms & Conditions",
-    body: "These Terms & Conditions govern your use of careersourcegroup.com and our services. By accessing or using this site, you agree to be bound by these terms. Career Source Group reserves the right to modify these terms at any time. For the full Terms & Conditions document, please contact us at hello@careersourcegroup.com.",
-  },
   legalNotice: {
     title: "Legal Notice",
     rows: [

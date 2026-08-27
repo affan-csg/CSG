@@ -54,6 +54,7 @@ const navItemsWithDropdowns = [
     children: [
       { label: "Case Studies", to: "/case-studies" },
       { label: "Insights", to: "/insights" },
+      { label: "Global Talent Cost & Delivery Comparison", to: "/offer-calibration" },
       { label: "FAQ", to: "/faq" },
     ],
   },

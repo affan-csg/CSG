@@ -47,6 +47,7 @@ export const specialtyOptions = [
   { value: "cloud", label: "Cloud Engineer / Architect" },
   { value: "software-dev", label: "Software Engineer" },
   { value: "product", label: "Product / Project Manager" },
+  { value: "cybersecurity-grc", label: "Cybersecurity / GRC" },
 ] as const;
 
 export const seniorityOptions = [

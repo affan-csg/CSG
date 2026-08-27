@@ -133,7 +133,7 @@ export const faqs: Faq[] = [
   {
     audience: "clients",
     q: "Why do you charge 10% for direct hire when the industry charges 20-30%?",
-    a: "We charge 10% of annual salary for direct hire. Standard US staffing fees run 15-30% of first-year salary, so on a $150,000 hire that's $30,000-$45,000 to a staffing firm versus our $15,000. Same vetting, same guarantee. On five hires a year, that's a quarter of a million dollars back in your budget.",
+    a: "We charge 10% of annual salary for direct hire. Standard US staffing fees run 20-30% of first-year salary, so on a $150,000 hire that's $30,000-$45,000 to a staffing firm versus our $15,000. Same vetting, same guarantee. On five hires a year, that's $75,000-$150,000 back in your budget.",
   },
   {
     audience: "clients",
@@ -250,6 +250,187 @@ export const faqs: Faq[] = [
     audience: "clients",
     q: "Do you hire for roles outside software development?",
     a: "Yes. Beyond our eight technical practices (AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software dev, product), we place non-technical operations roles: customer success, revenue operations, finance and accounting operations, and back-office support. Full list available on our staffing specialties page.",
+  },
+  // Practice-specific buyer FAQs (referenced by slug from staffingRoles[].faqQuestions in staffing.ts)
+  {
+    audience: "clients",
+    q: "What do you screen for in an AI/ML engineering candidate?",
+    a: "Production LLM integration, not demo work — model evaluation and guardrails, RAG architecture and vector databases, fine-tuning and inference optimization. Most importantly, whether they've shipped to real users or just to a notebook.",
+  },
+  {
+    audience: "clients",
+    q: "Can AI/ML engineers be hired outside the US?",
+    a: "Yes. US works for the seat that owns model strategy and talks to your executives, on direct hire, contract, or contract-to-hire. LATAM is contract-only and has real depth in AI/ML right now — it's one of the highest-demand roles in the region. Pakistan is contract-only and strong for ML support engineering, data pipelines feeding models, and evaluation work.",
+  },
+  {
+    audience: "clients",
+    q: "Why is AI/ML hiring taking so long on our own?",
+    a: "Because the market is upside down right now — for every qualified AI engineer there are roughly three and a half open roles. You're not competing on job description, you're competing on speed and reach to reach passive candidates before they take another call. That's the part we're built for.",
+  },
+  {
+    audience: "clients",
+    q: "What does an AI/ML direct hire cost through CSG?",
+    a: "We charge 10% of first-year salary, versus the 20-30% most staffing firms charge. AI/ML engineers typically start in the $134,000-$193,250 range in the US based on current market postings, so on a mid-range hire that's roughly $15,000-$19,000 to us instead of $30,000-$58,000 elsewhere.",
+  },
+  {
+    audience: "clients",
+    q: "What's actually different about MLOps versus a data scientist who knows Kubernetes?",
+    a: "Most MLOps job descriptions get written by hiring managers who think MLOps is a senior data scientist who knows Kubernetes — it isn't. The closer analog is platform SRE for ML systems. The strongest MLOps engineers came up through SRE, DevOps, or data engineering and layered ML platform tooling on top, not through data science.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet MLOps engineers on?",
+    a: "Model registry and serving infrastructure, feature pipelines, CI/CD from notebook to endpoint, model quantization and inference optimization, and hands-on experience with MLflow, Kubeflow, and Ray. We also ask whether they've carried the pager when an inference pod died at 4am.",
+  },
+  {
+    audience: "clients",
+    q: "Can MLOps roles be filled outside the US?",
+    a: "US supports all three engagement models — direct hire, contract, and contract-to-hire. LATAM is contract-only. Pakistan is contract-only and has strong depth in the underlying infrastructure skillset MLOps is built on.",
+  },
+  {
+    audience: "clients",
+    q: "How do I know if I actually need an MLOps engineer?",
+    a: "If you have data scientists on payroll and nothing in production, you don't need another data scientist — you need the role you likely haven't hired yet. In our experience, clean, well-scoped MLOps searches close in four to seven weeks; mis-scoped ones tend to drag past ninety days, which is usually a sign the req was written for the wrong role.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet for in data engineers versus data scientists?",
+    a: "For data engineers: pipeline architecture at real volume, dbt, Airflow, Spark, and warehouse or lakehouse design across Snowflake, Databricks, and BigQuery, plus data quality and observability. For data scientists: whether their models ever left the notebook and made it into production.",
+  },
+  {
+    audience: "clients",
+    q: "Is data engineering talent available outside the US?",
+    a: "Yes. US supports all three engagement models. LATAM is contract-only with excellent depth in data engineering. Pakistan is contract-only and strongest for pipeline build and maintenance, ETL, and data operations at volume.",
+  },
+  {
+    audience: "clients",
+    q: "Why is data engineering suddenly so competitive to hire for?",
+    a: "Data engineering has become a prerequisite for any serious AI deployment, which means every company chasing an AI initiative is now competing for the same data engineers. In most cases, the bottleneck on an AI roadmap isn't the model — it's the pipeline feeding it.",
+  },
+  {
+    audience: "clients",
+    q: "What's the fee for a direct-hire data engineering placement?",
+    a: "10% of first-year salary, versus the 20-30% most staffing firms charge. Data engineers typically start in the $127,000-$180,750 range and data scientists in the $121,750-$182,500 range in the US market based on current postings, so the difference on a single hire typically runs into the tens of thousands.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet DevOps engineers on?",
+    a: "Kubernetes in production, not in a tutorial — Helm, service mesh, multi-cluster. Terraform and infrastructure-as-code. Pipeline ownership across GitHub Actions, GitLab CI, and ArgoCD. Observability with Prometheus, Grafana, Datadog, and OpenTelemetry.",
+  },
+  {
+    audience: "clients",
+    q: "Where should I hire DevOps talent — US, LATAM, or Pakistan?",
+    a: "US supports all three engagement models. LATAM is contract-only. Pakistan is one of our deepest benches for DevOps — a dedicated AWS or Azure DevOps engineer offshore typically runs $1,100-$1,600/month versus roughly $13,000-$22,000/month fully loaded in the US.",
+  },
+  {
+    audience: "clients",
+    q: "Has DevOps as a discipline been replaced by cloud engineering and platform engineering?",
+    a: "No — it specialized. DevOps split into cloud engineering, platform engineering, DevSecOps, and SRE, all rooted in the same foundation. DevOps engineers with MLOps experience are currently commanding premium rates as companies race to productionize AI.",
+  },
+  {
+    audience: "clients",
+    q: "We need several DevOps hires at once — can you run those searches in parallel?",
+    a: "Yes, and that's usually the point of bringing in a dedicated partner. Running three or four DevOps searches in parallel without one is typically the reason a hiring roadmap slips.",
+  },
+  {
+    audience: "clients",
+    q: "What's the difference between a DevOps hire and a DevSecOps or platform engineering hire?",
+    a: "DevSecOps specialists and platform engineers pull a 10-20% premium over standard DevOps roles — a gap that's held steady for two years. Platform engineer median salary in North America runs around $178,000, and 80% of large software organizations now run dedicated platform teams.",
+  },
+  {
+    audience: "clients",
+    q: "Why is it so hard to find platform engineers by searching the job title?",
+    a: "Because platform engineering is new enough that searching for the literal title fails. The talent is sitting in adjacent roles — DevOps engineers who've built self-service tooling, SREs who automate reflexively, cloud architects with a product mindset. We source for the skill pattern, not the title.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet DevSecOps candidates on specifically?",
+    a: "Kubernetes, Terraform, CI/CD, internal developer platforms, and golden paths, plus container scanning, secrets management with Vault, policy-as-code with OPA, and supply chain security. We also look for a genuine product mindset — platform engineers who don't think that way build platforms nobody uses.",
+  },
+  {
+    audience: "clients",
+    q: "Can DevSecOps and platform engineering roles be delivered outside the US?",
+    a: "US covers all three engagement models and is the right call for security-sensitive or compliance-heavy environments. LATAM is contract-only. Pakistan is contract-only, with security posture designed in from day one.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet cloud engineers and architects on?",
+    a: "Multi-cloud and hybrid architecture, migration experience, and security and governance at the infrastructure layer. Cost optimization is the fastest-ROI skill we place — a good cloud engineer frequently pays for themselves out of your existing cloud bill.",
+  },
+  {
+    audience: "clients",
+    q: "Is there a way to test cloud engineering value before committing to a hire?",
+    a: "Yes — before you hire a cloud engineer, we can put one on your cloud bill for 30 days. The savings from that engagement usually cover the cost of it.",
+  },
+  {
+    audience: "clients",
+    q: "Where does cloud talent come from outside the US?",
+    a: "US supports all three engagement models. LATAM is contract-only. Pakistan has a deep AWS and Azure bench, and cloud cost optimization is the single highest-ROI offshore engagement we run.",
+  },
+  {
+    audience: "clients",
+    q: "What's driving cloud engineering salaries right now?",
+    a: "Based on current market postings, cloud engineers typically start in the $110,000-$155,000 range and architects in the $140,000-$225,000 range in the US, and AWS certifications are commonly associated with a meaningful pay premium. The highest-value talent now sits at the intersection of cloud architecture, data engineering, and AI deployment, which is a scarce combination.",
+  },
+  {
+    audience: "clients",
+    q: "Is it hard to hire software engineers right now, or easier than people think?",
+    a: "Both, depending on which req you're actually running. Entry-level generalist roles are down 25% from their 2023 peak and are more available and affordable than they've been in years. Engineers who've added LLM integration, MLOps, cloud infrastructure, or security engineering report 3-5x higher callback rates. Most companies are overpaying for the first category and under-resourcing the second — we'll tell you which one your req actually is.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet software engineering candidates on?",
+    a: "Real code review, not keyword matching. Stack-specific depth in the languages and frameworks you actually run. System design at your scale, not textbook scale.",
+  },
+  {
+    audience: "clients",
+    q: "Where should generalist versus specialized software engineering roles be delivered?",
+    a: "US covers all three engagement models. LATAM is contract-only and is the sweet spot for core product engineering that needs daily collaboration. Pakistan is contract-only and best for execution-heavy development, maintenance, mobile, and throughput work.",
+  },
+  {
+    audience: "clients",
+    q: "What's the fee structure for a direct-hire software engineer?",
+    a: "10% of first-year salary, versus the industry-standard 20-30%. Software engineers typically start in the $109,250-$175,500 range in the US based on current market postings, so on a mid-range hire that's typically $11,000-$17,500 to us instead of $22,000-$52,000 elsewhere.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet technical product and project managers on?",
+    a: "Technical fluency in the domain they'll own, and roadmap ownership versus ticket administration — a distinction most job descriptions blur. Stakeholder management under actual pressure, and for BAs and delivery roles, requirements rigor and the ability to say no.",
+  },
+  {
+    audience: "clients",
+    q: 'Is "AI Product Manager" a real, hireable title yet?',
+    a: "Yes, and it's moving fast. AI Product Manager, AI governance lead, and AI agent orchestration barely existed two years ago and are now on real org charts with real budgets.",
+  },
+  {
+    audience: "clients",
+    q: "Where should a product or project management hire sit — US, LATAM, or Pakistan?",
+    a: "The seat that faces your executives and customers should be US or senior LATAM. LATAM is contract-only, with excellent English proficiency and full time zone overlap, making it a strong nearshore fit. Pakistan is contract-only and best suited to delivery management, scrum, and BA support rather than executive-facing product ownership.",
+  },
+  {
+    audience: "clients",
+    q: "What's actually driving product management salaries up right now?",
+    a: "IT product managers have posted among the fastest salary growth of any IT role in recent market data, with a median around $175,296. Demand is concentrated on PMs with real AI, data, and cloud fluency — people who can run a technical roadmap, not just a Jira board.",
+  },
+  {
+    audience: "clients",
+    q: "What do you vet cybersecurity and GRC candidates on?",
+    a: "Hands-on compliance expertise across SOC2, ISO27001, GDPR, and HIPAA, third-party risk management and vendor assessment frameworks, cloud security posture and IAM, and security automation and policy-as-code. We look for real incident response or audit experience, not just a certification.",
+  },
+  {
+    audience: "clients",
+    q: "Can compliance-sensitive security roles be filled outside the US?",
+    a: "Compliance-sensitive and regulated roles need US or senior LATAM talent. LATAM is contract-only and strong for GRC support and compliance operations. Pakistan is contract-only and best for security operations, compliance administration, and policy documentation support.",
+  },
+  {
+    audience: "clients",
+    q: "Why is cybersecurity and GRC hiring getting harder?",
+    a: "Enterprise compliance and regulatory requirements are driving demand faster than the market can supply qualified talent, which is why we run Cybersecurity & GRC as a dedicated practice rather than treating it as a subset of DevSecOps.",
+  },
+  {
+    audience: "clients",
+    q: "What's the going rate for GRC and security architecture talent?",
+    a: "Based on current market postings, GRC specialists typically start in the $95,000-$145,000 range and security architects in the $130,000-$210,000 range in the US. On a direct hire, our fee is 10% of first-year salary rather than the 20-30% most staffing firms charge.",
   },
 ];
 
