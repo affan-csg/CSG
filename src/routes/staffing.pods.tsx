@@ -10,6 +10,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  USP_TERMS,
+  highlightText,
 } from "@/components/site/primitives";
 import { pods } from "@/content/pods";
 import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
@@ -17,7 +19,7 @@ import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
 export const Route = createFileRoute("/staffing/pods")({
   head: () => ({
     ...buildSeoMeta({
-      title: "The Pod Model — Purpose-Built Teams",
+      title: "The Pod Model: Purpose-Built Teams",
       description:
         "A CSG Pod is a complete, purpose-built team delivered under one contract, one invoice and one point of contact.",
       path: "/staffing/pods",
@@ -44,7 +46,11 @@ function PodsPage() {
       <PageHero eyebrow="The pod model" title={pods.title} showParticles={true} />
 
       <Section>
-        <SectionHeading eyebrow={pods.problem.heading} title={pods.problem.answer} />
+        <SectionHeading
+          eyebrow={pods.problem.heading}
+          title={pods.problem.answer}
+          highlight={USP_TERMS}
+        />
         <Reveal delay={0.08} className="mt-8 max-w-3xl">
           <p className="text-[1.04rem] leading-[1.75] text-muted-foreground">{pods.problem.body}</p>
         </Reveal>
@@ -54,7 +60,7 @@ function PodsPage() {
         <SectionHeading
           eyebrow="Method"
           title="How we build a pod"
-          body='We size every pod against four variables — not three, not "cost and skills".'
+          body='We size every pod against four variables, not three, not "cost and skills".'
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {pods.variables.map((v, i) => (
@@ -93,7 +99,9 @@ function PodsPage() {
           ))}
         </div>
         <div className="mt-12">
-          <PullQuote>{pods.example.kicker}</PullQuote>
+          <PullQuote>
+            {highlightText(pods.example.kicker, ["One SOW. One invoice. One person you call."])}
+          </PullQuote>
         </div>
         <Reveal className="mt-8 max-w-3xl">
           <p className="text-[1.02rem] leading-[1.75] text-muted-foreground">{pods.example.body}</p>
@@ -141,7 +149,12 @@ function PodsPage() {
       <Section className="border-t border-border">
         <SectionHeading eyebrow="Timing" title={pods.whyNow.heading} />
         <Reveal className="mt-8 max-w-3xl">
-          <p className="text-[1.04rem] leading-[1.75] text-muted-foreground">{pods.whyNow.body}</p>
+          <p className="text-[1.04rem] leading-[1.75] text-muted-foreground">
+            {highlightText(pods.whyNow.body, [
+              "twelve staffing vendors down to three or four",
+              "three geographies, and four engagement models under one contract",
+            ])}
+          </p>
         </Reveal>
         <div className="mt-12">
           <PullQuote>{pods.whyNow.kicker}</PullQuote>

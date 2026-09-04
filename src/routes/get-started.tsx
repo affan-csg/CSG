@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { RequirementForm } from "@/components/forms/requirement-form";
 import { Reveal } from "@/components/site/reveal";
-import { FaqSection, PageHero, Panel, Section } from "@/components/site/primitives";
+import {
+  FaqSection,
+  PageHero,
+  Panel,
+  Section,
+  USP_TERMS,
+  highlightText,
+} from "@/components/site/primitives";
 import { getStarted } from "@/content/pages";
 import { buildSeoMeta } from "@/lib/seo";
 
@@ -63,7 +70,7 @@ function GetStartedPage() {
                       className="flex gap-3 text-[0.98rem] leading-relaxed text-muted-foreground"
                     >
                       <span className="mt-2.5 h-px w-4 shrink-0 bg-gold" />
-                      <span>{item}</span>
+                      <span>{highlightText(item, USP_TERMS)}</span>
                     </li>
                   ))}
                 </ul>

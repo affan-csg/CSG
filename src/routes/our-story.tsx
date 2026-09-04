@@ -10,6 +10,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  USP_TERMS,
+  highlightText,
 } from "@/components/site/primitives";
 import { about, whyCsg } from "@/content/pages";
 import { buildSeoMeta } from "@/lib/seo";
@@ -17,7 +19,7 @@ import { buildSeoMeta } from "@/lib/seo";
 export const Route = createFileRoute("/our-story")({
   head: () =>
     buildSeoMeta({
-      title: "Our Story — US, LATAM & Pakistan Staffing",
+      title: "Our Story: US, LATAM & Pakistan Staffing",
       description:
         "A US staffing and talent delivery firm placing tech and non-tech talent across direct hire, contract and contract-to-hire in the US, plus LATAM and Pakistan delivery. Why companies work with us instead of managing vendors across regions.",
       path: "/our-story",
@@ -30,14 +32,22 @@ export const Route = createFileRoute("/our-story")({
 function OurStoryPage() {
   return (
     <>
-      <PageHero eyebrow="Our Story" title={about.title} body={about.lead} showParticles={true} />
+      <PageHero
+        eyebrow="Our Story"
+        title={about.title}
+        body={about.lead}
+        showParticles={true}
+        bodyHighlight={USP_TERMS}
+      />
 
       <Section>
         <SectionHeading eyebrow="How we work" title={about.howWeWork.heading} />
         <div className="mt-10 max-w-3xl">
           {about.howWeWork.paragraphs.map((p, i) => (
             <Reveal key={i} delay={i * 0.04}>
-              <p className="mt-6 text-[1.04rem] leading-[1.75] text-muted-foreground">{p}</p>
+              <p className="mt-6 text-[1.04rem] leading-[1.75] text-muted-foreground">
+                {highlightText(p, USP_TERMS)}
+              </p>
             </Reveal>
           ))}
         </div>
@@ -52,20 +62,27 @@ function OurStoryPage() {
         <div className="mt-10 space-y-0">
           {whyCsg.reasons.map((reason, i) => (
             <Reveal key={reason.heading} delay={i * 0.05}>
-              <NumberedItem index={i + 1} heading={reason.heading} body={reason.body} />
+              <NumberedItem
+                index={i + 1}
+                heading={reason.heading}
+                body={reason.body}
+                headingHighlight={USP_TERMS}
+              />
             </Reveal>
           ))}
         </div>
         <div className="mt-14">
           <PullQuote>
-            We're the only staffing firm that sells all three regions — US, LATAM, and Pakistan — so
-            our incentive is to put the work where it actually belongs.
+            {highlightText(
+              "We're the only staffing firm that sells all three regions (US, LATAM, and Pakistan), so our incentive is to put the work where it actually belongs.",
+              ["all three regions"],
+            )}
           </PullQuote>
           <Reveal className="mt-8 max-w-2xl">
             <p className="text-[1.02rem] leading-[1.75] text-muted-foreground">
               While other firms push their own region because that's all they sell, we have no
               reason to push one over another. Geography is decided after experience, communication
-              skills, and technical skills are settled — not before.
+              skills, and technical skills are settled, not before.
             </p>
           </Reveal>
         </div>

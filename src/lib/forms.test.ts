@@ -59,11 +59,16 @@ describe("Form Options", () => {
 
     it("should include all seniority levels", () => {
       const values = seniorityOptions.map((o) => o.value);
+      expect(values).toContain("intern");
       expect(values).toContain("junior");
       expect(values).toContain("mid-level");
       expect(values).toContain("senior");
-      expect(values).toContain("lead");
+      expect(values).toContain("staff-lead");
       expect(values).toContain("principal");
+      expect(values).toContain("manager");
+      expect(values).toContain("director");
+      expect(values).toContain("vp");
+      expect(values).toContain("c-level");
     });
   });
 
@@ -149,9 +154,9 @@ describe("Form Options", () => {
   });
 
   describe("regionPreferenceOptions", () => {
-    it("should include us, latam, pakistan, recommend", () => {
+    it("should include us, latam, pakistan", () => {
       const values = regionPreferenceOptions.map((o) => o.value);
-      expect(values).toEqual(["us", "latam", "pakistan", "recommend"]);
+      expect(values).toEqual(["us", "latam", "pakistan"]);
     });
   });
 

@@ -158,7 +158,7 @@ export function SiteNav() {
           <motion.img
             src="/images/brand/CSG.png"
             alt="CSG"
-            className="h-10 w-auto shrink-0 object-contain [filter:invert(100%)_sepia(33%)_saturate(130%)_hue-rotate(41deg)_brightness(105%)] transition-all duration-300"
+            className="h-10 w-auto shrink-0 object-contain [filter:invert(100%)_sepia(40%)_saturate(350%)_hue-rotate(216deg)_brightness(120%)] transition-all duration-300"
             initial={isHome ? { opacity: 0, scale: 0.5, y: 20 } : { opacity: 1, scale: 1, y: 0 }}
             animate={
               isHome && !scrolled
@@ -169,7 +169,7 @@ export function SiteNav() {
             whileHover={{ scale: 1.1 }}
           />
           <span className="hidden min-w-0 flex-col leading-none sm:flex">
-            <span className="truncate font-display text-[0.92rem] font-semibold transition-colors group-[.logo-active]:text-gold">
+            <span className="truncate font-display text-[0.85rem] font-semibold tracking-tight transition-colors group-[.logo-active]:text-gold">
               Career Source Group
             </span>
             <span className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.24em] text-muted-foreground">
@@ -289,14 +289,14 @@ export function SiteNav() {
         <div className="flex shrink-0 items-center gap-3">
           <Link
             to="/join-our-bench"
-            className="hidden button-text items-center gap-2 whitespace-nowrap rounded-md border border-border px-3 py-1.5 font-display text-foreground transition-all duration-300 hover:border-gold hover:bg-gold/15 hover:text-gold hover:shadow-lg hover:shadow-gold/20 xl:inline-flex"
+            className="hidden button-text items-center gap-2 whitespace-nowrap rounded-md border border-gold px-3 py-1.5 font-display text-foreground shadow-sm shadow-gold/20 transition-all duration-300 hover:scale-[1.07] hover:bg-gold/15 hover:text-gold hover:shadow-lg hover:shadow-gold/30 xl:inline-flex"
             activeProps={{ className: "border-gold text-gold" }}
           >
             Find Opportunities
           </Link>
           <Link
             to="/get-started"
-            className="hidden button-text items-center gap-2 rounded-md bg-cream px-3 py-1.5 font-display text-navy transition-all duration-300 hover:bg-gold xl:inline-flex"
+            className="hidden button-text items-center gap-2 rounded-md bg-cream px-3 py-1.5 font-display text-navy transition-all duration-300 hover:scale-[1.07] hover:bg-gold hover:shadow-lg hover:shadow-gold/40 xl:inline-flex"
             activeProps={{ className: "bg-gold ring-2 ring-gold/30" }}
           >
             Request Talent

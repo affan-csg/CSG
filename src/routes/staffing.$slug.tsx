@@ -9,6 +9,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  extractStatTerms,
+  highlightText,
 } from "@/components/site/primitives";
 import type { StaffingRole } from "@/content/staffing";
 import { getStaffingRole, otherStaffingRoles } from "@/content/staffing";
@@ -77,7 +79,7 @@ function StaffingRoleDetail() {
             <Reveal key={block.heading} delay={i * 0.05} className="mt-14 first:mt-0">
               <p className="eyebrow">{block.heading}</p>
               <p className="mt-5 text-[1.06rem] leading-[1.75] text-muted-foreground">
-                {block.body}
+                {highlightText(block.body, extractStatTerms(block.body))}
               </p>
             </Reveal>
           ))}
@@ -99,7 +101,7 @@ function StaffingRoleDetail() {
                   {r.region}
                 </p>
                 <p className="mt-5 text-[0.98rem] leading-relaxed text-muted-foreground">
-                  {r.body}
+                  {highlightText(r.body, extractStatTerms(r.body))}
                 </p>
               </Panel>
             </Reveal>

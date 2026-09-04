@@ -44,7 +44,6 @@ function makeInitialData(defaultSkill?: string): RequirementFormData {
     topSkills: "",
     seniority: "",
     budgetRate: "",
-    needsBudgetGuidance: false,
     regionPreference: "",
     message: "",
     utmSource: "",
@@ -64,6 +63,7 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
     useFormSubmit<RequirementFormData>(makeInitialData(defaultSkill));
   const [step, setStep] = useState(1);
   const [stepError, setStepError] = useState("");
+  const [showOtherSkill, setShowOtherSkill] = useState(false);
   const honeypotRef = useRef<HTMLInputElement>(null);
 
   // Capture UTM/referrer/source-page once on mount (implementation_plan.docx
@@ -111,6 +111,16 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
       }
       if (!formData.targetStart) return "Select a target start.";
     }
+    if (current === 3) {
+      const skillCount = formData.topSkills
+        .split(/[,\n]/)
+        .map((s) => s.trim())
+        .filter(Boolean).length;
+      if (skillCount < 3) {
+        return "List at least three must-have skills, separated by commas.";
+      }
+      if (!formData.seniority) return "Select a seniority level.";
+    }
     return "";
   }
 
@@ -145,10 +155,6 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
           payload.set(key, (value as string[]).join(","));
           continue;
         }
-        if (key === "needsBudgetGuidance") {
-          payload.set(key, value ? "yes" : "no");
-          continue;
-        }
         payload.set(key, (value as string) ?? "");
       }
       if (formData.jobDescription) {
@@ -179,7 +185,7 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
             rel="noopener noreferrer"
             className="block rounded-md border border-border px-6 py-3.5 text-center button-text text-foreground transition-all duration-300 hover:border-gold hover:text-gold"
           >
-            Skip the wait — book a 20-minute call
+            Skip the wait, book a 20-minute call
           </a>
         ) : null}
       </div>
@@ -287,15 +293,34 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
                   {opt.label}
                 </label>
               ))}
+              <label className="flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-foreground transition-colors hover:border-white/25">
+                <input
+                  type="checkbox"
+                  checked={showOtherSkill}
+                  onChange={() => {
+                    setShowOtherSkill((prev) => {
+                      const next = !prev;
+                      if (!next) {
+                        setFormData((p) => ({ ...p, skillOther: "" }));
+                      }
+                      return next;
+                    });
+                  }}
+                  className="h-4 w-4 accent-gold"
+                />
+                Other (Not Listed Above)
+              </label>
             </div>
-            <TextField
-              label="Other (not listed above)"
-              name="skillOther"
-              value={formData.skillOther}
-              onChange={handleChange}
-              placeholder="Describe the skill"
-              className="mt-3"
-            />
+            {showOtherSkill ? (
+              <TextField
+                label="Describe the skill"
+                name="skillOther"
+                value={formData.skillOther}
+                onChange={handleChange}
+                placeholder="Describe the skill"
+                className="mt-3"
+              />
+            ) : null}
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -376,32 +401,19 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
             onChange={handleChange}
           />
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <TextField
-              label="Budget / rate"
-              name="budgetRate"
-              value={formData.budgetRate}
-              onChange={handleChange}
-              placeholder="Optional"
-              hint="Leave blank if you're not sure yet."
-            />
-            <label className="flex items-center gap-2 self-end pb-3 text-sm text-muted-foreground">
-              <input
-                type="checkbox"
-                checked={formData.needsBudgetGuidance}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, needsBudgetGuidance: e.target.checked }))
-                }
-                className="h-4 w-4 accent-gold"
-              />
-              I'd like guidance on budget
-            </label>
-          </div>
+          <TextField
+            label="Budget / rate"
+            name="budgetRate"
+            value={formData.budgetRate}
+            onChange={handleChange}
+            placeholder="Optional"
+            hint="Leave blank if you're not sure yet."
+          />
 
           <SelectField
             label="Region preference"
             name="regionPreference"
-            placeholder="US, LATAM, Pakistan, or let us recommend"
+            placeholder="US, LATAM, or Pakistan"
             options={regionPreferenceOptions}
             value={formData.regionPreference}
             onChange={handleChange}
@@ -428,7 +440,7 @@ export function RequirementForm({ defaultSkill, className }: RequirementFormProp
               className="w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm text-foreground shadow-inner shadow-black/20 transition-colors hover:border-white/25 file:mr-4 file:rounded-md file:border-0 file:bg-gold/20 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-gold hover:file:bg-gold/30"
             />
             <p className="mt-1 text-xs text-muted-foreground">
-              Optional — PDF or Word document, 5 MB max.
+              Optional: PDF or Word document, 5 MB max.
             </p>
           </div>
 

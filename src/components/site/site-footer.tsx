@@ -15,7 +15,7 @@ export function SiteFooter() {
                 alt="CSG"
                 width={500}
                 height={297}
-                className="h-10 w-auto shrink-0 object-contain [filter:invert(100%)_sepia(33%)_saturate(130%)_hue-rotate(41deg)_brightness(105%)]"
+                className="h-10 w-auto shrink-0 object-contain [filter:invert(100%)_sepia(40%)_saturate(350%)_hue-rotate(216deg)_brightness(120%)]"
                 loading="lazy"
                 decoding="async"
               />
@@ -74,7 +74,6 @@ export function SiteFooter() {
               <p className="caption-text text-muted-foreground">
                 © {new Date().getFullYear()} {company.legalName}. All rights reserved.
               </p>
-              <p className="caption-text text-gold font-semibold">Powered by AJ</p>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 caption-text text-muted-foreground">
               <Link to="/legal-notice" className="hover:text-foreground">
@@ -85,6 +84,9 @@ export function SiteFooter() {
               </Link>
               <Link to="/candidate-privacy" className="hover:text-foreground">
                 Candidate Privacy
+              </Link>
+              <Link to="/eeo-notice" className="hover:text-foreground">
+                EEO & Employment Notice
               </Link>
               <Link to="/accessibility" className="hover:text-foreground">
                 Accessibility

@@ -26,8 +26,8 @@ export const comparisonRows = [
   {
     label: "Speed to start",
     us: "Slowest for direct hire (4-6 months), fast for contract",
-    latam: "Fast — days to weeks",
-    pakistan: "Fast — days to weeks",
+    latam: "Fast, days to weeks",
+    pakistan: "Fast, days to weeks",
   },
   {
     label: "Seniority available",
@@ -50,7 +50,7 @@ export const prosCons = {
       "Direct hire, contract, and contract-to-hire all available",
     ],
     cons: [
-      "Highest cost by a wide margin — fully loaded employee cost commonly runs 1.25-1.4x base salary before recruiting and vacancy drag",
+      "Highest cost by a wide margin: fully loaded employee cost commonly runs 1.25-1.4x base salary before recruiting and vacancy drag",
       "Slowest direct-hire cycles, commonly four to six months",
       "Senior bill rates have trended upward in recent years, with double-digit percentage increases in some markets",
       "You're competing for the same scarce talent as every other US employer",
@@ -60,13 +60,13 @@ export const prosCons = {
     title: "LATAM Nearshore",
     pros: [
       "Typically a 30-70% cost reduction, or $35,000-$64,000 in annual savings per seat",
-      "Near-full time zone overlap — real-time collaboration without anyone working nights",
+      "Near-full time zone overlap: real-time collaboration without anyone working nights",
       "Strong English proficiency and cultural alignment with US business norms",
       "Deep mid-to-senior bench, based on current market and placement data",
-      "Fast ramp — days to weeks, not months",
+      "Fast ramp, days to weeks, not months",
     ],
     cons: [
-      "Contract engagement only — not a path to a US-payroll permanent hire",
+      "Contract engagement only, not a path to a US-payroll permanent hire",
       "Costs more than pure offshore",
       "Requires real integration into team rhythms, not just work handoff",
       "Compliance and employment structure must be handled by a partner",
@@ -75,13 +75,13 @@ export const prosCons = {
   pakistan: {
     title: "Pakistan Offshore",
     pros: [
-      "Typically the deepest cost advantage of the three — commonly 50-70% below fully loaded US cost",
+      "Typically the deepest cost advantage of the three: commonly 50-70% below fully loaded US cost",
       "Large, English-speaking, technically deep talent pool, cited among the largest globally in digital labour supply",
       "Excellent for execution-heavy, high-volume, and after-hours work",
       "Fast ramp and strong specialized technical depth in cloud, DevOps, mobile, and QA",
     ],
     cons: [
-      "Limited natural time zone overlap — must be designed in, not assumed",
+      "Limited natural time zone overlap: must be designed in, not assumed",
       "Contract engagement only",
       "Wrong fit for work requiring constant real-time back-and-forth or live client contact",
       "Requires a partner with real vetting rigor",
@@ -125,33 +125,33 @@ export const regionPages: RegionPage[] = [
       "US contract and direct-hire talent for roles where proximity, compliance and continuity matter.",
     models: [
       {
-        title: "Direct Hire — 10% of first-year salary",
+        title: "Direct Hire: 10% of first-year salary",
         lead: "For the roles that anchor your business. The seats you'll need in three years, not three months. Leadership hires, culture-critical roles, and functions that never stop.",
         when: "Long-horizon roles, leadership seats, positions where continuity matters more than flexibility.",
         get: "Full-cycle search, replacement guarantee, and a fee that's roughly a third of what the market charges.",
       },
       {
-        title: "Contract Staffing — flexible, budgeted as OpEx, not headcount",
-        lead: "Contract is no longer the exception in IT staffing — recent industry data suggests it now accounts for a majority of IT staffing engagements, and that share has been climbing.",
+        title: "Contract Staffing: flexible, budgeted as OpEx, not headcount",
+        lead: "Contract is no longer the exception in IT staffing. Recent industry data suggests it now accounts for a majority of IT staffing engagements, and that share has been climbing.",
         when: "Surge capacity, a defined project with an end date, a specialized skill you need for nine months and not five years, or budget that lives in a project line instead of a headcount line.",
         get: "Worker on our payroll, compliance handled, and a bill rate instead of a hiring req you have to fight for.",
       },
       {
-        title: "Contract-to-Hire — the model more of the market is moving to",
+        title: "Contract-to-Hire: the model more of the market is moving to",
         lead: "Contract-to-hire has become a leading model for senior IT roles in recent years. That's not caution. That's the market recognizing that a resume and four interviews are a weak substitute for 90 days of actual work.",
         when: "Any role where a bad hire would set you back six months. Any role where the budget is real but the headcount approval is still moving through finance. Any time you've been burned before.",
         get: "90-180 days to see real output before it becomes permanent. Conversion at a prorated fee, or waived entirely depending on tenure.",
       },
     ],
     pullQuote:
-      "Instead of betting a full-time offer on a gut feeling, put them on contract-to-hire. You get three to six months of real work before it's a permanent commitment. And if it's not working, you're not running a termination — you're just not converting.",
+      "Instead of betting a full-time offer on a gut feeling, put them on contract-to-hire. You get three to six months of real work before it's a permanent commitment. And if it's not working, you're not running a termination. You're just not converting.",
     cta: { label: "Request US Talent", to: "/get-started" },
     prosConsKey: "us",
     faqQuestions: ["Do you place contract or full-time talent, or both?"],
     meta: {
-      title: "US Staffing — Direct Hire, Contract & C2H",
+      title: "US Staffing: Direct Hire, Contract & C2H",
       description:
-        "Direct hire at 10% of first-year salary, contract staffing, and contract-to-hire across the US — with full time zone overlap and the simplest compliance posture.",
+        "Direct hire at 10% of first-year salary, contract staffing, and contract-to-hire across the US, with full time zone overlap and the simplest compliance posture.",
     },
   },
   {
@@ -164,7 +164,7 @@ export const regionPages: RegionPage[] = [
     highlights: [
       {
         heading: "The economics",
-        body: "US companies commonly save $35,000-$64,000 annually per hire versus a comparable domestic position — a 30-70% reduction depending on role and seniority. Exact savings depend on the specific role, seniority, and current market rates.",
+        body: "US companies commonly save $35,000-$64,000 annually per hire versus a comparable domestic position, a 30-70% reduction depending on role and seniority. Exact savings depend on the specific role, seniority, and current market rates.",
       },
       {
         heading: "Why it works",
@@ -187,7 +187,7 @@ export const regionPages: RegionPage[] = [
       "What's the difference between nearshore (LATAM) and offshore (Pakistan) staffing?",
     ],
     meta: {
-      title: "LATAM Nearshore Staffing — Your Time Zone, 30-70% Less",
+      title: "LATAM Nearshore Staffing: Your Time Zone, 30-70% Less",
       description:
         "Dedicated LATAM nearshore contract talent with near-full US time zone overlap, strong mid-to-senior depth, and $35,000-$64,000 in annual savings per seat.",
     },
@@ -203,7 +203,7 @@ export const regionPages: RegionPage[] = [
     highlights: [
       {
         heading: "The economics",
-        body: "A dedicated AWS or Azure DevOps engineer typically runs $1,100-$1,600 per month through an offshore delivery model, versus roughly $13,000-$22,000 per month fully loaded in the US — commonly a 50-70% reduction, depending on role and seniority.",
+        body: "A dedicated AWS or Azure DevOps engineer typically runs $1,100-$1,600 per month through an offshore delivery model, versus roughly $13,000-$22,000 per month fully loaded in the US, commonly a 50-70% reduction, depending on role and seniority.",
       },
       {
         heading: "The honest framing",
@@ -217,7 +217,7 @@ export const regionPages: RegionPage[] = [
       },
       {
         heading: "Engagement model",
-        body: "Contract only. We pre-empt the two objections you're already thinking about — data security (NDAs, secure infrastructure, formal data-protection practices) and time zone (we staff for guaranteed daily overlap hours with your team, not \u201cwe'll figure it out\u201d).",
+        body: "Contract only. We pre-empt the two objections you're already thinking about: data security (NDAs, secure infrastructure, formal data-protection practices) and time zone (we staff for guaranteed daily overlap hours with your team, not \u201cwe'll figure it out\u201d).",
       },
     ],
     cta: { label: "Request Pakistan Talent", to: "/get-started" },
@@ -226,7 +226,7 @@ export const regionPages: RegionPage[] = [
       "What's the difference between nearshore (LATAM) and offshore (Pakistan) staffing?",
     ],
     meta: {
-      title: "Pakistan Offshore Staffing — 50-70% Below US Cost",
+      title: "Pakistan Offshore Staffing: 50-70% Below US Cost",
       description:
         "Contract offshore delivery from Pakistan: deep AWS, Azure, DevOps, mobile and QA benches, guaranteed daily overlap hours, and 50-70% below fully loaded US cost.",
     },
@@ -320,7 +320,7 @@ export const offerCalibration = {
     },
   ] satisfies OfferCalibrationRow[],
   footnote:
-    "Ranges reflect US starting salaries from published 2026 benchmarks. LATAM savings run 30-70% versus comparable US positions; Pakistan runs 50-70% below fully loaded US cost. Exact equivalents depend on seniority, stack, and engagement length — which is exactly why the conversation starts with your offer, not our rate card.",
+    "Ranges reflect US starting salaries from published 2026 benchmarks. LATAM savings run 30-70% versus comparable US positions; Pakistan runs 50-70% below fully loaded US cost. Exact equivalents depend on seniority, stack, and engagement length, which is exactly why the conversation starts with your offer, not our rate card.",
   emphasis:
     "This is not an argument for offshoring everything. It's an argument for knowing what your money buys before you spend it.",
   note: {

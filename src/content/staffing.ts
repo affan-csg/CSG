@@ -18,11 +18,11 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "AI/ML engineers in the US typically start in the $134,000-$193,250 range based on current market postings — and that's the entry point. Engineers with demonstrated LLM, MLOps, or applied AI skills tend to command a meaningful premium above that at the same level.",
+        body: "AI/ML engineers in the US typically start in the $134,000-$193,250 range based on current market postings, and that's the entry point. Engineers with demonstrated LLM, MLOps, or applied AI skills tend to command a meaningful premium above that at the same level.",
       },
       {
         heading: "What we vet for",
-        body: "Production LLM integration, not demo work. Model evaluation and guardrails. RAG architecture and vector databases. Fine-tuning and inference optimization. And critically — whether they've shipped something to real users or just to a notebook.",
+        body: "Production LLM integration, not demo work. Model evaluation and guardrails. RAG architecture and vector databases. Fine-tuning and inference optimization. And critically: whether they've shipped something to real users or just to a notebook.",
       },
     ],
     regions: [
@@ -59,7 +59,7 @@ export const staffingRoles: StaffingRole[] = [
       },
       {
         heading: "The insight that wins this deal",
-        body: "There is a significant gap between companies that can train a model and companies that can serve one reliably at scale. Most MLOps job descriptions are written by hiring managers who think MLOps is a senior data scientist who knows Kubernetes. It isn't. The closest analog is platform SRE for ML systems. The strongest MLOps engineers came up through SRE, DevOps, or data engineering and layered ML platform tooling on top — not through data science.",
+        body: "There is a significant gap between companies that can train a model and companies that can serve one reliably at scale. Most MLOps job descriptions are written by hiring managers who think MLOps is a senior data scientist who knows Kubernetes. It isn't. The closest analog is platform SRE for ML systems. The strongest MLOps engineers came up through SRE, DevOps, or data engineering and layered ML platform tooling on top, not through data science.",
       },
       {
         heading: "What we vet for",
@@ -121,11 +121,11 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "DevOps engineers typically start in the $118,000-$173,750 range in the US, based on current market postings. The field hasn't declined — it specialized, splitting into cloud engineering, platform engineering, DevSecOps, and SRE, all rooted in the same foundation. DevOps engineers with MLOps experience are increasingly commanding premium rates as companies race to productionize AI.",
+        body: "DevOps engineers typically start in the $118,000-$173,750 range in the US, based on current market postings. The field hasn't declined, it specialized, splitting into cloud engineering, platform engineering, DevSecOps, and SRE, all rooted in the same foundation. DevOps engineers with MLOps experience are increasingly commanding premium rates as companies race to productionize AI.",
       },
       {
         heading: "What we vet for",
-        body: "Kubernetes in production, not in a tutorial — Helm, service mesh, multi-cluster. Terraform and IaC. Pipeline ownership across GitHub Actions, GitLab CI, ArgoCD. Observability: Prometheus, Grafana, Datadog, OpenTelemetry.",
+        body: "Kubernetes in production, not in a tutorial: Helm, service mesh, multi-cluster. Terraform and IaC. Pipeline ownership across GitHub Actions, GitLab CI, ArgoCD. Observability: Prometheus, Grafana, Datadog, OpenTelemetry.",
       },
     ],
     regions: [
@@ -140,9 +140,9 @@ export const staffingRoles: StaffingRole[] = [
       "If you need three or four DevOps engineers this quarter, running those searches in parallel without a dedicated partner is the whole reason your roadmap slips.",
     faqQuestions: [
       "What do you vet DevOps engineers on?",
-      "Where should I hire DevOps talent — US, LATAM, or Pakistan?",
+      "Where should I hire DevOps talent: US, LATAM, or Pakistan?",
       "Has DevOps as a discipline been replaced by cloud engineering and platform engineering?",
-      "We need several DevOps hires at once — can you run those searches in parallel?",
+      "We need several DevOps hires at once. Can you run those searches in parallel?",
     ],
   },
   {
@@ -156,11 +156,11 @@ export const staffingRoles: StaffingRole[] = [
       },
       {
         heading: "The sourcing insight we bring",
-        body: "Platform engineering is new enough that searching for the literal title \"platform engineer\" will fail. The talent is sitting in adjacent roles — DevOps engineers who've built self-service tooling, SREs who automate reflexively, cloud architects with a product mindset. We source for the skill pattern, not the title. That's not a technique most firms use, and it's why these searches stall elsewhere.",
+        body: "Platform engineering is new enough that searching for the literal title \"platform engineer\" will fail. The talent is sitting in adjacent roles: DevOps engineers who've built self-service tooling, SREs who automate reflexively, cloud architects with a product mindset. We source for the skill pattern, not the title. That's not a technique most firms use, and it's why these searches stall elsewhere.",
       },
       {
         heading: "What we vet for",
-        body: "Kubernetes, Terraform, CI/CD, internal developer platforms and golden paths. For DevSecOps specifically: container scanning, secrets management (Vault), policy-as-code (OPA), supply chain security. Plus a genuine product mindset — platform engineers build for developers, and the ones who don't think that way build platforms nobody uses.",
+        body: "Kubernetes, Terraform, CI/CD, internal developer platforms and golden paths. For DevSecOps specifically: container scanning, secrets management (Vault), policy-as-code (OPA), supply chain security. Plus a genuine product mindset: platform engineers build for developers, and the ones who don't think that way build platforms nobody uses.",
       },
     ],
     regions: [
@@ -188,11 +188,11 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "Based on current market postings, cloud engineers typically start in the $110,000-$155,000 range and cloud architects in the $140,000-$225,000 range. AWS certifications are commonly associated with a meaningful pay premium. The highest-value talent now sits at the intersection of cloud architecture, data engineering, and AI deployment — and that combination is scarce.",
+        body: "Based on current market postings, cloud engineers typically start in the $110,000-$155,000 range and cloud architects in the $140,000-$225,000 range. AWS certifications are commonly associated with a meaningful pay premium. The highest-value talent now sits at the intersection of cloud architecture, data engineering, and AI deployment, and that combination is scarce.",
       },
       {
         heading: "What we vet for",
-        body: "Multi-cloud and hybrid architecture. Cost optimization (this is the fastest-ROI skill we place — a good cloud engineer frequently pays for themselves out of your existing cloud bill). Migration experience. Security and governance at the infrastructure layer.",
+        body: "Multi-cloud and hybrid architecture. Cost optimization (this is the fastest-ROI skill we place, a good cloud engineer frequently pays for themselves out of your existing cloud bill). Migration experience. Security and governance at the infrastructure layer.",
       },
     ],
     regions: [
@@ -223,7 +223,7 @@ export const staffingRoles: StaffingRole[] = [
       },
       {
         heading: "What that means for you",
-        body: "Generalist full-stack talent is more available and more affordable than it's been in years — especially nearshore and offshore. Specialized talent is harder and pricier than ever. Most companies are overpaying for the first category and under-resourcing the second. We'll tell you which one your req actually is.",
+        body: "Generalist full-stack talent is more available and more affordable than it's been in years, especially nearshore and offshore. Specialized talent is harder and pricier than ever. Most companies are overpaying for the first category and under-resourcing the second. We'll tell you which one your req actually is.",
       },
       {
         heading: "What we vet for",
@@ -255,7 +255,7 @@ export const staffingRoles: StaffingRole[] = [
     blocks: [
       {
         heading: "Market reality",
-        body: "IT product managers have posted among the fastest salary growth of any IT role in recent market data, with a median around $175,296. IT project managers typically start in the $103,500-$147,000 range. Demand is concentrated on PMs with real AI, data, and cloud fluency — the ones who can run a technical roadmap, not just a Jira board.",
+        body: "IT product managers have posted among the fastest salary growth of any IT role in recent market data, with a median around $175,296. IT project managers typically start in the $103,500-$147,000 range. Demand is concentrated on PMs with real AI, data, and cloud fluency: the ones who can run a technical roadmap, not just a Jira board.",
       },
       {
         heading: "A new category, forming fast",
@@ -263,7 +263,7 @@ export const staffingRoles: StaffingRole[] = [
       },
       {
         heading: "What we vet for",
-        body: "Technical fluency in the domain they'll own. Roadmap ownership versus ticket administration — a critical distinction most job descriptions blur. Stakeholder management under actual pressure. For BAs and delivery: requirements rigor and the ability to say no.",
+        body: "Technical fluency in the domain they'll own. Roadmap ownership versus ticket administration, a critical distinction most job descriptions blur. Stakeholder management under actual pressure. For BAs and delivery: requirements rigor and the ability to say no.",
       },
     ],
     regions: [
@@ -283,7 +283,7 @@ export const staffingRoles: StaffingRole[] = [
     faqQuestions: [
       "What do you vet technical product and project managers on?",
       'Is "AI Product Manager" a real, hireable title yet?',
-      "Where should a product or project management hire sit — US, LATAM, or Pakistan?",
+      "Where should a product or project management hire sit: US, LATAM, or Pakistan?",
       "What's actually driving product management salaries up right now?",
     ],
   },
@@ -354,7 +354,7 @@ export const engagementModels = [
   },
   {
     title: "Direct Hire",
-    body: "Permanent technical talent. We charge 10% of first-year salary—half the market rate. Same vetting, same 90-day guarantee.",
+    body: "Permanent technical talent. We charge 10% of first-year salary, half the market rate. Same vetting, same 90-day guarantee.",
     cta: "Learn More",
     to: "/get-started",
   },
@@ -374,8 +374,8 @@ export const specializedRolesPage = {
   whyNow: {
     heading: "Why this matters right now",
     paragraphs: [
-      "The market has split into two completely different games, and most hiring managers are still playing the old one. Recent industry reporting points to a significant global shortage of AI and ML talent relative to open roles — several open AI roles for every qualified candidate by most estimates. ManpowerGroup's 2026 employer survey found AI skills are now among the hardest to hire for globally. AI, ML, data science, and security job postings have all grown sharply year over year on most measures we've seen. Meanwhile, entry-level generalist software engineering positions have declined noticeably from their 2023 peak, and median time-to-hire has stretched well past historical norms. Figures below are directional, drawn from published industry sources current as of 2026 rather than our own audited data — treat them as a market signal, not a guarantee for any specific search.",
-      "Translation: for the roles below, the old playbook — post a req, wait, interview, offer — is not going to work. The talent is employed, passive, and getting three calls a week. That is exactly the problem we're built to solve.",
+      "The market has split into two completely different games, and most hiring managers are still playing the old one. Recent industry reporting points to a significant global shortage of AI and ML talent relative to open roles, several open AI roles for every qualified candidate by most estimates. ManpowerGroup's 2026 employer survey found AI skills are now among the hardest to hire for globally. AI, ML, data science, and security job postings have all grown sharply year over year on most measures we've seen. Meanwhile, entry-level generalist software engineering positions have declined noticeably from their 2023 peak, and median time-to-hire has stretched well past historical norms. Figures below are directional, drawn from published industry sources current as of 2026 rather than our own audited data: treat them as a market signal, not a guarantee for any specific search.",
+      "Translation: for the roles below, the old playbook (post a req, wait, interview, offer) is not going to work. The talent is employed, passive, and getting three calls a week. That is exactly the problem we're built to solve.",
     ],
     stats: [
       { value: "63%", label: "AI/ML talent shortage" },
@@ -385,5 +385,5 @@ export const specializedRolesPage = {
     ],
   },
   closing:
-    "Send us the hardest req on your board — the one that's been open longest. We'll come back with what your current offer realistically buys in each region, and profiles to back it up. No commitment, no retainer.",
+    "Send us the hardest req on your board, the one that's been open longest. We'll come back with what your current offer realistically buys in each region, and profiles to back it up. No commitment, no retainer.",
 };

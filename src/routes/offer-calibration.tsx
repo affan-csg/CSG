@@ -11,6 +11,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  extractStatTerms,
+  highlightText,
 } from "@/components/site/primitives";
 import { offerCalibration } from "@/content/delivery";
 
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/offer-calibration")({
     buildSeoMeta({
       title: "Global Talent Cost & Delivery Comparison",
       description:
-        "See what your hiring budget can realistically buy by role and region — US starting-salary benchmarks and what the same budget buys in LATAM and Pakistan.",
+        "See what your hiring budget can realistically buy by role and region: US starting-salary benchmarks and what the same budget buys in LATAM and Pakistan.",
       path: "/offer-calibration",
     }),
   component: OfferCalibrationPage,
@@ -67,18 +69,20 @@ function OfferCalibrationPage() {
           <Panel className="grid gap-6 sm:grid-cols-3">
             <div>
               <p className="eyebrow">United States</p>
-              <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">{selectedRow.us}</p>
+              <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">
+                {highlightText(selectedRow.us, extractStatTerms(selectedRow.us))}
+              </p>
             </div>
             <div>
               <p className="eyebrow">LATAM</p>
               <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">
-                {selectedRow.latam}
+                {highlightText(selectedRow.latam, extractStatTerms(selectedRow.latam))}
               </p>
             </div>
             <div>
               <p className="eyebrow">Pakistan</p>
               <p className="mt-3 text-[1.1rem] leading-relaxed text-foreground">
-                {selectedRow.pakistan}
+                {highlightText(selectedRow.pakistan, extractStatTerms(selectedRow.pakistan))}
               </p>
             </div>
             {selectedRow.note ? (
@@ -91,7 +95,7 @@ function OfferCalibrationPage() {
 
         <Reveal className="mt-8 max-w-3xl">
           <p className="text-[0.9rem] leading-relaxed text-muted-foreground">
-            {offerCalibration.footnote}
+            {highlightText(offerCalibration.footnote, extractStatTerms(offerCalibration.footnote))}
           </p>
         </Reveal>
         <Reveal className="mt-6 max-w-2xl">
@@ -112,10 +116,10 @@ function OfferCalibrationPage() {
 
       <Section className="border-t border-border">
         <PullQuote>
-          Give us the offer — base, bonus, equity, remote flexibility, and how fast you need someone
-          — and before we source a single candidate we'll tell you what it realistically buys in the
-          US market and how long that search will take, what it buys in LATAM, and what it buys in
-          Pakistan. Then you decide.
+          Give us the offer (base, bonus, equity, remote flexibility, and how fast you need
+          someone), and before we source a single candidate we'll tell you what it realistically
+          buys in the US market and how long that search will take, what it buys in LATAM, and what
+          it buys in Pakistan. Then you decide.
         </PullQuote>
       </Section>
 
@@ -123,7 +127,7 @@ function OfferCalibrationPage() {
         <SectionHeading
           eyebrow="Next step"
           title="Want an actual search plan for this role?"
-          body="Send us the role and we'll come back with market feedback, a recommended delivery region, and a search plan — before you commit to anything."
+          body="Send us the role and we'll come back with market feedback, a recommended delivery region, and a search plan, before you commit to anything."
         />
         <Reveal className="mt-10">
           <Link

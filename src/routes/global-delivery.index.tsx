@@ -10,6 +10,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  extractStatTerms,
+  highlightText,
 } from "@/components/site/primitives";
 import {
   comparisonCaption,
@@ -23,7 +25,7 @@ import { buildSeoMeta } from "@/lib/seo";
 export const Route = createFileRoute("/global-delivery/")({
   head: () =>
     buildSeoMeta({
-      title: "US vs LATAM vs Pakistan — The Honest Comparison",
+      title: "US vs LATAM vs Pakistan: The Honest Comparison",
       description:
         "Cost, time zone overlap, engagement models and speed to start compared across US staffing, LATAM nearshore and Pakistan offshore.",
       path: "/global-delivery",
@@ -44,7 +46,7 @@ function ProsConsCard({
         {data.pros.map((p) => (
           <li key={p} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
             <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-            <span>{p}</span>
+            <span>{highlightText(p, extractStatTerms(p))}</span>
           </li>
         ))}
       </ul>
@@ -53,7 +55,7 @@ function ProsConsCard({
         {data.cons.map((c) => (
           <li key={c} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
             <Minus className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-            <span>{c}</span>
+            <span>{highlightText(c, extractStatTerms(c))}</span>
           </li>
         ))}
       </ul>
@@ -102,9 +104,15 @@ function GlobalDeliveryIndex() {
                   >
                     {row.label}
                   </th>
-                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">{row.us}</td>
-                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">{row.latam}</td>
-                  <td className="py-6 leading-relaxed text-muted-foreground">{row.pakistan}</td>
+                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">
+                    {highlightText(row.us, extractStatTerms(row.us))}
+                  </td>
+                  <td className="py-6 pr-6 leading-relaxed text-muted-foreground">
+                    {highlightText(row.latam, extractStatTerms(row.latam))}
+                  </td>
+                  <td className="py-6 leading-relaxed text-muted-foreground">
+                    {highlightText(row.pakistan, extractStatTerms(row.pakistan))}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -148,7 +156,7 @@ function GlobalDeliveryIndex() {
                     <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-gold" />
                   </div>
                   <p className="mt-5 grow text-[0.98rem] leading-relaxed text-muted-foreground">
-                    {card.body}
+                    {highlightText(card.body, extractStatTerms(card.body))}
                   </p>
                   <span className="mt-7 font-display text-sm font-semibold text-gold">
                     {card.cta}

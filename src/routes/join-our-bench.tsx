@@ -16,7 +16,7 @@ export const Route = createFileRoute("/join-our-bench")({
     buildSeoMeta({
       title: "Join Our Talent Network | Contract & Full-Time AI, Data & Cloud Roles",
       description:
-        "Apply to join Career Source Group bench — AI/ML, MLOps, Data, DevOps, DevSecOps, Cloud, Software Development, Product, and Cybersecurity & GRC roles.",
+        "Apply to join Career Source Group bench: AI/ML, MLOps, Data, DevOps, DevSecOps, Cloud, Software Development, Product, and Cybersecurity & GRC roles.",
       path: "/join-our-bench",
     }),
   component: JoinOurBenchPage,
@@ -55,7 +55,7 @@ function JoinOurBenchPage() {
         </div>
         <Reveal className="mt-8 max-w-2xl">
           <p className="text-[1.02rem] leading-[1.75] text-muted-foreground">
-            We place specialists and pods with clients who need these roles — on a contract or
+            We place specialists and pods with clients who need these roles, on a contract or
             full-time basis. Apply once and we'll match you as opportunities open.
           </p>
         </Reveal>

@@ -30,18 +30,85 @@ export function Section({
   );
 }
 
+/**
+ * Wraps each occurrence of `terms` in `text` with the accent color, so a key
+ * stat or differentiator (e.g. "10%") stands out from surrounding copy
+ * instead of reading at the same weight as everything else.
+ */
+export function highlightText(text: string, terms?: string | string[]): ReactNode {
+  if (!terms) return text;
+  const list = (Array.isArray(terms) ? terms : [terms]).filter(Boolean);
+  if (list.length === 0) return text;
+
+  const pattern = list.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+  const parts = text.split(new RegExp(`(${pattern})`, "g"));
+
+  return parts.map((part, i) =>
+    list.includes(part) ? (
+      <span key={i} className="text-gold">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
+/**
+ * The handful of stats/phrases repeated verbatim across many pages (fee
+ * comparison, regional savings, the "one contract" pillar) — used as the
+ * default highlight set for FAQ content, which is reused across ~10 routes
+ * with too many one-off dollar figures per answer to hand-curate each one.
+ */
+export const USP_TERMS = [
+  "10%",
+  "20-40%",
+  "30-70%",
+  "50-70%",
+  "10-20%",
+  "one contract, one invoice, one point of contact",
+  "One contract, one invoice, one point of contact",
+  "one contract, one invoice, and one point of contact",
+  "One contract, one invoice, and one point of contact",
+  "Same contract, same invoice, same point of contact",
+];
+
+/**
+ * Auto-detects dollar figures/ranges (e.g. "$134,000-$193,250", "$170K-$230K")
+ * and percentage figures (e.g. "10-20%") in a string. For pages where every
+ * block is inherently built around one canonical market-rate stat — too many
+ * distinct figures across roles/regions to hand-curate a term list for each
+ * — the figure itself IS the differentiator, so highlighting every match is
+ * safe rather than arbitrary.
+ */
+export function extractStatTerms(text: string): string[] {
+  const dollarPattern = /\$\d{1,3}(?:,\d{3})*K?(?:\s*-\s*\$?\d{1,3}(?:,\d{3})*K?)?/g;
+  const percentPattern = /\d{1,3}(?:-\d{1,3})?%/g;
+  const multiplierPattern = /\d+(?:\.\d+)?(?:-\d+(?:\.\d+)?)?x\b/g;
+  const matches = [
+    ...text.matchAll(dollarPattern),
+    ...text.matchAll(percentPattern),
+    ...text.matchAll(multiplierPattern),
+  ].map((m) => m[0]);
+  return Array.from(new Set(matches));
+}
+
 export function SectionHeading({
   eyebrow,
   title,
   body,
   className,
   align = "left",
+  highlight,
+  bodyHighlight,
 }: {
   eyebrow?: string;
   title: string;
   body?: string;
   className?: string;
   align?: "left" | "center";
+  highlight?: string | string[];
+  bodyHighlight?: string | string[];
 }) {
   return (
     <Reveal className={cn(align === "center" && "text-center", className)}>
@@ -52,7 +119,7 @@ export function SectionHeading({
           align === "center" && "mx-auto max-w-3xl",
         )}
       >
-        {title}
+        {highlightText(title, highlight)}
       </h2>
       {body ? (
         <p
@@ -61,7 +128,7 @@ export function SectionHeading({
             align === "center" && "mx-auto",
           )}
         >
-          {body}
+          {highlightText(body, bodyHighlight)}
         </p>
       ) : null}
     </Reveal>
@@ -75,6 +142,8 @@ export function PageHero({
   children,
   showParticles = false,
   showRing = true,
+  titleHighlight,
+  bodyHighlight,
 }: {
   eyebrow: string;
   title: string;
@@ -82,6 +151,8 @@ export function PageHero({
   children?: ReactNode;
   showParticles?: boolean;
   showRing?: boolean;
+  titleHighlight?: string | string[];
+  bodyHighlight?: string | string[];
 }) {
   const paragraphs = Array.isArray(body) ? body : body ? [body] : [];
   return (
@@ -102,10 +173,12 @@ export function PageHero({
       <div className="container-page relative z-10">
         {/* Render hero copy immediately to avoid flash/hide on hydration */}
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-6 max-w-4xl text-balance heading-hero">{title}</h1>
+        <h1 className="mt-6 max-w-4xl text-balance heading-hero">
+          {highlightText(title, titleHighlight)}
+        </h1>
         {paragraphs.map((p) => (
           <p key={p} className="mt-6 max-w-2xl body-copy text-muted-foreground">
-            {p}
+            {highlightText(p, bodyHighlight)}
           </p>
         ))}
         {children ? <div className="mt-10">{children}</div> : null}
@@ -153,10 +226,10 @@ export function ButtonLink({
     <Link
       to={to as never}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 button-text transition-all duration-300 active:scale-95",
+        "inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 button-text transition-all duration-300 hover:scale-[1.07] active:scale-95",
         variant === "solid"
-          ? "bg-cream text-navy hover:bg-gold hover:shadow-md hover:shadow-gold/20"
-          : "border border-border text-foreground hover:border-gold hover:text-gold hover:shadow-md hover:shadow-gold/10",
+          ? "bg-cream text-navy hover:bg-gold hover:shadow-lg hover:shadow-gold/40"
+          : "border border-gold text-foreground shadow-sm shadow-gold/20 hover:text-gold hover:shadow-lg hover:shadow-gold/30",
       )}
     >
       {label}
@@ -189,17 +262,25 @@ export function NumberedItem({
   index,
   heading,
   body,
+  highlight,
+  headingHighlight,
 }: {
   index: number;
   heading?: string;
   body: string;
+  highlight?: string | string[];
+  headingHighlight?: string | string[];
 }) {
   return (
     <div className="grid gap-5 border-t border-border py-8 transition-colors duration-300 hover:border-gold/30 md:grid-cols-[5rem_1fr]">
       <span className="label-small text-gold">{String(index).padStart(2, "0")}</span>
       <div className="min-w-0">
-        {heading ? <h3 className="card-title">{heading}</h3> : null}
-        <p className={cn("body-copy text-muted-foreground", heading && "mt-3")}>{body}</p>
+        {heading ? (
+          <h3 className="card-title">{highlightText(heading, headingHighlight)}</h3>
+        ) : null}
+        <p className={cn("body-copy text-muted-foreground", heading && "mt-3")}>
+          {highlightText(body, highlight)}
+        </p>
       </div>
     </div>
   );
@@ -288,7 +369,7 @@ export function FaqSection({
               {faq.q}
             </AccordionTrigger>
             <AccordionContent className="max-w-3xl pb-7 body-copy text-muted-foreground">
-              {faq.a}
+              {highlightText(faq.a, USP_TERMS)}
             </AccordionContent>
           </AccordionItem>
         ))}

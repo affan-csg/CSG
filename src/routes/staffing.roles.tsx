@@ -9,6 +9,8 @@ import {
   Panel,
   Section,
   SectionHeading,
+  extractStatTerms,
+  highlightText,
 } from "@/components/site/primitives";
 import { engagementModels, staffingRolesPage } from "@/content/staffing";
 import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
@@ -16,7 +18,7 @@ import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
 export const Route = createFileRoute("/staffing/roles")({
   head: () => ({
     ...buildSeoMeta({
-      title: "Staffing Roles — Individual Specialists, Priced by Region",
+      title: "Staffing Roles: Individual Specialists, Priced by Region",
       description:
         "Direct hire, contract, and contract-to-hire specialists placed into a seat you've already defined, priced across the US, LATAM, and Pakistan.",
       path: "/staffing/roles",
@@ -68,7 +70,10 @@ function StaffingRolesPage() {
                     <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-gold" />
                   </div>
                   <p className="mt-5 grow text-[0.98rem] leading-relaxed text-muted-foreground">
-                    {model.body}
+                    {highlightText(model.body, [
+                      ...extractStatTerms(model.body),
+                      "half the market rate",
+                    ])}
                   </p>
                   <span className="mt-7 font-display text-sm font-semibold text-gold">
                     {model.cta}

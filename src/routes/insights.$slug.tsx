@@ -11,7 +11,7 @@ const insightsContent: Record<
     title: "The Hidden Costs of a Bad Hire and How to Avoid Them",
     date: "2024-08-15",
     readTime: "8 min read",
-    content: `A bad hire costs more than just salary — here's how to identify and prevent costly hiring mistakes before they impact your bottom line.
+    content: `A bad hire costs more than just salary. Here's how to identify and prevent costly hiring mistakes before they impact your bottom line.
 
 The true cost of a bad hire goes far beyond the salary you pay. Studies show that a bad hire can cost a company 30% of that employee's first-year earnings. For a $100,000 salary, that's $30,000 lost in recruitment, training, and lost productivity.
 
@@ -36,7 +36,7 @@ The key to avoiding bad hires is a structured, data-driven hiring process. Here'
 
 ## The Staffing Partner Advantage
 
-Working with a specialized staffing partner like Career Source Group can significantly reduce the risk of bad hires. Our vetting process includes communication skills assessment, technical skill verification, and culture fit evaluation — before you ever see a resume.`,
+Working with a specialized staffing partner like Career Source Group can significantly reduce the risk of bad hires. Our vetting process includes communication skills assessment, technical skill verification, and culture fit evaluation, before you ever see a resume.`,
   },
   "is-outsourcing-it-staffing-right-for-your-business": {
     title: "Is Outsourcing IT Staffing Right for Your Business?",

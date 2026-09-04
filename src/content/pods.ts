@@ -25,7 +25,7 @@ export const pods = {
     },
   ],
   example: {
-    heading: "Example — Engineering Pod",
+    heading: "Example: Engineering Pod",
     seats: [
       {
         count: "1",
@@ -94,10 +94,10 @@ export const pods = {
     },
   ],
   specializedFootnote:
-    "Every pod above is sized against the same four variables: experience, communication skills, technical skills, and cost. Geography is a design decision made after the first three are settled — not a default.",
+    "Every pod above is sized against the same four variables: experience, communication skills, technical skills, and cost. Geography is a design decision made after the first three are settled, not a default.",
   whyNow: {
     heading: "Why now",
-    body: "Buyers are cutting their vendor rosters hard — the average move from Q4 2025 into Q1 2026 was going from twelve staffing vendors down to three or four. When a client is consolidating, the firm that covers tech and non-tech, three geographies, and four engagement models under one contract doesn't get cut. The single-service niche vendor does.",
+    body: "Buyers are cutting their vendor rosters hard: the average move from Q4 2025 into Q1 2026 was going from twelve staffing vendors down to three or four. When a client is consolidating, the firm that covers tech and non-tech, three geographies, and four engagement models under one contract doesn't get cut. The single-service niche vendor does.",
     kicker:
       "Tell us what the team needs to accomplish in the next two quarters. We'll come back with a pod design, a blended rate, and a start date.",
   },

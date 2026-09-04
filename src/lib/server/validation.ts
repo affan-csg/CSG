@@ -87,7 +87,6 @@ export const requirementSchema = z
     topSkills: z.string().trim().min(1, "Required").max(500),
     seniority: z.enum(seniorityValues),
     budgetRate: optional(z.string().trim().max(200)),
-    needsBudgetGuidance: optional(z.enum(["yes", "no"])),
     regionPreference: optional(z.enum(regionPreferenceValues)),
     message: optional(z.string().trim().max(1000)),
     // Hidden — captured automatically, not user-entered.

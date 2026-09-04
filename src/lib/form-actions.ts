@@ -124,7 +124,6 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
       topSkills: formData.get("topSkills"),
       seniority: formData.get("seniority"),
       budgetRate: formData.get("budgetRate"),
-      needsBudgetGuidance: formData.get("needsBudgetGuidance"),
       regionPreference: formData.get("regionPreference"),
       message: formData.get("message"),
       utmSource: formData.get("utmSource"),
@@ -161,7 +160,7 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
       if (!emailLimit.allowed) {
         return {
           success: false,
-          message: "You've submitted several requests recently — please try again in an hour.",
+          message: "You've submitted several requests recently. Please try again in an hour.",
         };
       }
 
@@ -205,7 +204,7 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
         top_skills: parsed.data.topSkills,
         seniority: parsed.data.seniority,
         budget_rate: parsed.data.budgetRate ?? null,
-        needs_budget_guidance: parsed.data.needsBudgetGuidance === "yes",
+        needs_budget_guidance: null,
         region_preference: parsed.data.regionPreference ?? null,
         job_description_url: jdPath,
         utm_source: parsed.data.utmSource ?? null,
@@ -248,7 +247,7 @@ export const submitRequirementForm = createServerFn({ method: "POST" })
           `Target start: ${parsed.data.targetStart}`,
           `Top must-have skills: ${parsed.data.topSkills}`,
           `Seniority: ${parsed.data.seniority}`,
-          `Budget/rate: ${parsed.data.budgetRate ?? "(none given)"}${parsed.data.needsBudgetGuidance === "yes" ? " (wants budget guidance)" : ""}`,
+          `Budget/rate: ${parsed.data.budgetRate ?? "(none given)"}`,
           `Region preference: ${parsed.data.regionPreference ?? "(none given)"}`,
           `Job description uploaded: ${jdPath ? "yes" : "no"}`,
           `Company: ${parsed.data.companyName}`,
@@ -339,7 +338,7 @@ export const submitBenchApplication = createServerFn({ method: "POST" })
       if (!emailLimit.allowed) {
         return {
           success: false,
-          message: "You've submitted several applications recently — please try again in an hour.",
+          message: "You've submitted several applications recently. Please try again in an hour.",
         };
       }
 

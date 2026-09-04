@@ -15,6 +15,7 @@ import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as CandidatePrivacyRouteImport } from './routes/candidate-privacy'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EeoNoticeRouteImport } from './routes/eeo-notice'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GetStartedRouteImport } from './routes/get-started'
 import { Route as JoinOurBenchRouteImport } from './routes/join-our-bench'
@@ -68,6 +69,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EeoNoticeRoute = EeoNoticeRouteImport.update({
+  id: '/eeo-notice',
+  path: '/eeo-notice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -199,6 +205,7 @@ export interface FileRoutesByFullPath {
   '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/eeo-notice': typeof EeoNoticeRoute
   '/faq': typeof FaqRoute
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
@@ -231,6 +238,7 @@ export interface FileRoutesByTo {
   '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/eeo-notice': typeof EeoNoticeRoute
   '/faq': typeof FaqRoute
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
@@ -264,6 +272,7 @@ export interface FileRoutesById {
   '/candidate-privacy': typeof CandidatePrivacyRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/eeo-notice': typeof EeoNoticeRoute
   '/faq': typeof FaqRoute
   '/get-started': typeof GetStartedRoute
   '/join-our-bench': typeof JoinOurBenchRoute
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
+    | '/eeo-notice'
     | '/faq'
     | '/get-started'
     | '/join-our-bench'
@@ -330,6 +340,7 @@ export interface FileRouteTypes {
     | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
+    | '/eeo-notice'
     | '/faq'
     | '/get-started'
     | '/join-our-bench'
@@ -362,6 +373,7 @@ export interface FileRouteTypes {
     | '/candidate-privacy'
     | '/case-studies'
     | '/contact'
+    | '/eeo-notice'
     | '/faq'
     | '/get-started'
     | '/join-our-bench'
@@ -395,6 +407,7 @@ export interface RootRouteChildren {
   CandidatePrivacyRoute: typeof CandidatePrivacyRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
+  EeoNoticeRoute: typeof EeoNoticeRoute
   FaqRoute: typeof FaqRoute
   GetStartedRoute: typeof GetStartedRoute
   JoinOurBenchRoute: typeof JoinOurBenchRoute
@@ -463,6 +476,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eeo-notice': {
+      id: '/eeo-notice'
+      path: '/eeo-notice'
+      fullPath: '/eeo-notice'
+      preLoaderRoute: typeof EeoNoticeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -643,6 +663,7 @@ const rootRouteChildren: RootRouteChildren = {
   CandidatePrivacyRoute: CandidatePrivacyRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
+  EeoNoticeRoute: EeoNoticeRoute,
   FaqRoute: FaqRoute,
   GetStartedRoute: GetStartedRoute,
   JoinOurBenchRoute: JoinOurBenchRoute,

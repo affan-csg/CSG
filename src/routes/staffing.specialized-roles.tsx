@@ -21,7 +21,7 @@ export const Route = createFileRoute("/staffing/specialized-roles")({
     ...buildSeoMeta({
       title: "Specialized Technical Roles We Fill",
       description:
-        "AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development, product and cybersecurity & GRC roles — placed as specialists or pods.",
+        "AI/ML, MLOps, data, DevOps, DevSecOps, cloud, software development, product and cybersecurity & GRC roles, placed as specialists or pods.",
       path: "/staffing/specialized-roles",
     }),
     scripts: [

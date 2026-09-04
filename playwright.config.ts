@@ -1,5 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// Vite auto-increments past 8080 if that port is already taken (e.g. by an
+// unrelated local service) — PLAYWRIGHT_PORT lets a dev machine or sandbox
+// point the test run at whatever port the dev server actually bound to,
+// without changing behavior anywhere this isn't set.
+const PORT = process.env.PLAYWRIGHT_PORT ?? "8080";
+const BASE_URL = `http://localhost:${PORT}`;
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -9,7 +16,7 @@ export default defineConfig({
   timeout: 60_000,
   reporter: "html",
   use: {
-    baseURL: "http://localhost:8080",
+    baseURL: BASE_URL,
     trace: "on-first-retry",
     navigationTimeout: 45_000,
   },
@@ -35,7 +42,7 @@ export default defineConfig({
 
   webServer: {
     command: "npm run dev",
-    url: "http://localhost:8080",
+    url: BASE_URL,
     reuseExistingServer: !process.env.CI,
   },
 });

@@ -297,7 +297,18 @@ describe("benchSchema", () => {
   });
 
   it("validates all seniority levels", () => {
-    const levels = ["junior", "mid-level", "senior", "lead", "principal"];
+    const levels = [
+      "intern",
+      "junior",
+      "mid-level",
+      "senior",
+      "staff-lead",
+      "principal",
+      "manager",
+      "director",
+      "vp",
+      "c-level",
+    ];
 
     levels.forEach((seniority) => {
       const result = benchSchema.safeParse({ ...base, seniority });

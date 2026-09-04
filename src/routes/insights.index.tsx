@@ -21,7 +21,7 @@ const posts = [
     slug: "the-hidden-costs-of-a-bad-hire",
     title: "The Hidden Costs of a Bad Hire and How to Avoid Them",
     excerpt:
-      "A bad hire costs more than just salary — here's how to identify and prevent costly hiring mistakes before they impact your bottom line.",
+      "A bad hire costs more than just salary. Here's how to identify and prevent costly hiring mistakes before they impact your bottom line.",
     date: "2024-08-15",
     readTime: "8 min read",
     image: "/images/blog/hiring.avif",

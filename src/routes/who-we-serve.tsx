@@ -8,6 +8,8 @@ import {
   PageHero,
   Section,
   SectionHeading,
+  USP_TERMS,
+  highlightText,
 } from "@/components/site/primitives";
 import { buildSeoMeta } from "@/lib/seo";
 
@@ -27,14 +29,14 @@ const audiences = [
     id: "startups",
     eyebrow: "Startups",
     heading: "Move fast without a full-time recruiting function.",
-    body: "Early-stage teams need to add technical capacity without standing up an internal recruiting org. We work as your hiring bench — a single point of contact for a specialist, a first hire in a new discipline, or a small pod to cover a sprint of work — priced and staffed to match a startup's pace and budget.",
+    body: "Early-stage teams need to add technical capacity without standing up an internal recruiting org. We work as your hiring bench: a single point of contact for a specialist, a first hire in a new discipline, or a small pod to cover a sprint of work, priced and staffed to match a startup's pace and budget.",
     cta: { label: "Hire a specialist", to: "/staffing/roles" },
   },
   {
     id: "smb",
     eyebrow: "Small & Mid-Sized Businesses",
     heading: "Scale a team without juggling five vendors.",
-    body: "Growing companies usually end up managing separate agencies for US contract work, nearshore engineering, and offshore execution. We consolidate that into one contract, one invoice, and one point of contact — so you can staff a role, a pod, or a mixed US/LATAM/Pakistan team through a single relationship.",
+    body: "Growing companies usually end up managing separate agencies for US contract work, nearshore engineering, and offshore execution. We consolidate that into one contract, one invoice, and one point of contact, so you can staff a role, a pod, or a mixed US/LATAM/Pakistan team through a single relationship.",
     cta: { label: "Explore pods", to: "/staffing/pods" },
   },
   {
@@ -51,8 +53,8 @@ function WhoWeServePage() {
     <>
       <PageHero
         eyebrow="Who We Serve"
-        title="Startups, growing companies, and enterprises — staffed differently, on purpose."
-        body="The work looks different at each stage. We size the engagement — specialist, pod, or full delivery team — to match."
+        title="Startups, growing companies, and enterprises: staffed differently, on purpose."
+        body="The work looks different at each stage. We size the engagement (specialist, pod, or full delivery team) to match."
       />
 
       {audiences.map((audience, i) => (
@@ -65,7 +67,7 @@ function WhoWeServePage() {
           <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
             <Reveal>
               <p className="max-w-2xl text-[1.04rem] leading-[1.75] text-muted-foreground">
-                {audience.body}
+                {highlightText(audience.body, USP_TERMS)}
               </p>
             </Reveal>
             <Reveal delay={0.08}>

@@ -11,6 +11,7 @@ import {
   Panel,
   Section,
   SectionHeading,
+  highlightText,
 } from "@/components/site/primitives";
 import { home } from "@/content/pages";
 import { regionCards, specialties } from "@/content/site";
@@ -126,7 +127,7 @@ function Hero() {
               alt="Career Source Group"
               width={500}
               height={297}
-              className="w-full drop-shadow-[0_0_20px_rgba(101,158,247,0.3)] transition-all duration-500 ease-out [filter:invert(100%)_sepia(33%)_saturate(130%)_hue-rotate(41deg)_brightness(105%)] hover:scale-110 hover:drop-shadow-[0_0_40px_rgba(101,158,247,0.6)] hover:[filter:invert(75%)_sepia(48%)_saturate(308%)_hue-rotate(62deg)_brightness(134%)]"
+              className="w-full transition-all duration-500 ease-out [filter:invert(100%)_sepia(40%)_saturate(350%)_hue-rotate(216deg)_brightness(120%)_drop-shadow(0_0_20px_rgba(255,222,0,0.3))] hover:scale-110 hover:[filter:invert(100%)_sepia(40%)_saturate(350%)_hue-rotate(216deg)_brightness(120%)_drop-shadow(0_0_40px_rgba(255,222,0,0.6))]"
               fetchPriority="high"
               loading="eager"
               decoding="async"
@@ -139,7 +140,7 @@ function Hero() {
 
         <h1
           ref={wordsRef}
-          className="mt-6 font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
+          className="mt-6 [font-family:'Inter',sans-serif] text-[clamp(2.5rem,6.1vw,5.5rem)] font-black leading-[0.94] tracking-[-0.04em] bg-[linear-gradient(120deg,var(--cream)_0%,var(--cream)_35%,var(--gold)_100%)] bg-clip-text text-transparent"
         >
           {home.hero.words.map((word) => (
             <span key={word} className="block overflow-hidden pb-1">
@@ -150,8 +151,8 @@ function Hero() {
           ))}
         </h1>
 
-        <Reveal delay={0.35} className="mt-6 max-w-xl mx-auto">
-          <p className="text-[1.05rem] leading-relaxed text-muted-foreground">{home.hero.sub}</p>
+        <Reveal delay={0.35} className="mt-6 max-w-3xl mx-auto">
+          <p className="text-[1.15rem] leading-relaxed text-muted-foreground">{home.hero.sub}</p>
         </Reveal>
 
         <Reveal delay={0.45} className="mt-10 flex flex-wrap justify-center gap-4">
@@ -191,7 +192,10 @@ function HomePage() {
             <Reveal delay={0.08}>
               <p className="eyebrow">{home.who.heading}</p>
               <p className="mt-6 text-balance text-[1.05rem] leading-[1.75] text-muted-foreground">
-                {home.who.body}
+                {highlightText(home.who.body, [
+                  "One contract, one invoice, one point of contact",
+                  "10%",
+                ])}
               </p>
             </Reveal>
           </div>
@@ -199,13 +203,18 @@ function HomePage() {
 
         <Section className="border-t border-border">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
-            <SectionHeading eyebrow="Fee structure" title={home.fee.heading} body={home.fee.body} />
+            <SectionHeading
+              eyebrow="Fee structure"
+              title={home.fee.heading}
+              body={home.fee.body}
+              highlight="10%"
+            />
             <Reveal delay={0.1}>
               <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-3">
                 {[
                   { value: "10%", label: "Our direct-hire fee" },
-                  { value: "20-30%", label: "What the market charges" },
-                  { value: "$75K-150K", label: "Your savings (5 hires)" },
+                  { value: "20-40%", label: "What the market charges" },
+                  { value: "$75K-225K", label: "Your savings (5 hires)" },
                 ].map((s) => (
                   <div key={s.label} className="bg-card p-7">
                     <p className="font-display text-3xl font-semibold text-gold">{s.value}</p>
@@ -239,7 +248,7 @@ function HomePage() {
                       <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-gold" />
                     </div>
                     <p className="mt-5 grow text-[0.98rem] leading-relaxed text-muted-foreground">
-                      {card.body}
+                      {highlightText(card.body, ["30-70%", "50-70%"])}
                     </p>
                     <span className="mt-7 font-display text-sm font-semibold text-gold">
                       {card.cta}
@@ -338,11 +347,20 @@ function HomePage() {
             <div>
               <SectionHeading eyebrow="Differentiators" title={home.whyCsg.heading} />
               <div className="mt-12">
-                {home.whyCsg.items.map((item, i) => (
-                  <Reveal key={item} delay={i * 0.05}>
-                    <NumberedItem index={i + 1} body={item} />
-                  </Reveal>
-                ))}
+                {home.whyCsg.items.map((item, i) => {
+                  const terms = ["10%", "Three regions, one partner"].filter((t) =>
+                    item.includes(t),
+                  );
+                  return (
+                    <Reveal key={item} delay={i * 0.05}>
+                      <NumberedItem
+                        index={i + 1}
+                        body={item}
+                        {...(terms.length > 0 ? { highlight: terms } : {})}
+                      />
+                    </Reveal>
+                  );
+                })}
               </div>
               <div className="mt-10">
                 <ArrowLink

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import type { FormStatus } from "@/lib/forms";
@@ -199,8 +199,21 @@ export function FormSuccess({
   resetLabel: string;
   onReset: () => void;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Replacing the full form with this much shorter card collapses the
+  // page's height, so the viewport's fixed scroll position ends up showing
+  // whatever now sits lower on the page (often the footer) instead of the
+  // message — pull it back into view so the confirmation is what's visible.
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []);
+
   return (
-    <div className="rounded-md border border-green-500/30 bg-green-500/10 p-6 text-center">
+    <div
+      ref={ref}
+      className="rounded-md border border-green-500/30 bg-green-500/10 p-6 text-center"
+    >
       <p className="heading-subsection font-display text-green-400">{title}</p>
       <p className="mt-2 body-small text-muted-foreground">{message}</p>
       <button

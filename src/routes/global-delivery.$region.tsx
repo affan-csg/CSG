@@ -10,6 +10,8 @@ import {
   PullQuote,
   Section,
   SectionHeading,
+  extractStatTerms,
+  highlightText,
 } from "@/components/site/primitives";
 import { regionPages, prosCons, type RegionPage } from "@/content/delivery";
 import { buildBreadcrumbJsonLd, buildSeoMeta } from "@/lib/seo";
@@ -68,7 +70,7 @@ function ProsConsCard({
         {data.pros.map((p) => (
           <li key={p} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
             <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-            <span>{p}</span>
+            <span>{highlightText(p, extractStatTerms(p))}</span>
           </li>
         ))}
       </ul>
@@ -77,7 +79,7 @@ function ProsConsCard({
         {data.cons.map((c) => (
           <li key={c} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
             <Minus className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-            <span>{c}</span>
+            <span>{highlightText(c, extractStatTerms(c))}</span>
           </li>
         ))}
       </ul>
@@ -123,7 +125,7 @@ function RegionDeliveryPage() {
                 <Panel>
                   <h3 className="font-display text-xl font-semibold">{highlight.heading}</h3>
                   <p className="mt-4 text-[1.02rem] leading-relaxed text-muted-foreground">
-                    {highlight.body}
+                    {highlightText(highlight.body, extractStatTerms(highlight.body))}
                   </p>
                 </Panel>
               </Reveal>
@@ -140,7 +142,9 @@ function RegionDeliveryPage() {
             {regionData.models.map((model, i) => (
               <Reveal key={model.title} delay={i * 0.07}>
                 <Panel className="h-full">
-                  <h3 className="font-display text-lg font-semibold">{model.title}</h3>
+                  <h3 className="font-display text-lg font-semibold">
+                    {highlightText(model.title, extractStatTerms(model.title))}
+                  </h3>
                   <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">
                     {model.lead}
                   </p>

@@ -30,6 +30,31 @@ interface BenchFormProps {
   className?: string;
 }
 
+function labelFor(options: readonly { value: string; label: string }[], value: string): string {
+  return options.find((o) => o.value === value)?.label ?? value;
+}
+
+function buildSuccessMessage(profile: BenchFormData): string {
+  const specialtyLabel = labelFor(specialtyOptions, profile.specialty);
+  const seniorityLabel = labelFor(seniorityOptions, profile.seniority);
+  const regionLabel = labelFor(candidateRegionOptions, profile.region);
+  const basisClause =
+    profile.basis === "open"
+      ? "open to contract or full-time roles"
+      : `looking for ${labelFor(basisOptions, profile.basis).toLowerCase()} roles`;
+  const availabilityClause = profile.availability
+    ? profile.availability === "immediately"
+      ? ", available immediately"
+      : `, available in ${labelFor(availabilityOptions, profile.availability).toLowerCase()}`
+    : "";
+
+  return (
+    `Thanks for applying${profile.firstName ? `, ${profile.firstName}` : ""}, you're now in our ` +
+    `talent network as a ${seniorityLabel} ${specialtyLabel}, based in ${regionLabel} and ` +
+    `${basisClause}${availabilityClause}. We'll reach out when a matching opportunity opens.`
+  );
+}
+
 function makeInitialData(defaultSkill?: string): BenchFormData {
   return {
     firstName: "",
@@ -54,13 +79,13 @@ function makeInitialData(defaultSkill?: string): BenchFormData {
 export function BenchForm({ defaultSkill, className }: BenchFormProps) {
   const { status, setStatus, errorMessage, formData, setFormData, handleChange, submit } =
     useFormSubmit<BenchFormData>(makeInitialData(defaultSkill));
-  const [submittedName, setSubmittedName] = useState("");
+  const [submittedProfile, setSubmittedProfile] = useState<BenchFormData | null>(null);
   const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const submittingName = formData.firstName;
+    const submittingProfile = { ...formData };
     void submit(() => {
       const payload = new FormData();
       for (const [key, value] of Object.entries(formData)) {
@@ -73,7 +98,7 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
       payload.set("honeypot", honeypotRef.current?.value ?? "");
 
       return submitBenchApplication({ data: payload }).then((result) => {
-        if (result.success) setSubmittedName(submittingName);
+        if (result.success) setSubmittedProfile(submittingProfile);
         return result;
       });
     }, makeInitialData(defaultSkill));
@@ -83,7 +108,11 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
     return (
       <FormSuccess
         title="Application received!"
-        message={`Thanks for applying${submittedName ? `, ${submittedName}` : ""} — we'll be in touch when opportunities open.`}
+        message={
+          submittedProfile
+            ? buildSuccessMessage(submittedProfile)
+            : "Thanks for applying. We'll be in touch when opportunities open."
+        }
         resetLabel="Submit another application"
         onReset={() => setStatus("idle")}
       />
@@ -150,15 +179,15 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
         onChange={handleChange}
         placeholder="City, Country"
         autoComplete="address-level2"
-        hint="Wherever you're based — our clients hire across the US, LATAM, and Pakistan."
+        hint="Wherever you're based, our clients hire across the US, LATAM, and Pakistan."
       />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <SelectField
-          label="Specialty"
+          label="Job Title"
           name="specialty"
           required
-          placeholder="Select your specialty"
+          placeholder="Select your job title"
           options={specialtyOptions}
           value={formData.specialty}
           onChange={handleChange}
@@ -176,7 +205,7 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <SelectField
-          label="Basis"
+          label="Job Type"
           name="basis"
           required
           placeholder="Contract or full-time?"
@@ -232,7 +261,7 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
           onChange={handleChange}
           placeholder="6,500"
           prefix="$"
-          hint="Select your basis and region above to see the right question."
+          hint="Select your job type and region above to see the right question."
         />
       </div>
 
@@ -254,7 +283,7 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
           onChange={handleChange}
           placeholder="https://yourportfolio.com"
           autoComplete="url"
-          hint="Optional — a personal site, GitHub, or work samples."
+          hint="Optional: a personal site, GitHub, or work samples."
         />
         <TextField
           label="LinkedIn URL"
@@ -309,7 +338,11 @@ export function BenchForm({ defaultSkill, className }: BenchFormProps) {
           <a href="/candidate-privacy" className="underline hover:text-gold">
             Candidate Privacy Notice
           </a>
-          .
+          . Career Source Group is an equal opportunity employer; see our{" "}
+          <a href="/eeo-notice" className="underline hover:text-gold">
+            EEO & Employment Notice
+          </a>{" "}
+          for how we classify placements and handle work authorization by region.
         </p>
       </div>
 

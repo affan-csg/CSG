@@ -25,7 +25,6 @@ export interface RequirementFormData {
   topSkills: string;
   seniority: string;
   budgetRate: string;
-  needsBudgetGuidance: boolean;
   regionPreference: string;
   jobDescription?: File;
   message: string;
@@ -70,11 +69,16 @@ export const specialtyOptions = [
 ] as const;
 
 export const seniorityOptions = [
+  { value: "intern", label: "Intern" },
   { value: "junior", label: "Junior" },
   { value: "mid-level", label: "Mid-Level" },
   { value: "senior", label: "Senior" },
-  { value: "lead", label: "Lead" },
+  { value: "staff-lead", label: "Staff Lead" },
   { value: "principal", label: "Principal" },
+  { value: "manager", label: "Manager" },
+  { value: "director", label: "Director" },
+  { value: "vp", label: "VP" },
+  { value: "c-level", label: "C-Level" },
 ] as const;
 
 export const engagementOptions = [
@@ -131,7 +135,6 @@ export const regionPreferenceOptions = [
   { value: "us", label: "United States" },
   { value: "latam", label: "LATAM" },
   { value: "pakistan", label: "Pakistan" },
-  { value: "recommend", label: "Recommend a region for me" },
 ] as const;
 
 // --- Join Our Bench form additions (implementation_plan.docx section 12) ---
