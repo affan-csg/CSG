@@ -179,10 +179,10 @@ function HomePage() {
             <Reveal>
               <div className="group relative overflow-hidden rounded-md border border-border transition-all duration-500 hover:border-gold/40 hover:shadow-lg hover:shadow-gold/5">
                 <img
-                  src="/images/who-we-are.webp"
-                  alt="Career Source Group team collaborating"
-                  width={1116}
-                  height={837}
+                  src="https://images.pexels.com/photos/8190804/pexels-photo-8190804.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=900"
+                  alt="A diverse group of professionals meeting around a round conference table"
+                  width={1200}
+                  height={900}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -291,10 +291,10 @@ function HomePage() {
             <Reveal delay={0.1}>
               <div className="overflow-hidden rounded-md border border-border">
                 <img
-                  src="/images/staffing.webp"
-                  alt="Career Source Group staffing overview"
-                  width={1506}
-                  height={914}
+                  src="https://images.pexels.com/photos/29267520/pexels-photo-29267520.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=900"
+                  alt="A large mixed team gathered around a shared worktable in an open office"
+                  width={1200}
+                  height={900}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -309,10 +309,10 @@ function HomePage() {
             <Reveal>
               <div className="overflow-hidden rounded-md border border-border">
                 <img
-                  src="/images/how-pod-models-work.webp"
-                  alt="How CSG Pod models work"
-                  width={1378}
-                  height={837}
+                  src="https://images.pexels.com/photos/6803529/pexels-photo-6803529.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=900"
+                  alt="A team mapping out work at a whiteboard in a software office"
+                  width={1200}
+                  height={900}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
@@ -373,10 +373,10 @@ function HomePage() {
             <Reveal delay={0.1}>
               <div className="overflow-hidden rounded-md border border-border">
                 <img
-                  src="/images/how-we-differ.webp"
-                  alt="How Career Source Group differs from competitors"
-                  width={1378}
-                  height={836}
+                  src="https://images.pexels.com/photos/8353799/pexels-photo-8353799.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=900"
+                  alt="Two presenters walking a seated group through data on a large screen"
+                  width={1200}
+                  height={900}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
